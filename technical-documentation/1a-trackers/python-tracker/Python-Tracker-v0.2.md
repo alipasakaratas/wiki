@@ -8,7 +8,9 @@
 
 *[Version 0.4][python-0.4]*
 
-*[Version 0.5][python-latest]*
+*[Version 0.5][python-0.5]*
+
+*[Version 0.6][python-latest]*
 
 ## Contents
 
@@ -641,4 +643,5 @@ By contrast, the following are all allowed:
 
 [python-0.3]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.3
 [python-0.4]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.4
+[python-0.5]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.5
 [python-latest]: https://github.com/snowplow/snowplow/wiki/Python-Tracker

@@ -2,7 +2,7 @@
 
 [**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow technical documentation) > [**Trackers**](trackers) > Python Tracker
 
-*This page refers to version 0.6.0 of the Snowplow Python Tracker, which is the latest version. Documentation for earlier versions is available:*
+*This page refers to version 0.5.0 of the Snowplow Python Tracker. Documentation for other versions is available:*
 
 *[Version 0.2][python-0.2]*
 
@@ -10,7 +10,7 @@
 
 *[Version 0.4][python-0.4]*
 
-*[Version 0.5][python-0.5]*
+*[Version 0.6][python-latest]*
 
 ## Contents
 
@@ -31,10 +31,6 @@
   - 3.5 [`set_color_depth`](#set-color-depth)
   - 3.6 [`set_timezone`](#set-timezone)
   - 3.7 [`set_lang`](#set-lang)
-  - 3.8 [`set_ip_address`](#set-ip-address)
-  - 3.9 [`set_useragent`](#set-useragent)
-  - 3.10 [`set_domain_user_id`](#set-domain-user-id)
-  - 3.11 [`set_network_user_id`](#set-network-user-id)
 - 4. [Tracking specific events](#events)
   - 4.1 [Common](#common)
     - 4.1.1 [Custom contexts](#custom-contexts)
@@ -293,63 +289,6 @@ The language should be a string:
 
 ```python
 s.set_lang('en')
-```
-
-<a name="set-ip-address" />
-### 3.8 Setting the IP address with `set_ip_address`
-
-If you have access to the user's IP address, you can set it like this:
-
-```python
-tracker.set_ip_address('34.633.11.139')
-```
-
-<a name="set-useragent" />
-### 3.9 Setting the useragent with `set_ip_address`
-
-If you have access to the user's useragent (sometimes called "browser string"), you can set it like this:
-
-```python
-tracker.set_useragent('Mozilla/5.0 (Windows NT 5.1; rv:23.0) Gecko/20100101 Firefox/23.0')
-```
-
-<a name="set-domain-user-id" />
-### 3.10 Setting the domain user ID with `set_domain_user_id`
-
-The `domain_userid` field of the Snowplow event model corresponds to the ID stored in the first party cookie set by the Snowplow JavaScript Tracker. If you want to match up server-side events with client-side events, you can set the domain user ID for server-side events like this:
-
-```python
-tracker.set_domain_user_id('c7aadf5c60a5dff9')
-```
-
-You can extract the domain user ID from the cookies of a request using the `get_domain_user_id` function below.
-The `request` argument is the [Django request object][django-request].
-
-**Note that this function has not been tested.**
-
-```python
-import re
-def snowplow_cookie(request):
-    for name in request.COOKIES:
-        if re.match(r"_sp_id", name) != None:
-           return request.COOKIES[name]
-    return None
-
-def get_domain_user_id(request):
-    cookie = snowplow_cookie(request)
-    if cookie != None:
-        return cookie.split(".")[0]
-```
-
-If you used the "cookieName" configuration option of the Snowplow JavaScript Tracker, replace "_sp_" with the same string you passed as the cookieName.
-
-<a name="set-network-user-id" />
-### 3.11 Setting the network user ID with `set_network_user_id`
-
-The `network_user_id` field of the Snowplow event model corresponds to the ID stored in the third party cookie set by the Snowplow Clojure Collector. You can set the network user ID for server-side events like this:
-
-```python
-tracker.set_network_user_id('ecdff4d0-9175-40ac-a8bb-325c49733607')
 ```
 
 [Back to top](#top)
@@ -928,7 +867,7 @@ This will set up a worker which will run indefinitely, taking events from the Re
 [python-0.2]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.2
 [python-0.3]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.3
 [python-0.4]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.4
-[python-0.4]: https://github.com/snowplow/snowplow/wiki/Python-Tracker-v0.5
+[python-latest]: https://github.com/snowplow/snowplow/wiki/Python-Tracker
 [pycontracts]: http://andreacensi.github.io/contracts/
 
 [jsonschema]: http://snowplowanalytics.com/blog/2014/05/13/introducing-schemaver-for-semantic-versioning-of-schemas/
@@ -936,4 +875,3 @@ This will set up a worker which will run indefinitely, taking events from the Re
 [base64]: https://en.wikipedia.org/wiki/Base64
 [celery]: http://www.celeryproject.org/
 [redis]: http://redis.io/
-[django-request]: https://docs.djangoproject.com/en/1.7/ref/request-response/
