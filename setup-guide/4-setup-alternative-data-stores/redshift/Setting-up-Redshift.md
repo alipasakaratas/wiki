@@ -188,104 +188,10 @@ To create a new user who can read Snowplow data, but not modify it, connect to t
 ```sql
 CREATE USER read_only PASSWORD '$read_only_user';
 GRANT USAGE ON SCHEMA atomic TO read_only;
-GRANT SELECT ON TABLE "atomic"."events" TO read_only;
+GRANT SELECT ON TABLE atomic.events TO read_only;
 ```
 
-Now we need to give the user access to the schemas with the different views in:
-
-```sql
-GRANT USAGE ON SCHEMA	cubes_pages	 TO read_only;
-GRANT USAGE ON SCHEMA	recipes_basic	 TO read_only;
-GRANT USAGE ON SCHEMA	recipes_catalog	 TO read_only;
-GRANT USAGE ON SCHEMA	cubes_visits	 TO read_only;
-GRANT USAGE ON SCHEMA	cubes_ecomm	 TO read_only;
-GRANT USAGE ON SCHEMA	recipes_customer	 TO read_only;
-```
-
-Now give the user `SELECT` access on the indiviudal views:
-
-```sql
-GRANT SELECT ON 	atomic	.	events	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	uniques_and_visits_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	pageviews_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	events_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	pages_per_visit	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	bounce_rate_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	fraction_new_visits_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	avg_visit_duration_by_day	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	visitors_by_language	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	visits_by_country	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	new_vs_returning	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	behavior_frequency	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	behavior_recency	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	engagement_visit_duration	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	engagement_pageviews_per_visit	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	technology_browser	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	technology_os	 TO read_only;
-GRANT SELECT ON 	recipes_basic	.	technology_mobile	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	uniques_and_pvs_by_page_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	uniques_and_pvs_by_page_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	add_to_baskets_by_page_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	add_to_baskets_by_page_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	purchases_by_product_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	purchases_by_product_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	all_product_metrics_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	time_and_fraction_read_per_page_per_user	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	pings_per_page_per_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	avg_pings_per_unique_per_page_per_month	 TO read_only;
-GRANT SELECT ON 	recipes_catalog	.	traffic_driven_to_site_per_page_per_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_domain_to_network	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_domain_to_user	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_domain_to_ipaddress	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_domain_to_fingerprint	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_network_to_user	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_network_to_ipaddress	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_network_to_fingerprint	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_user_to_ipaddress	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_user_to_fingerprint	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	id_map_ipaddress_to_fingerprint	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	clv_total_transaction_value_by_user_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	clv_total_transaction_value_by_user_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	engagement_users_by_days_p_month_on_site	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	engagement_users_by_days_p_week_on_site	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	engagement_users_by_visits_per_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	engagement_users_by_visits_per_week	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_month_first_touch_website	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_week_first_touch_website	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_month_signed_up	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_week_signed_up	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_month_first_transact	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_week_first_transact	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_paid_channel_acquired_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_paid_channel_acquired_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_refr_channel_acquired_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_dfn_by_refr_channel_acquired_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	retention_by_user_by_month	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	retention_by_user_by_week	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_month_first_touch	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_week_first_touch	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_month_signed_up	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_week_signed_up	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_month_first_transact	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_week_first_transact	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_month_by_paid_channel_acquired	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_week_by_paid_channel_acquired	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_month_by_refr_acquired	 TO read_only;
-GRANT SELECT ON 	recipes_customer	.	cohort_retention_by_week_by_refr_acquired	 TO read_only;
-GRANT SELECT ON 	cubes_pages	.	pages_basic	 TO read_only;
-GRANT SELECT ON 	cubes_pages	.	views_by_session	 TO read_only;
-GRANT SELECT ON 	cubes_pages	.	pings_by_session	 TO read_only;
-GRANT SELECT ON 	cubes_pages	.	complete	 TO read_only;
-GRANT SELECT ON 	cubes_visits	.	basic	 TO read_only;
-GRANT SELECT ON 	cubes_visits	.	referer_basic	 TO read_only;
-GRANT SELECT ON 	cubes_visits	.	referer	 TO read_only;
-GRANT SELECT ON 	cubes_visits	.	entry_and_exit_pages	 TO read_only;
-GRANT SELECT ON 	cubes_visits	.	referer_entries_and_exits	 TO read_only;
-GRANT SELECT ON 	cubes_ecomm	.	transactions_basic	 TO read_only;
-GRANT SELECT ON 	cubes_ecomm	.	transactions_items_basic	 TO read_only;
-GRANT SELECT ON 	cubes_ecomm	.	transactions	 TO read_only;
-GRANT SELECT ON 	cubes_ecomm	.	transactions_with_visits	 TO read_only;
-```
+The last query would need to be run for each table in atomic.
 
 Lastly, we may want to let create a schema in Redshift where the read-only user can create his/ her own tables for analytics purposes, for example:
 
