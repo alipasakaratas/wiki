@@ -7,12 +7,11 @@ Setting up Redshift is a 9 step process:
 1. [Launch a Redshift cluster](#launch)
 2. [Authorize client connections to your cluster](#authorise)  
 3. [Connect to your cluster](#connect)
-4. [Setting up the Snowplow database and events table](#db)
-5. [Setting up the Snowplow views on your data](#views)
-6. [Setup user access on Redshift](#user)
-7. [Generating Redshift-format data from Snowplow](#generate)
-8. [Update the search path for your Redshift cluster](#search_path)
-9. [Automating the loading of Snowplow data into Redshift](#load)
+4. [Set up the Snowplow database and events table](#db)
+5. [Set up user access on Redshift](#user)
+6. [Generate Redshift-format data from Snowplow](#generate)
+7. [Update the search path for your Redshift cluster](#search_path)
+8. [Automate the loading of Snowplow data into Redshift](#load)
 
 **Note**: We recommend running all Snowplow AWS operations through an IAM user with the bare minimum permissions required to run Snowplow. Please see our [IAM user setup page](IAM-setup) for more information on doing this.
 
@@ -75,9 +74,9 @@ In this example we're going to establish a direct connection between Redshift an
 
 [[/setup-guide/images/redshift-setup-guide/8.png]]
 
-and click "Add". 
+and click "Add".
 
-We should now be able to connect a SQL client on our local machine to Amazon Redshift. 
+We should now be able to connect a SQL client on our local machine to Amazon Redshift.
 
 **Note:** Amazon has moved to launching Redshift clusters in a VPC instance by default. In this case, the process for adding IP addresses or EC2 instances to a security group is very similar, but rather than being done in the `Redshift > Security Groups` section of the AWS console, it is done in the `EC2 -> VPC security groups` section of the AWS management console.
 
@@ -90,7 +89,7 @@ There are two ways to connect to your Redshift cluster:
 4.2 [Via SSL](#ssl)  
 
 <a name="directly" />
-### 3.1 Directly connect 
+### 3.1 Directly connect
 
 Amazon has helpfully provided detailed instructions for connecting to Redshift using [SQL Workbench] [sql-workbench-tutorial]. In this tutorial we will connect using [Navicat](http://www.navicat.com/), a database querying tool which we recommend (30 day trial versios are available from the [Navicat website](http://www.navicat.com/)).
 
@@ -125,13 +124,13 @@ The Redshift cluster is now visible on Navicat, alongside every other database i
 TO WRITE
 
 <a name="db" />
-## 4. Setting up the Snowplow database and events table
+## 4. Set up the Snowplow database and events table
 
 Now that you have Redshift up and running, you need to create the Snowplow database (if you didn't do this as part of the process of firing up your Redshift cluster) and creating your Snowplow events table.
 
 To create a new database on Redshift, right click on the new connection and select 'New database'. Give your database a suitable name and click OK.
 
-The Snowplow events table definition for Redshift is available on the repo [here] [redshift-table-def]. Execute the queries in the file - this can be done using psql as follows: 
+The Snowplow events table definition for Redshift is available on the repo [here] [redshift-table-def]. Execute the queries in the file - this can be done using psql as follows:
 
 Navigate to your snowplow github repo:
 
@@ -149,22 +148,8 @@ Where `{{ admin_username }}` is the username you created when you setup the Reds
 
 If you prefer using a GUI (e.g. Navicat) rather than `psql`, you can do so. These will let you either run the files directly, or you can simply copy and paste the queries in the files into your GUI of choice, and execute them from there.
 
-<a name="views" />
-## 5. Setting up the Snowplow views on your data
-
-Once you've created the `atomic.events` table, you are in a position to create the different views on the data in that table. This can be done using `psql` at the command line:
-
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f recipes/recipes-basic.sql
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f recipes/recipes-catalog.sql
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f recipes/recipes-customers.sql
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f cubes/cube-pages.sql
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f cubes/cube-visits.sql
-	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f cubes/cube-transactions.sql
-
-
-
 <a name="user" />
-## 6. Setup user access on Redshift
+## 5. Set up user access on Redshift
 
 We recommend you setup access credentials for at least three different users:
 
@@ -173,7 +158,7 @@ We recommend you setup access credentials for at least three different users:
 3. [A power user](#power-user) with admin privilages
 
 <a name="storageloader-user" />
-### 6.1 Creating a user for the StorageLoader
+### 5.1 Creating a user for the StorageLoader
 
 We recommend that you create a specific user in Redshift with *only* the permissions required to load data into your Snowplow events table, and use this user's credentials in the StorageLoader config to manage the automatic movement of data into the table. (That way, in the event that the server running StorageLoader is hacked and the hacker gets access to those credentials, they cannot use them to do any harm to your data.)
 
@@ -190,7 +175,7 @@ You can set the user name and password (`storageloader` and `$storageloaderpassw
 **Note:** the StorageLoader user created does **not** have permissions to perform 'vacuum' or 'compupdates' operations in Redshift. (Only the admin user created with the Redshift cluster has these permissions.) So we recommend you switch from using that user to the StorageLoader user after you've completed your setup and do not need to perform those operations.  
 
 <a name="read-only-user" />
-### 6.2 Creating a read-only user
+### 5.2 Creating a read-only user
 
 To create a new user who can read Snowplow data, but not modify it, connect to the Snowplow database and execute the following SQL:
 
@@ -304,7 +289,7 @@ GRANT ALL ON SCHEMA scratchpad TO read_only;
 ```
 
 <a name="power-user" />
-### 6.3 Creating a power user
+### 5.3 Creating a power user
 
 To create a power user that has super user privilages, connect to the Snowplow database in Redshift and execute the following:
 
@@ -318,14 +303,14 @@ GRANT ALL ON TABLE atomic.events TO power_user;
 Note that now you've created your different users, we recommend that you no longer use the credentials you created when you created the Redshift cluster originally.
 
 <a name="etl" />
-## 7. Generating Redshift-format data from Snowplow
+## 6. Generate Redshift-format data from Snowplow
 
 Assuming you are working through the setup guide sequentially, you will have already  ([setup EmrEtlRunner] [emr-etl-runner]). You should therefore have Snowplow events in S3, ready for uploading into Redshift.
 
 If you have not already [setup EmrEtlRunner] [emr-etl-runner], then please do so now, before proceeding onto the [next stage](#load).
 
 <a name="search_path" />
-## 8. Update the search path for your Redshift cluster
+## 7. Update the search path for your Redshift cluster
 
 The `search path` specifies where Redshift should look to locate tables and views that are specified in queries submitted to it. This is important, because the Snowplow events table is located in the "atomic" schema, whilst different recipe views are located in their own schemas (e.g. "customer_recipes" and "catalog_recipes"). By adding these schemas to the Redshift search path, it means that when you connect to Redshift from different tools (e.g. Tableau, SQL workbench), those tools can identify tables and views in each of those schemas, and present them as options for the user to connect to.
 
@@ -353,7 +338,7 @@ Click the **Modify** button to save the changes. We now need to reboot the clust
 
 
 <a name="load" />
-## 9. Automating the loading of Snowplow data into Redshift
+## 8. Automate the loading of Snowplow data into Redshift
 
 Now that you have your Snowplow database and table setup on Redshift, you are ready to [setup the StorageLoader to regularly upload Snowplow data into the table] [storage-loader]. Click [here] [storage-loader] for step-by-step instructions on how.
 
@@ -364,4 +349,3 @@ Now that you have your Snowplow database and table setup on Redshift, you are re
 [storage-loader]: 1-Installing-the-StorageLoader
 [sql-workbench-tutorial]: http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html
 [redshift-table-def]: https://github.com/snowplow/snowplow/blob/master/4-storage/redshift-storage/sql/atomic-def.sql
-                      
