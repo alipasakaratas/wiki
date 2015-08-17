@@ -226,7 +226,7 @@ If you have not already [setup EmrEtlRunner] [emr-etl-runner], then please do so
 <a name="search_path" />
 ## 7. Update the search path for your Redshift cluster
 
-The `search path` specifies where Redshift should look to locate tables and views that are specified in queries submitted to it. This is important, because the Snowplow events table is located in the "atomic" schema, whilst different recipe views are located in their own schemas (e.g. "customer_recipes" and "catalog_recipes"). By adding these schemas to the Redshift search path, it means that when you connect to Redshift from different tools (e.g. Tableau, SQL workbench), those tools can identify tables and views in each of those schemas, and present them as options for the user to connect to.
+The `search path` specifies where Redshift should look to locate tables and views that are specified in queries submitted to it. This is important, because the Snowplow events table is located in the "atomic" schema, whilst derived tables can be located in their own schemas. By adding these schemas to the Redshift search path, it means that when you connect to Redshift from different tools (e.g. Tableau, SQL workbench), those tools can identify tables and views in each of those schemas, and present them as options for the user to connect to.
 
 Updating the search path is straightforward. In the AWS Redshift console, click on the **Parameters Group** menu item on the left hand. menu, and select the button to **Create Cluster Parameter Group**:
 
@@ -240,7 +240,7 @@ Now open up your parameter group, by clicking on the magnifying glass icon next 
 
 Update the **search_path** section to read the following:
 
-	atomic,  cubes_visits, cubes_pages, recipes_basic, recipes_customer, recipes_catalog
+	atomic,  derived
 
 Note: you can choose to add and remove schemas. Do note, however, that if you include a schema on the search path that does not exist yet on your database, you will cause Redshift to become very unstable. (For that reason, it is often a good idea to leave the `search_path` with the default settings, and only update it once you've setup the relevant schemas in Redshift.)
 
