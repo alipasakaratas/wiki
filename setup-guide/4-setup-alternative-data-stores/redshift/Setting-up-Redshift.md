@@ -138,7 +138,7 @@ Navigate to your snowplow github repo:
 
 Navigate to the sql file:
 
-	$ cd r-storage/redshift-storage/sql
+	$ cd 4-storage/redshift-storage/sql
 
 Now execute the `atomic-def.sql` file:
 
@@ -147,6 +147,12 @@ Now execute the `atomic-def.sql` file:
 Where `{{ admin_username }}` is the username you created when you setup the Redshift cluster.
 
 If you prefer using a GUI (e.g. Navicat) rather than `psql`, you can do so. These will let you either run the files directly, or you can simply copy and paste the queries in the files into your GUI of choice, and execute them from there.
+
+If you capture unstructured events or contexts, you also need to create the corresponding tables in Redshift. For example:
+
+	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f com.snowplowanalytics.snowplow/mobile_context_1.sql
+	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f com.snowplowanalytics.snowplow/link_click_1.sql
+	$ psql -h <HOSTNAME> -U {{ admin_username }} -d snowplow -p <PORT> -f org.w3/performance_timing_1.sql
 
 <a name="user" />
 ## 5. Set up user access on Redshift
