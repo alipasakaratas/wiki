@@ -166,9 +166,7 @@ We recommend you setup access credentials for at least three different users:
 <a name="storageloader-user" />
 ### 5.1 Creating a user for the StorageLoader
 
-We recommend that you create a specific user in Redshift with *only* the permissions required to load data into your Snowplow events table, and use this user's credentials in the StorageLoader config to manage the automatic movement of data into the table. (That way, in the event that the server running StorageLoader is hacked and the hacker gets access to those credentials, they cannot use them to do any harm to your data.)
-
-To create a new user with restrictive permissions, log into Redshift, connect to the Snopwlow database and execute the following SQL:
+We recommend that you create a specific user in Redshift with *only* the permissions required to load data into your Snowplow schema and run `vacuum` and `analyze` against those tables, and use this user's credentials in the StorageLoader config to manage the automatic movement of data into the table. That way, in the event that the server running StorageLoader is hacked and the hacker gets access to those credentials, they cannot use them to do any harm to your other data in Redshift. To create a new user with restrictive permissions, log into Redshift, connect to the Snowplow database and execute the following SQL:
 
 ```sql
 CREATE USER storageloader PASSWORD '$storageloaderpassword';
@@ -178,7 +176,11 @@ GRANT INSERT ON TABLE "atomic"."events" TO storageloader;
 
 You can set the user name and password (`storageloader` and `$storageloaderpassword` in the example above) to your own values. Note them down: you will need them when you come to setup the storageLoader in the next phase of the your Snowplow setup.
 
-**Note:** the StorageLoader user created does **not** have permissions to perform 'vacuum' or 'compupdates' operations in Redshift. (Only the admin user created with the Redshift cluster has these permissions.) So we recommend you switch from using that user to the StorageLoader user after you've completed your setup and do not need to perform those operations.  
+It's important that both `vacuum` and `analyze` are run on a regular basis. These can only be run by a superuser or the owner of the table. The latter is the more restricted solution, so we transfer ownership on all tables in atomic to the StoreLoader user. This can be done by running the following query against all tables in atomic:
+
+```sql
+ALTER TABLE atomic.events OWNER TO storageloader;
+```
 
 <a name="read-only-user" />
 ### 5.2 Creating a read-only user
