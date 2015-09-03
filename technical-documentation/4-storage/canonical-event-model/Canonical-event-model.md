@@ -81,7 +81,7 @@ Back to [top](#top).
 | **Field**       | **Type** | **Description** | **Reqd?** | **Example**    |
 |:----------------|:---------|:----------------|:----------|:---------------|
 | `collector_tstamp`| timestamp | Time stamp for the event recorded by the collector | Yes    | '2013-11-26 00:02:05'   |
-| `dvce_tstamp`   | timestamp | Timestamp event was recorded on the client device | No | '2013-11-26 00:03:57.885' |
+| `dvce_created_tstamp`   | timestamp | Timestamp event was recorded on the client device | No | '2013-11-26 00:03:57.885' |
 | `dvce_sent_tstamp` | timestamp | When the event was sent by the client device | No | '2013-11-26 00:03:58.032' |
 | `etl_tstamp`   | timestamp | Timestamp event began ETL | No | '2017-01-26 00:01:25.292' |
 | `os_timezone`   | text     | Client operating system timezone | No | 'Europe/London' |
