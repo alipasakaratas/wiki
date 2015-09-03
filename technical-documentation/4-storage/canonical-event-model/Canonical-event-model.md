@@ -39,6 +39,7 @@ In order to analyse Snowplow data, it is important to understand how it is struc
   - 2.1.6 [Device and operating system fields](#device)  
   - 2.1.7 [Location fields](#location)
   - 2.1.8 [IP address-based fields](#ip)
+  - 2.1.9 [Metadata fields](#metadata)
 - 2.2 [**Platform-specific fields**](#platform)  
   - 2.2.1 [Web-specific fields](#web)  
 - 2.3 [**Event-specific fields**](#event)
@@ -166,7 +167,7 @@ Back to [top](#top).
 | `geo_timezone` | text     | Visitor timezone name | No | 'Europe/London'      |
 
 <a name="ip" />
-#### 2.1.7 IP address-based fields
+#### 2.1.8 IP address-based fields
 
 | **Field**       | **Type** | **Description** | **Reqd?** | **Example**    |
 |:----------------|:---------|:----------------|:----------|:---------------|
@@ -174,6 +175,18 @@ Back to [top](#top).
 | `ip_organization`    | text     | Organization associated with the visitor's IP address - defaults to ISP name if none is found | No | 'Bouygues Telecom' |
 | `ip_domain`      | text     | Second level domain name associated with the visitor's IP address | No | 'nuvox.net'       |
 | `ip_netspeed`  | text     | Visitor's connection type | No | 'Cable/DSL'           |
+
+<a name="metadata" />
+#### 2.1.9 Metadata fields
+
+Fields containing information about the event type.
+
+| **Field**       | **Type** | **Description**         | **Reqd?** | **Example**    |
+|:----------------|:---------|:------------------------|:----------|:---------------|
+| `event_vendor`  | text     | Who defined the event   | No        | 'com.acme' |
+| `event_name`    | text     | Event name              | No        | 'link_click' |
+| `event_format`  | text     | Format for event        | No        | 'jsonschema'       |
+| `event_version` | text     | Version of event schema | No        | '1-0-2'           |
 
 <a name="platform" />
 ### 2.2 Platform-specific fields
