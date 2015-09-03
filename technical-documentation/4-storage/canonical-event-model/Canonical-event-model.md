@@ -85,7 +85,8 @@ Back to [top](#top).
 | `dvce_sent_tstamp` | timestamp | When the event was sent by the client device | No | '2013-11-26 00:03:58.032' |
 | `etl_tstamp`   | timestamp | Timestamp event began ETL | No | '2017-01-26 00:01:25.292' |
 | `os_timezone`   | text     | Client operating system timezone | No | 'Europe/London' |
-| `derived_tstamp` | timestamp | Calculated "true timestamp" for the event | No | '2013-11-26 00:02:04' |
+| `derived_tstamp` | timestamp | Timestamp making allowance for innaccurate device clock | No | '2013-11-26 00:02:04' |
+| `true_tstamp` | timestamp | User-set "true timestamp" for the event | No | '2013-11-26 00:02:04' |
 
 Back to [top](#top).
 
