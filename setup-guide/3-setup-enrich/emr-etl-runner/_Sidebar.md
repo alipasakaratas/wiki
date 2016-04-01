@@ -13,7 +13,7 @@
     - [3.1.4: Self-host Hadoop Enrich](4-Self-hosting-Hadoop-Enrich)  
     - [3.1.5: Configuring-enrichments](5-Configuring-enrichments)  
     - [3.1.6: Configuring shredding](6-Configuring-shredding)  
-  - [3.2: Setup Scala Kinesis Enrich](setting-up-scala-kinesis-enrich)
+  - [3.2: Setup Stream Enrich](setting-up-stream-enrich)
   - [Configurable enrichments] (Configurable-enrichments)
 - [Step 4: Setup alternative data stores](setting-up-alternative-data-stores)  
 - [Step 5: Analyze your data!](Getting started analyzing Snowplow data)  

@@ -9,7 +9,7 @@ This documentation is for version 0.5.0 of Kinesis Elasticsearch Sink.  For prev
 
 ## Overview
 
-If you are using [Snowplow Kinesis Enrich][ske] to write enriched Snowplow events to one stream and bad events to another, you can use the Kinesis Elasticsearch Sink to read events from either of those streams and write them to [Elasticsearch][elasticsearch].
+If you are using [Stream Enrich][stream-enrich] to write enriched Snowplow events to one stream and bad events to another, you can use the Kinesis Elasticsearch Sink to read events from either of those streams and write them to [Elasticsearch][elasticsearch].
 
 __NOTE__: This application is not compatible with the [Amazon Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) as it does not currently support sending via the TransportClient; which the Elasticsearch Sink uses.
 
@@ -167,7 +167,7 @@ The `jar` file will be saved as `snowplow-elasticsearch-sink-0.1.0` in the `targ
 
 The sink is configured using a HOCON file. These are the fields:
 
-* `source`: Change this from "kinesis" to "stdin" to get input from stdin rather than Kinesis. You can pipe in the output of [Stream Enrich][scala-kinesis-enrich].
+* `source`: Change this from "kinesis" to "stdin" to get input from stdin rather than Kinesis. You can pipe in the output of [Stream Enrich][stream-enrich].
 * `sink.good`: Where to write good events. "elasticsearch" or "stdout".
 * `sink.bad`: Where to write error JSONs for bad events. "kinesis" or "stderr" (or "none" to ignore bad events).
 * `aws.access-key` and `aws.secret-key`: Change these to your AWS credentials. You can alternatively leave them as "default", in which case the [DefaultAWSCredentialsProviderChain][DefaultAWSCredentialsProviderChain] will be used.
@@ -210,10 +210,9 @@ $ ./kinesis-elasticsearch-sink-0.4.0 --config my.conf
 
 This will start the process of reading events from Kinesis and writing them to an Elasticsearch cluster.
 
-[ske]: Scala-Kinesis-Enrich
 [elasticsearch]: http://www.elasticsearch.org/overview/
 [installation-guide]: http://www.elastic.co/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html
 [DefaultAWSCredentialsProviderChain]: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html
-[scala-kinesis-enrich]: https://github.com/snowplow/snowplow/wiki/Scala-Kinesis-Enrich
+[stream-enrich]: https://github.com/snowplow/snowplow/wiki/Stream-Enrich
 [conf-example]: https://github.com/snowplow/snowplow/blob/r67-bohemian-waxwing/4-storage/kinesis-elasticsearch-sink/src/main/resources/config.hocon.sample
 [0.1]: https://github.com/snowplow/snowplow/wiki/kinesis-elasticsearch-sink-setup-0.1.0

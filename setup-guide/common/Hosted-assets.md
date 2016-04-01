@@ -66,7 +66,7 @@ The Scala Hadoop Bad Rows tool uses a single jarfile containing the MapReduce jo
 
 Right-click on this [Download link] [hadoop-bad-rows-download] to save it down locally via CloudFront CDN.
 
-### 3.4 Scala Kinesis Enrich resources
+### 3.4 Stream Enrich resources
 
 See _6. Kinesis resources_ below.
 
@@ -80,7 +80,7 @@ Both Enrichment processes make use of the free [GeoLite City database] [geolite]
 
 This file is updated every month by the Snowplow Analytics team.
 
-If you are running Scala Kinesis Enrich, you will need a local copy of this file. Right-click on this [Download link] [glc-download] to save it down locally via CloudFront CDN.
+If you are running Stream Enrich, you will need a local copy of this file. Right-click on this [Download link] [glc-download] to save it down locally via CloudFront CDN.
 
 ## 4. Storage
 
@@ -108,7 +108,7 @@ No hosted assets currently.
 
 We are steadily moving over to [Bintray][bintray] for hosting binaries and artifacts which don't have to be hosted on S3.
 
-To make deployment easier, the Kinesis apps Scala Stream Collector, Scala Kinesis Enrich and Kinesis Elasticsearch Sink are now all available in a single zip file here:
+To make deployment easier, the Kinesis apps Scala Stream Collector, Stream Enrich and Kinesis Elasticsearch Sink are now all available in a single zip file here:
 
     http://dl.bintray.com/snowplow/snowplow-generic/snowplow_kinesis_r78_great_hornbill.zip
 

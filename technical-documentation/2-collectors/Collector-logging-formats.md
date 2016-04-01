@@ -156,11 +156,11 @@ struct CollectorPayload {
 }
 ```
 
-It's important to note that we built stream data processing on the idea of [Lambda architecture](http://lambda-architecture.net/) which implies both a speed (real-time) layer and a batch layer. As a result we provide two consumers: [Scala Kinesis Enrich](setting-up-scala-kinesis-enrich) and [Kinesis-S3 sink](kinesis-lzo-s3-sink-setup).
+It's important to note that we built stream data processing on the idea of [Lambda architecture](http://lambda-architecture.net/) which implies both a speed (real-time) layer and a batch layer. As a result we provide two consumers: [Stream Enrich](setting-up-stream-enrich) and [Kinesis-S3 sink](kinesis-lzo-s3-sink-setup).
 
 Due to their nature (purpose):
 
-- **Scala Kinesis Enrich** reads raw Snowplow events off a Kinesis stream and writes the *enriched* Snowplow event to another Kinesis *stream*
+- **Stream Enrich** reads raw Snowplow events off a Kinesis stream and writes the *enriched* Snowplow event to another Kinesis *stream*
 - **Kinesis-S3** reads records from an Amazon Kinesis stream, *encodes* and wraps them into [Protocol Buffers](http://code.google.com/p/protobuf) (PB) by means of [ElephantBird library](https://github.com/twitter/elephant-bird), *compresses* the PB arrays using [splittable LZO](http://blog.cloudera.com/blog/2009/11/hadoop-at-twitter-part-1-splittable-lzo-compression/), and writes them to *S3*
 
 Thus, the output of Kinesis-S3 is a projection of raw event data (serialized Thrift records, not enriched) in the form of a compressed LZO file. Each `.lzo` file has a corresponding `.lzo.index` file containing the byte offsets for the LZO blocks, so that the blocks can be processed in parallel using Hadoop.

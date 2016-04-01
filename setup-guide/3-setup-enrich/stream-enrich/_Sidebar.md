@@ -7,23 +7,16 @@
 - [Step 3: Setup Enrich] (setting-up-enrich)  
   - [3.1: Setup EmrEtlRunner] (setting-up-EmrEtlrunner)
   - [3.2: Setup Stream Enrich] (setting-up-stream-enrich)
+    - [3.2.1: Install Stream Enrich] (Install-Stream-Enrich)
+    - [3.2.2: Configure Stream Enrich] (Configure-Stream-Enrich)
+    - [3.2.3: Run Stream Enrich] (Run-Stream-Enrich)
   - [Configurable enrichments] (Configurable-enrichments)
-    - [IP anonymization enrichment] (IP-anonymization-enrichment)
-    - [IP lookups enrichment] (IP-lookups-enrichment)
-    - [Campaign attribution enrichment] (campaign-attribution-enrichment)
-    - [Currency conversion enrichment] (currency-conversion-enrichment)
-    - [JavaScript script enrichment] (JavaScript-script-enrichment)
-    - [referer-parser enrichment] (referer-parser-enrichment)
-    - [ua-parser enrichment] (ua-parser-enrichment)
-    - [user-agent-utils enrichment] (user-agent-utils-enrichment)
-    - [Weather enrichment] (Weather-enrichment)
-    - [API Request enrichment] (API-Request-enrichment)
 - [Step 4: Setup alternative data stores] (setting-up-alternative-data-stores)  
 - [Step 5: Analyze your data!] (Getting started analyzing Snowplow data)  
 
 **Useful resources**  
 
 - [[Troubleshooting]]  
-- [[IAM Setup]]   
+- [[IAM Setup]]    
 - [[Hosted assets]]  
 - [Glossary of Terms](Glossary)

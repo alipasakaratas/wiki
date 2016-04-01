@@ -115,7 +115,6 @@ This will start the process of reading events from Kinesis, compressing them, an
 [s3]: http://aws.amazon.com/s3/
 [splittable-lzo]: http://blog.cloudera.com/blog/2009/11/hadoop-at-twitter-part-1-splittable-lzo-compression/
 [gzip]: http://www.gzip.org/
-[ske]: Scala-Kinesis-Enrich
 [DefaultAWSCredentialsProviderChain]: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html
 [conf-example]: https://github.com/snowplow/kinesis-s3/blob/0.3.0/src/main/resources/config.hocon.sample
 [scala]: http://www.scala-lang.org/
