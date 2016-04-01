@@ -52,7 +52,7 @@ CloudFront and S3, has some specific limitations to consider:
 
 For more information on these limitations, please see the [[Technical FAQ|Developer-FAQ]].
 
-However, the limitations above have been lifted with the release of [Scala Stream Collector](Scala-Stream-Collector) and [Scala Kinesis Enrich](Scala-Kinesis-Enrich), both of which are Amazon Kinesis-based. Additionally, both [Scala Stream Collector](Scala-Stream-Collector) and [Clojure Collector](Clojure-collector) support `POST` queries, which can potentially accommodate [unlimited data size][post-limits].
+However, the limitations above have been lifted with the release of [Scala Stream Collector](Scala-Stream-Collector) and [Stream Enrich](Stream-Enrich), both of which are Amazon Kinesis-based. Additionally, both [Scala Stream Collector](Scala-Stream-Collector) and [Clojure Collector](Clojure-collector) support `POST` queries, which can potentially accommodate [unlimited data size][post-limits].
 
 [conceptual-architecture]: https://camo.githubusercontent.com/05914f02874cfc540e98af29bd68bf0d6818f54e/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622d77696b692f696d616765732f736e6f77706c6f772d6172636869746563747572652e706e67
 [conceptual-architecture-old]: https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/conceptual-architecture.png

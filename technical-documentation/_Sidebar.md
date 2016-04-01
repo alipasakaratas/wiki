@@ -35,7 +35,7 @@
 **3. Enrich**  
 [Overview](Enrichment)  
 [EmrEtlRunner](EmrEtlRunner)  
-[Scala Kinesis Enrich](Scala-Kinesis-Enrich)
+[Stream Enrich](Stream-Enrich)
 
 **[C. Canonical Snowplow event model](canonical-event-model)**  
 

@@ -20,7 +20,7 @@ In this guide, we cover:
 
 1. [The Enrichment Process itself](The-enrichment-process)
 2. [How the EmrEtlRunner instruments the regular running of the Enrichment Process][emr-etl-runner]
-3. [Scala Kinesis Enrich](scala-kinesis-enrich)
+3. [Stream](stream-enrich)
 
 
 [scalding]: https://github.com/twitter/scalding

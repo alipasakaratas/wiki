@@ -167,7 +167,7 @@ The `jar` file will be saved as `snowplow-elasticsearch-sink-0.1.0` in the `targ
 
 The sink is configured using a HOCON file. These are the fields:
 
-* `source`: Change this from "kinesis" to "stdin" to get input from stdin rather than Kinesis. You can pipe in the output of [Scala Kinesis Enrich][scala-kinesis-enrich].
+* `source`: Change this from "kinesis" to "stdin" to get input from stdin rather than Kinesis. You can pipe in the output of [Stream Enrich][scala-kinesis-enrich].
 * `sink.good`: Where to write good events. "elasticsearch" or "stdout".
 * `sink.bad`: Where to write error JSONs for bad events. "kinesis" or "stderr" (or "none" to ignore bad events).
 * `aws.access-key` and `aws.secret-key`: Change these to your AWS credentials. You can alternatively leave them as "default", in which case the [DefaultAWSCredentialsProviderChain][DefaultAWSCredentialsProviderChain] will be used.
