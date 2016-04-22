@@ -174,7 +174,7 @@ The sink is configured using a HOCON file. These are the fields:
 * `kinesis.in.stream-name`: The name of the input Kinesis stream
 * `stream-type`: "good" if the input stream contains successfully enriched events; "bad" if it contains bad rows.
 * `kinesis.in.initial-position`: Where to start reading from the stream the first time the app is run. "TRIM_HORIZON" for as far back as possible, "LATEST" for as recent as possibly.
-* `kinesis.in.maxRecords`: Maximum number of records to get from Kinesis with each call to GetRecords. Must be between 1 and 10000. Defaults to 10000
+* `kinesis.in.maxRecords`: Maximum number of records to get from Kinesis with each call to GetRecords. Must be between 1 and 10000. Defaults to 10000.
 * `kinesis.out.stream-name`: The name of the output Kinesis stream. Records which cannot be converted to JSON or can be converted but are rejected by Elasticsearch get sent here. If this stream doesn't exist already it will be created automatically.
 * `kinesis.out.shards`: If the out stream doesn't exist, create it with this many shards.
 * `kinesis.region`: The Kinesis region name to use.
