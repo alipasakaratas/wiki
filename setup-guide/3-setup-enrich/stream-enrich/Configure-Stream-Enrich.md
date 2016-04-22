@@ -38,6 +38,7 @@ If you select `"kinesis"`, you need to set some other fields in the `enrich.stre
 
 * `enrich.streams.in.raw`: the name of your raw Snowplow event stream [configured in your Scala Stream Collector](Configure-the-Scala-Stream-Collector).
 * `enrich.streams.in.buffer`
+* `enrich.streams.in.maxRecords`: Maximum number of records to get from Kinesis with each call to GetRecords. Must be between 1 and 10000. Defaults to 10000.
 * `enrich.streams.in.buffer`: Stream Enrich maintains a buffer of enriched events and won't send them until certain conditions are met.
  - `buffer.byte-limit`: Whenever the total size of the buffered records exceeds this number, the buffer will be flushed.
  - `buffer.record-limit`: Whenever the total number of buffered records exceeds this number, the buffer will be flushed.
