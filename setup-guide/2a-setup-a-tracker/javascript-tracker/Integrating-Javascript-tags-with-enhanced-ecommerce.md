@@ -57,30 +57,35 @@ The example script below will be used as the basis for your tag. There are some 
 You can also customize the part of the tag between the comments containing "!!!". The example below creates a tracker instance, sets page pings to fire every 10 seconds, and sends a page view event. See the [[JavaScript Tracker]] page for more information on other tracking methods.
 
 ```html
-<script>
-  // If this tag fires more than once (e.g. page view followed by ecommerce action),
-  // we don't want to repeat the trackPageView here
+<script type="text/javascript">
+
+  // If this tag fires more than once (eg page view followed by ecommerce action),
+  // do not re-initialise the tracker
+
   if (!window.SNOWPLOW_NAME_HERE) {
     ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
     p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
     };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
-    n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d1fc8wv8zag5ca.cloudfront.net/2.6.1/sp.js","SNOWPLOW_NAME_HERE"));
+    n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d1fc8wv8zag5ca.cloudfront.net/2.8.2/sp.js","SNOWPLOW_NAME_HERE"));
 
     // !!! Customizable section starts
     // Track page views, enable link clicks, and so on here
+    // Structured events and self-describing events go here
+    // These methods will not be called if the tag fires due to ecommerce events
 
-    SNOWPLOW_NAME_HERE('newTracker', 'snplow1', 'MY_COLLECTOR', {
-      'appId': 'snowplowweb',
-      'cookieName': 'MY_COOKIE_NAME'
+    window.SNOWPLOW_NAME_HERE('newTracker', 'co', 'MY_COLLECTOR', {
+      appId: 'MY_APP_ID',
+      cookieName: 'MY_COOKIE_NAME'
     });
 
-    SNOWPLOW_NAME_HERE('enableActivityTracking', 10, 10);
-    SNOWPLOW_NAME_HERE('trackPageView');
+    window.SNOWPLOW_NAME_HERE('enableActivityTracking', 30, 30); // Ping every 30 seconds after 30 seconds
+    window.SNOWPLOW_NAME_HERE('trackPageView');
 
     // !!! Customizable section ends
   }
 
-  var ecommerce = {{ecommerce}};
+  // Enhanced ecommerce
+
   var actions = [
     "click",
     "detail",
@@ -93,89 +98,132 @@ You can also customize the part of the tag between the comments containing "!!!"
     "promo_click",
     "view"
   ];
-  if (ecommerce) {
-    sendEnhancedEcommerceEvent(ecommerce);
+
+  // Get only the latest fired event
+
+  var lastEvent = dataLayer[dataLayer.length-1];
+  var lastEcommerce = lastEvent.ecommerce;
+
+  if (lastEcommerce) {                    // If latest event is EE
+    sendEnhancedEcommerceEvent(lastEcommerce);
+  } else if ({{event}} == 'gtm.js') {    // If EE data is sent in a message (no event property)
+    var mergedEcommerce = {{ecommerce}};
+    if (mergedEcommerce) {
+      sendEnhancedEcommerceEvent(mergedEcommerce);
+    }
   }
 
   function sendEnhancedEcommerceEvent(ecommerce) {
     var currencyCode = ecommerce.currencyCode;
     var relevantActions = [];
-
-    for (var i = 0; i < actions.length; i++) {
-      if (ecommerce[actions[i]]) {
-        relevantActions.push(actions[i]);
-      }
-    }
-    if (ecommerce.impressions) {
-      for (var j = 0; j < ecommerce.impressions.length; j++) {
-        var impression = ecommerce.impressions[j];
-        SNOWPLOW_NAME_HERE('addEnhancedEcommerceImpressionContext',
-          impression.id,
-          impression.name,
-          impression.list,
-          impression.brand,
-          impression.category,
-          impression.variant,
-          impression.position,
-          impression.price,
-          currencyCode
-        );
-      }
-    }
-    if (ecommerce.promoView) {
-      for (var l = 0; l < ecommerce.promoView.promotions.length; l++) {
-        var promo = ecommerce.promoView.promotions[l];
-        SNOWPLOW_NAME_HERE('addEnhancedEcommercePromoContext',
-          promo.id,
-          promo.name,
-          promo.creative,
-          promo.position,
-          currencyCode
-        );
-      }
-    }
-    if (relevantActions.length === 0) {
-      SNOWPLOW_NAME_HERE('trackEnhancedEcommerceAction', 'view');
+    if({{event}} == 'gtm.js') {
+        for (var i = 0; i < actions.length; i++) {
+            if (ecommerce[actions[i]]) {
+                relevantActions.push(actions[i]);
+            }
+        }
     } else {
-      for (var m = 0; m < relevantActions.length; m++) {
-        var relevantAction = relevantActions[m];
-        if (ecommerce[relevantAction].products) {
-          for (var k = 0; k < ecommerce[relevantAction].products.length; k++) {
-            var product = ecommerce[relevantAction].products[k];
-            SNOWPLOW_NAME_HERE('addEnhancedEcommerceProductContext',
-              product.id,
-              product.name,
-              product.list,
-              product.brand,
-              product.category,
-              product.variant,
-              product.price,
-              product.quantity,
-              product.coupon,
-              product.position,
-              currencyCode
-            );
-          }
+        switch ({{event}}) {
+            case 'addToCart':
+                relevantActions.push('add');
+                break;
+            case 'removeFromBasket':
+                relevantActions.push('remove');
+                break;
+            case 'productImpression':
+                relevantActions.push('view');
+                break;
+            case 'productClick':
+                relevantActions.push('click');
+                break;
+            case 'promoClicked':
+                relevantActions.push('promo_click');
+                break;
+            case 'checkout':
+                relevantActions.push('checkout');
+                break;
+            case 'checkoutOption':
+                relevantActions.push('checkout_option');
+                break;
         }
-        if (ecommerce[relevantAction].actionField) {
-          var actionObject = ecommerce[relevantAction].actionField;
-          SNOWPLOW_NAME_HERE('addEnhancedEcommerceActionContext',
-            actionObject.id,
-            actionObject.affiliation,
-            actionObject.revenue,
-            actionObject.tax,
-            actionObject.shipping,
-            actionObject.coupon,
-            actionObject.list,
-            actionObject.step,
-            actionObject.option,
-            currencyCode
-          );
-        }
-        SNOWPLOW_NAME_HERE('trackEnhancedEcommerceAction', relevantAction);
-      }
     }
-  }
+
+    if (ecommerce.impressions) {
+        for (var j = 0; j < ecommerce.impressions.length; j++) {
+            var impression = ecommerce.impressions[j];
+            SNOWPLOW_NAME_HERE('addEnhancedEcommerceImpressionContext',
+                impression.id,
+                impression.name,
+                impression.list,
+                impression.brand,
+                impression.category,
+                impression.variant,
+                impression.position,
+                impression.price,
+                currencyCode
+            );
+        }
+    }
+
+    if (ecommerce.promoView) {
+        for (var l = 0; l < ecommerce.promoView.promotions.length; l++) {
+            var promo = ecommerce.promoView.promotions[l];
+            SNOWPLOW_NAME_HERE('addEnhancedEcommercePromoContext',
+                promo.id,
+                promo.name,
+                promo.creative,
+                promo.position,
+                currencyCode
+            );
+        }
+    }
+
+    if (relevantActions.length === 0) {
+        SNOWPLOW_NAME_HERE('trackEnhancedEcommerceAction', 'view');
+    } else {
+        for (var m = 0; m < relevantActions.length; m++) {
+            var relevantAction = relevantActions[m];
+            if (ecommerce[relevantAction].products) {
+                for (var k = 0; k <
+                    ecommerce[relevantAction].products.length; k++) {
+                    var product = ecommerce[relevantAction].products[k];
+                    SNOWPLOW_NAME_HERE('addEnhancedEcommerceProductContext',
+                        product.id,
+                        product.name,
+                        product.list,
+                        product.brand,
+                        product.category,
+                        product.variant,
+                        product.price,
+                        product.quantity,
+                        product.coupon,
+                        product.position,
+                        currencyCode
+                    );
+                }
+            }
+            if (ecommerce[relevantAction].actionField) {
+                var actionObject = ecommerce[relevantAction].actionField;
+                SNOWPLOW_NAME_HERE('addEnhancedEcommerceActionContext',
+                    actionObject.id,
+                    actionObject.affiliation,
+                    actionObject.revenue,
+                    actionObject.tax,
+                    actionObject.shipping,
+                    actionObject.coupon,
+                    actionObject.list,
+                    actionObject.step,
+                    actionObject.option,
+                    currencyCode
+                );
+            }
+            SNOWPLOW_NAME_HERE('trackEnhancedEcommerceAction', relevantAction);
+        }
+    }
+}
+
+  // End of enhanced ecommerce
+
 </script>
 ```
 
