@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 106 Acropolis](#r106) (**r106**) 2018-06-01
 - [Snowplow 105 Pompeii](#r105) (**r105**) 2018-05-07
 - [Snowplow 104 Stoplesteinan](#r104) (**r104**) 2018-04-30
 - [Snowplow 103 Paestum](#r103) (**r103**) 2018-04-17
@@ -67,6 +68,75 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r106" />
+
+## Snowplow 106 Acropolis
+
+This release adds further capabilities to the PII Pseudonymization Enrichment. Specifically, it adds the
+capability to emit a stream of events which contain the original along with the modified value. The PII
+transformation event also contains information about the field and the parent event (the event whence this
+PII event originated).
+
+### Upgrading Stream Enrich
+
+The latest version of *Stream Enrich* is available from our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_stream_enrich_0.17.0.zip).
+
+The following configuration is needed to enable the pii stream:
+
+```
+enrich {
+
+  streams {
+
+    in {...}                                                    # NO CHANGE
+
+    out {
+      enriched = my-enriched-output-event-without-pii           # NO CHANGE
+
+      bad = my-events-that-failed-validation-during-enrichment  # NO CHANGE
+
+      pii = my-output-event-that-contains-only-pii              # NEW FIELD
+
+      partitionKey = ""                                         # NO CHANGE
+    }
+
+    sourceSink {...}                                            # NO CHANGE
+
+    buffer {...}                                                # NO CHANGE
+
+    appName = "some-name"                                       # NO CHANGE
+  }
+}
+```
+
+In addition you need to configure the enrichment to emit events and also use a salt in hashing:
+
+```
+{
+  "schema": "iglu:com.snowplowanalytics.snowplow.enrichments/pii_enrichment_config/jsonschema/2-0-0", # NEW VERSION
+  "data": {
+    "vendor": "com.snowplowanalytics.snowplow.enrichments",                                           # NO CHANGE
+    "name": "pii_enrichment_config",                                                                  # NO CHANGE
+    "emitEvent": true,                                                                                # NEW FIELD
+    "enabled": true,                                                                                  # NO CHANGE
+    "parameters": {
+      "pii": [...],                                                                                   # NO CHANGE
+      "strategy": {
+        "pseudonymize": {
+          "hashFunction": "SHA-1",                                                                    # NO CHANGE
+          "salt": "pepper123"                                                                         # NEW FIELD
+        }
+      }
+    }
+  }
+}
+```
+
+### Read more
+
+* [R106 Blog Post](https://snowplowanalytics.com/blog/2018/05/10/snowplow-r106-acropolis-released-with-pii-enrichment-upgrade/)
+* [R106 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r106-acropolis)
 
 <a name="r105" />
 
