@@ -2,7 +2,7 @@
 
 [HOME](Home) » [SNOWPLOW SETUP GUIDE](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Step 3.2: setting up Stream Enrich](setting-up-stream-enrich) » [[Install Stream Enrich]] » [[Configure Stream Enrich]] » Run Stream Enrich
 
-**This documentation is for version 0.15.x of Stream Enrich. Documentation for other versions is available:**
+**This documentation is for version 0.17.x of Stream Enrich. Documentation for other versions is available:**
 
 - [Stream Enrich v0.10.0 - v0.14.0][v014]
 - [Stream Enrich v0.5.0 - v0.10.0][v010]
@@ -54,7 +54,7 @@ names start with `enrich-` with their values being stored in column "json".
 Stream Enrich uses [slf4j logging][logging]:
 
     $ java -Dorg.slf4j.simpleLogger.defaultLogLevel=debug \
-        -jar snowplow-stream-enrich-0.13.x.jar --config my.conf --resolver file:resolver.json
+        -jar snowplow-stream-enrich-[version].jar --config my.conf --resolver file:resolver.json
 
 This will also affect messages logged by the [Kinesis Client Library][kcl] (which Stream Enrich uses
 if you're using Kinesis)
