@@ -80,7 +80,7 @@ PII event originated).
 
 ### Upgrading Stream Enrich
 
-The latest version of *Stream Enrich* is available from our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_stream_enrich_0.17.0.zip).
+The latest version of *Stream Enrich* is available from our Bintray [here](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.17.0#files).
 
 The following configuration is needed to enable the pii stream:
 
