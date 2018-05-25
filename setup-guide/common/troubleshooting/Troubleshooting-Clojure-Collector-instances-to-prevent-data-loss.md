@@ -76,6 +76,8 @@ Once done, you would then need to monitor the environment and wait for the insta
 
 Within the EC2 management console, under Load Balancers, find the ELB for your environment (`awseb-e-b-xxx-xxx`) and manually remove your target instance (i-ecxxx) from the ELB within the instances section. With connection draining turned on, incoming connections will as much as possible gracefully moved over to the other instance before the instance is removed. The instance will still be part of the environment and AutoScaling group and remain available, but it will not be responding to requests because it has been removed. This means that the logs should be in a consistent state at this point.
 
+*Note*: it is assumed [Lifecycle Hooks](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) are used to ensure that any instance that is terminated is kept alive for 2 hours after it has been disconnected from the ELB, during which any event logs that have not yet been flushed to S3 are.
+
 #### Step 5. Decrease your minimum instance count to 1
 
 Now that you have the logs in S3, this will terminate the instance. As the termination policy is for the AutoScaling group is to remove the Oldest Instance, it will then terminate the correct instance.
