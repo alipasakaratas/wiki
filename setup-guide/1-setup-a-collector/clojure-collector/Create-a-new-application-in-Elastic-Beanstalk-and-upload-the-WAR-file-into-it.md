@@ -16,9 +16,11 @@ Next, you will need to set up the appropriate environment for the application to
 
 [[/setup-guide/images/clojure-collector-setup-guide/2.jpg]]
 
-For the platform, select **Tomcat**. In this demo, we picked a "*Single instance*". However, you could set up a load balanced, auto scaling environment.
+For the platform, select **Tomcat**. In this demo, we picked a "*Single instance*". However, you could set up a load balanced, auto-scaling environment.
 
 [[/setup-guide/images/clojure-collector-setup-guide/3.jpg]]
+
+*Note*: When selecting auto-scaling environment, use [Lifecycle Hooks](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#adding-lifecycle-hooks) to ensure that any instance that is terminated during downscaling is kept alive for 2 hours after it has been disconnected from the ELB, during which any event logs that have not yet been flushed to S3 are.
 
 For the **Application Source**, select **Upload your own**. Use the **Choose File** button to point Elastic Beanstalk at the `war` file from [part 1](Download-the-Clojure-collector-WAR-file-or-compile-it-from-source). Click **Next** to upload the file.
 
