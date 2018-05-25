@@ -45,7 +45,7 @@ The scenario to avoid is as follows:
 
 #### Length
 
-The same issue can happen with properties with enforced string lengths - note that all of the currently supported pseudonymization functions will generate hashes of up to **128 characters** (in the case of SHA-512); be careful if the JSON Schema enforces a shorter length, as again the event will fail downstream validation.
+The same issue can happen with properties with enforced string lengths - note that all of the currently supported pseudonymization functions will generate hashes of up to **128 characters** (in the case of SHA-512); be careful if the JSON Schema enforces a shorter length, as again the event will fail downstream validation. Every hashed field will be a hex string, which means that they will be 1/4 of the output bit length of the algorithm (1 hexadecimal digit = 0-f = 0-16 decimal = 0000-1111 binary => 4 bits)
 
 ### Example
 
