@@ -1319,8 +1319,8 @@ Tracking a consent granted event:
 
 ```javascript
 window.snowplow('trackConsentGranted',
-  '1234',                          // Id
-  '5',                             // Version
+  '1234',                        // Id
+  '5',                           // Version
   'consent_document',            // Name
   'a document granting consent', // Description
   '2020-11-21T08:00:00.000Z'     // Expiry
@@ -1336,11 +1336,11 @@ The method arguments are:
 
 |      **Name** | **Description**                                   | **Required?** | **Type**         |
 |--------------:|:--------------------------------------------------|:--------------|:-----------------|
+|         `all` | Specifies whether all consent should be withdrawn | No            | Boolean          |
 |          `id` | Identifier for the document withdrawing consent   | No            | String           |
-|     `version` | Version of the document withdrawing consent       | No            | String           |
+|     `version` | Version of the document withdrawing consent       | No            | string           |
 |        `name` | Name of the document withdrawing consent          | No            | String           |
 | `description` | Description of the document withdrawing consent   | No            | String           |
-|         `all` | Specifies whether all consent should be withdrawn | No            | Boolean          |
 |     `context` | Custom context for the event                      | No            | Array            |
 |      `tstamp` | When the event occurred                           | No            | Positive integer |
 
@@ -1348,11 +1348,11 @@ Tracking a consent withdrawn event:
 
 ```javascript
 window.snowplow('trackConsentWithdrawn',
-  '1234',                             // Id
-  '5',                                // Version
+  false,                            // All
+  '1234',                           // Id
+  '5',                              // Version
   'consent_document',               // Name
-  'a document withdrawing consent', // Description
-  'false'                           // All
+  'a document withdrawing consent'  // Description
 );
 ```
 
@@ -1388,8 +1388,8 @@ As an example, `trackConsentGranted` will store one consent document as a custom
 
 ```javascript
 window.snowplow('trackConsentGranted',
-  '1234',                          // Id
-  '5',                             // Version
+  '1234',                        // Id
+  '5',                           // Version
   'consent_document',            // Name
   'a document granting consent', // Description
   '2020-11-21T08:00:00.000Z'     // Expiry
@@ -1415,8 +1415,8 @@ The method call will generate this event:
     data: {
       schema: 'iglu:com.snowplowanalytics.snowplow/consent_document/jsonschema/1-0-0',
       data: {
-        id: 1234,
-        version: 5,
+        id: '1234',
+        version: '5',
         name: 'consent_document',
         description: 'a document granting consent'
       }
