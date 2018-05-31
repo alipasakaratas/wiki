@@ -9,7 +9,7 @@ Compatibility R100 <br/>
 Data provider None (Internal transformation)<br/>
 
 #### Please note:
-The PII Enrichment is not compatible with the current version of [Snowplow Mini](https://github.com/snowplow/snowplow-mini/wiki/Usage-guide). A new version of Snowplow Mini which will work with the PII enrichment is expected to be released before the 28th of May 2018.
+The PII Enrichment is not compatible with older versions of [Snowplow Mini](https://github.com/snowplow/snowplow-mini/wiki/Usage-guide). Only Snowplow Mini 0.5.0 and higher support the PII enrichment. 
 
 ### Overview
 
