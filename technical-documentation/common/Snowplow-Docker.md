@@ -7,6 +7,7 @@ Snowplow provides official Docker images for the following projects:
 - [Elasticsearch Loader](Elasticsearch-Loader)
 - [S3 Loader](S3-Loader)
 - [Iglu Server][iglu-server]
+- [Piinguin Server][piinguin-server]
 
 All the images are based on [the base image][base-image] which leverages
 [the Java 8 Alpine image][alpine-image].
@@ -36,3 +37,4 @@ See also the [setup guide](Snowplow-Docker-Setup).
 
 [jvm-docker-article]: https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits
 
+[piinguin-server]: https://github.com/snowplow-incubator/piinguin/
