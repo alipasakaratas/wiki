@@ -1,11 +1,10 @@
 <a name="top" />
 
 This page refers to instructions on testing the Android Tracker locally and debugging any issues that might crop up.
-These instuctions are aimed at version 0.8.0 of the Android Tracker.
+These instuctions are aimed at version 0.5.0 of the Android Tracker.
 
 For instructions of previous versions:
 
-* [0.5.0][0.5.0]
 * [0.4.0][0.4.0]
 
 ## Contents
@@ -98,9 +97,7 @@ This simply stops the VM and restarts it.
 
 [Back to top](#top)
 
-[imposter-link]: https://raw.githubusercontent.com/snowplow/snowplow-android-tracker/0.8.0/testing/imposter.json
+[imposter-link]: https://raw.githubusercontent.com/snowplow/snowplow-android-tracker/0.5.0/testing/imposter.json
 [mountebank]: http://www.mbtest.org/
 [ngrok]: https://ngrok.com/
 [0.4.0]: https://github.com/snowplow/snowplow/wiki/Android-Testing-locally-and-Debugging-0.4.0
-[0.5.0]: https://github.com/snowplow/snowplow/wiki/Android-Testing-locally-and-Debugging-0.5.0
-[0.8.0]: https://github.com/snowplow/snowplow/wiki/Android-Testing-locally-and-Debugging-0.8.0

@@ -1,12 +1,11 @@
 <a name="top" />
 
-This page refers to integration samples for [Android Tracker v0.8.0][android-tracker].  This assumes you have already successfully gone through the [Setup Guide][setup-guide] for setting up all the dependencies for the tracker.
+This page refers to integration samples for [Android Tracker v0.6.0][android-tracker].  This assumes you have already successfully gone through the [Setup Guide][setup-guide] for setting up all the dependencies for the tracker.
 
 The following example classes are using the bare minimum of settings for building a Tracker.  It is encouraged to flesh out the options for the Tracker and Emitter builders.
 
 For previous versions:
 
-* [v0.6.0][0.6.0]
 * [v0.5.0][0.5.0]
 * [v0.4.0][0.4.0]
 
@@ -25,7 +24,7 @@ You will need to have imported the following library into your project:
 ```groovy
 dependencies {
     ...
-    compile 'com.snowplowanalytics:snowplow-android-tracker:0.8.0@aar'
+    compile 'com.snowplowanalytics:snowplow-android-tracker:0.6.0@aar'
 }
 ```
 
@@ -112,4 +111,3 @@ Tracker.instance().setLifecycleHandler({{ APPLICATION_ACTIVITY }})
 [demo-app-track-events]: https://raw.githubusercontent.com/snowplow/snowplow-android-tracker/master/snowplow-demo-app/src/main/java/com/snowplowanalytics/snowplowtrackerdemo/utils/TrackerEvents.java
 [0.4.0]: https://github.com/snowplow/snowplow/wiki/Android-Integration-0.4.0
 [0.5.0]: https://github.com/snowplow/snowplow/wiki/Android-Integration-0.5.0
-[0.6.0]: https://github.com/snowplow/snowplow/wiki/Android-Integration-0.6.0
