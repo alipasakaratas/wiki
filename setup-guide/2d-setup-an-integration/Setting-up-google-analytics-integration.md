@@ -4,7 +4,7 @@ Snowplow allows you to seamlessly collect Google Analytics events without interf
 Google Analytics setup.
 
 It does so by teeing your Google Analytics payloads to a Snowplow collector through
-[the Snowplow Google Analytics plugin][plugin].
+[the Snowplow Google Analytics plugin](plugin).
 
 If you would like to benefit from this feature, it is fairly straightforward to setup this plugin:
 
