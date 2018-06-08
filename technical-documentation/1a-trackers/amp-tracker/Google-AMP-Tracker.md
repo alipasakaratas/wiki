@@ -141,7 +141,7 @@ Events can be sent by setting the AMP trigger request value to event and setting
 The following example uses the selector attribute of the trigger to send an event when a particular element is clicked:
 
 ```html
-<amp-analytics type="googleanalytics" id="snowplow3">
+<amp-analytics type="snowplow" id="snowplow3">
 <script type="application/json">
 {
   "vars": {
