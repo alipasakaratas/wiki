@@ -4,7 +4,7 @@
 
 **This documentation is for version 0.15.x of Stream Enrich. Documentation for other versions is available:**
 
-**[Version 0.11.0-0.14.0][v0.14]**
+**[Version 0.11.0-0.14.0][v0.14]**  
 **[Version 0.6.0-0.10.0][v0.10]**
 
 ## 1. Dependencies
@@ -58,4 +58,4 @@ Next: [[Configure Stream Enrich]]
 [sbt]: http://www.scala-sbt.org/
 [assembly]: https://github.com/sbt/sbt-assembly
 [v0.10]: https://github.com/snowplow/snowplow/wiki/Install-Stream-Enrich-0-10
-[v0.10]: https://github.com/snowplow/snowplow/wiki/Install-Stream-Enrich-0-14
+[v0.14]: https://github.com/snowplow/snowplow/wiki/Install-Stream-Enrich-0-14
