@@ -6,7 +6,8 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
-- [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-xx
+- [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-06-XX
+- [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-18
 - [Snowplow 106 Acropolis](#r106) (**r106**) 2018-06-01
 - [Snowplow 105 Pompeii](#r105) (**r105**) 2018-05-07
 - [Snowplow 104 Stoplesteinan](#r104) (**r104**) 2018-04-30
@@ -69,6 +70,57 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r108" />
+
+## Snowplow 108 Val Camonica
+
+This release bring the possibility to enable end-to-end encryption for the batch pipeline as well
+as a way to specify the cookie path for the Clojure Collector.
+
+### EmrEtlRunner
+
+The latest version of the *EmrEtlRunner* is available from our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r108_val_camonica.zip).
+
+#### Updating config.yml
+
+This release brigs the possibility to interact with SSE-S3 (AES 256 managed by S3) encrypted buckets
+through `aws:s3:buckets:encrypted`.
+
+Additionally, you can now specify an EMR security configuration, which lets you configure local disk
+encryption as well as in-transit encryption, through `aws:emr:security_configuration`
+
+```yaml
+aws:
+  s3:
+    buckets:
+      encrypted: false # Can be true or false depending on whether you interact with SSE-S3 encrypted buckets
+  emr:
+    security_configuration: name-of-the-security-configuration # Leave blank if you don't use a security configuration
+monitoring:
+  snowplow:
+    port: 8080     # New and optional
+    protocol: http # New and optional
+```
+
+For a complete example, see our sample [`config.yml`](https://github.com/snowplow/snowplow/blob/r108-val-camonica/3-enrich/emr-etl-runner/config/config.yml.sample) template.
+
+For more background on end-to-end encryption for the batch pipeline, you can refer to
+[our dedicated wiki page](7-Setting-up-end-to-end-encryption).
+
+### Clojure Collector
+
+The new Clojure Collector is stored in S3 at:
+`s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.0-standalone.war`.
+
+By default, the cookie path will now be `/`. However, it can be customized by adding a `SP_PATH`
+environment property to your Elastic Beanstalk application.
+
+### Read more
+
+* [R108 Blog Post](https://snowplowanalytics.com/blog/2018/06/xx/snowplow-r108-val-camonica/)
+* [R108 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r108-val-camonica)
+* [Setting up end-to-end encryption guide](7-Setting-up-end-to-end-encryption)
 
 <a name="r107" />
 

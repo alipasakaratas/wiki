@@ -38,6 +38,7 @@ The available options are as follows:
             --skip                       skip the specified step(s)
         -i, --include {vacuum}           include additional step(s)
         -l, --lock PATH                  where to store the lock
+            --ignore-lock-on-start       ignore the lock if it is set when starting
             --consul ADDRESS             address to the Consul server
 
 Note that the `config` and `resolver` options are mandatory.
