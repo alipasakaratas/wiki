@@ -74,7 +74,7 @@ Right-click on this [Download link][hadoop-event-recovery-download] to save it d
 
 The Stream Enrich app is available on Bintray here:
 
-    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.16.1#files
+    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.17.0#files
 
 Choose an artifact according to the supported targeted platform:
 
