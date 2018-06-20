@@ -2,7 +2,7 @@
 
 [**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Configurable enrichments](Configurable-enrichments) » PII Pseudonymization Enrichment
 
-You can find documentation for version 1-0-0 of the enrichment in
+You can find documentation for version 1-0-0 of the config for the enrichment in
 [the dedicated wiki page](PII-pseudonymization-enrichment-1-0-0).
 
 ### Compatibility
