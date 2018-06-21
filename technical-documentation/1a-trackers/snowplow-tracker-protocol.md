@@ -623,12 +623,12 @@ uid=aeb1691c5a0ee5a6   // User ID
 &tv=js-0.13.1          // Tracker version
 
 &e=ue                  // event = unstructured  
-&ue_pr="%7B%22schema%22:%22iglu:com.my_company/unstruct_event/jsonschema/1-0-0%22,%22data%22:%7B%22schema%22:%22iglu:com.my_company/viewed_product/jsonschema/1-0-0%22,%22data%22:%7B%22product_id%22:%22ASO01043%22,%22price%22:49.95%7D%7D%7D"
+&ue_pr="%7B%22schema%22%3A%22iglu%3Acom.snowplowanalytics.snowplow%2Funstruct_event%2Fjsonschema%2F1-0-0%22%2C%22data%22%3A%7B%22schema%22%3A%22iglu%3Acom.my_company%2Fviewed_product%2Fjsonschema%2F1-0-0%22%2C%22data%22%3A%7B%22product_id%22%3A%22ASO01043%22%2C%22price%22%3A49.95%7D%7D%7D"
                        // event_properties =  {
-                                                schema: 'iglu:com.my_company/unstruct_event/jsonschema/1-0-0',
-                                                data: {
-                                                  schema: 'iglu:com.my_company/viewed_product/jsonschema/1-0-0',
-                                                  data: {
+                                                "schema": "iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
+                                                "data": {
+                                                  "schema": "iglu:com.my_company/viewed_product/jsonschema/1-0-0",
+                                                  "data": {
                                                     "product_id": "ASO01043",
                                                     "price": 49.95
                                                   }
@@ -647,12 +647,12 @@ uid=aeb1691c5a0ee5a6   // User ID
 &tv=js-0.13.1          // Tracker version
 
 &e=ue                  // event = unstructured  
-&ue_px=ew0KICBzY2hlbWE6ICdpZ2x1OmNvbS5teV9jb21wYW55L3Vuc3RydWN0X2V2ZW50L2pzb25zY2hlbWEvMS0wLTAnLCANCiAgZGF0YTogew0KICAgIHNjaGVtYTogJ2lnbHU6Y29tLm15X2NvbXBhbnkvdmlld2VkX3Byb2R1Y3QvanNvbnNjaGVtYS8xLTAtMCcsDQogICAgZGF0YTogew0KICAgICAgInByb2R1Y3RfaWQiOiAiQVNPMDEwNDMiLCANCiAgICAgICJwcmljZSI6IDQ5Ljk1DQogICAgfQ0KICB9DQp9
+&ue_px=eyJzY2hlbWEiOiJpZ2x1OmNvbS5zbm93cGxvd2FuYWx5dGljcy5zbm93cGxvdy91bnN0cnVjdF9ldmVudC9qc29uc2NoZW1hLzEtMC0wIiwiZGF0YSI6eyJzY2hlbWEiOiJpZ2x1OmNvbS5teV9jb21wYW55L3ZpZXdlZF9wcm9kdWN0L2pzb25zY2hlbWEvMS0wLTAiLCJkYXRhIjp7InByb2R1Y3RfaWQiOiJBU08wMTA0MyIsInByaWNlIjo0OS45NX19fQ==
                        // event_properties = {
-                                                schema: 'iglu:com.my_company/unstruct_event/jsonschema/1-0-0',
-                                                data: {
-                                                  schema: 'iglu:com.my_company/viewed_product/jsonschema/1-0-0',
-                                                  data: {
+                                                "schema": "iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
+                                                "data": {
+                                                  "schema": "iglu:com.my_company/viewed_product/jsonschema/1-0-0",
+                                                  "data": {
                                                     "product_id": "ASO01043",
                                                     "price": 49.95
                                                   }
