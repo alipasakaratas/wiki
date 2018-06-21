@@ -575,8 +575,8 @@ An example of an unstructured event for a product view event:
 
 ```javascript
 {
-  schema: 'iglu:com.my_company/viewed_product/jsonschema/1-0-0',
-  data: {
+  "schema": "iglu:com.my_company/viewed_product/jsonschema/1-0-0",
+  "data": {
     "product_id": "ASO01043",
     "price": 49.95
   }
@@ -589,12 +589,12 @@ The tracker will wrap this [self-describing JSON][self-desc-jsons] in an outer s
 {
 
   // Tells Snowplow this is an unstructured event
-  schema: 'iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0',
-  data: {
+  "schema": "iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
+  "data": {
 
     // Tells Snowplow this is a viewed_product event
-    schema: 'iglu:com.my_company/viewed_product/jsonschema/1-0-0',
-    data: {
+    "schema": "iglu:com.my_company/viewed_product/jsonschema/1-0-0",
+    "data": {
 
       // The event data itself
       "product_id": "ASO01043",
