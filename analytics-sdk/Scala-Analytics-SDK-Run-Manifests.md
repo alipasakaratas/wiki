@@ -50,7 +50,7 @@ unprocessed.foreach { runId =>
 ```
 
 In above example, we create two AWS service clients for S3 (to list job runs) and for DynamoDB (to access manifests).
-These cliens are provided via AWS Java SDK and can be initialized with static credentials or with system-provided credentials.
+These clients are provided via AWS Java SDK and can be initialized with static credentials or with system-provided credentials.
 
 Then we list all run ids in particular S3 path and process (by user-provided `process` function) only those that were not processed already.
 Note that `runId` is simple string with S3 key of particular job run.
