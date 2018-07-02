@@ -232,7 +232,7 @@ If you are running the Snowplow batch flow with Amazon Redshift, then you should
 
 You can find the table definitions here:
 
-* com_marketo_event_1.sql][event-sql]
+* [com_marketo_event_1.sql][event-sql]
 
 Make sure to deploy this table into the same schema as your `events` table.
 
