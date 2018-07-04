@@ -21,7 +21,7 @@ The PII Enrichment provides capabilities for Snowplow operators to better protec
 The r106 release adds the capability to emit a stream of events to re-identify the data subject.
 As with r100, you can configure the enrichment to pseudonymize any of the following datapoints:
 
-1. Any of the “first-class” fields which are part of the Canonical event model, are scalar fields containing a single string and have been identified as being potentially sensitive (see pii_enrichement_config schema for full list).
+1. Any of the “first-class” fields which are part of the Canonical event model, are scalar fields containing a single string and have been identified as being potentially sensitive (see **`pii_enrichement_config` schema** (linked above) for full list).
 2. Any of the properties within the JSON instance of a Snowplow self-describing event or context (wherever that context originated). You simply specify the Iglu schema to target and a JSON Path to identify the property or properties within to pseudonomize
 
 In addition, you must specify the “strategy” that will be used in the pseudonymization. Currently the available strategies involve hashing the PII, using one of the following algorithms:
