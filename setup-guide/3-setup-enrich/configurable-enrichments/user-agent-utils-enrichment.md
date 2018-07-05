@@ -2,6 +2,23 @@
 
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > [Configurable enrichments](Configurable-enrichments) > user-agent-utils enrichment
 
+__This enrichment is deprecated__
+
+The library powering this enrichment has now been declared as end of life and won't receive any
+updates: www.bitwalker.eu/software/user-agent-utils.
+
+Because this could one day result in a potential security issue (due to lack of maintenance), we
+encourage everyone to move away from this enrichment in favor of
+[the ua parser enrichment](https://github.com/snowplow/snowplow/wiki/ua-parser-enrichment).
+
+However, please keep in mind that this is not a drop-in replacement: the ua parser enrichment will
+fill an external `com_snowplowanalytics_snowplow_ua_parser_context_1` table (you can find the Iglu
+schema [here](https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/ua_parser_context/jsonschema/1-0-0))
+instead of a few fields in `atomic.events`.
+
+In the future, we will move the fields affected by the user agent utils enrichments out of
+`atomic.events` into their own context and, as a follow up, remove it entirely.
+
 ### Compatibility
 
 JSON Schema   [iglu:com.snowplowanalytics.snowplow/user_agent_utils_config/jsonschema/1-0-0][schema]
