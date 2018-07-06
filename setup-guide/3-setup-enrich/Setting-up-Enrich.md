@@ -16,16 +16,20 @@ and [stores enriched data](setting-up-alternative-data-stores) in a persistent d
 
 There are currently two Enrichment processes available for setup:
 
-| **Collector**                                  | **Description**                                     | **Status**       |
+| **Enrichment platform**                                  | **Description**                                     | **Status**       |
 |:-----------------------------------------------|:----------------------------------------------------|:-----------------|
 | [EmrEtlRunner](setting-up-EmrEtlRunner)        | An application that parses logs from a Collector and stores enriched events to S3 | Production-ready |
 | [Stream Enrich](setting-up-stream-enrich) | A Scala application that reads Thrift events from a Kinesis stream and outputs back to a Kinesis stream | Production-ready |
+| [Beam Enrich](setting-up-beam-enrich) | An Apache Beam application that reads Thrift events from a PubSub topic and outputs back to a PubSub topic | Production-ready |
 
 <a name="setup" />
 
 ## 2. Setup your Enrichment
 
-1. [Setup EmrEtlRunner](setting-up-EmrEtlRunner)
-2. [Setup Stream Enrich](setting-up-stream-enrich)
+Choose one of the following setup guides:
+
+- [Setup EmrEtlRunner](setting-up-EmrEtlRunner)
+- [Setup Stream Enrich](setting-up-stream-enrich)
+- [Setup Beam Enrich](setting-up-beam-enrich)
 
 Back to [Snowplow setup](Setting-up-Snowplow).

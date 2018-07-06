@@ -8,6 +8,7 @@
 - [Step 3: Setup Enrich](setting-up-enrich)  
   - [3.1: Setup EmrEtlRunner](setting-up-EmrEtlrunner)  
   - [3.2: Setup Stream Enrich](setting-up-stream-enrich)  
+  - [3.3: Setup Beam Enrich](setting-up-beam-enrich)
   - [Configurable enrichments](configurable-enrichments)  
 - [Step 4: Setup alternative data stores](setting-up-alternative-data-stores)  
 - [Step 5: Data modeling](getting-started-with-data-modeling)  
