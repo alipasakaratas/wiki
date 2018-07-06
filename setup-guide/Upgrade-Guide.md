@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 110 Valle dei Templi](#r110) (**r110**) 2018-09-07
 - [Snowplow 109 Lambaesis](#r109) (**r109**) 2018-08-21
 - [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-07-24
 - [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-18
@@ -71,6 +72,43 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r110" />
+
+## Snowplow 110 Valle dei Templi
+
+This release brings a new enrichment platform for Google Cloud Platform: Beam Enrich as well as a
+couple of bugfixes.
+
+### Beam Enrich
+
+Beam Enrich is the latest enrichment platform released by Snowplow, it runs on
+[Google Cloud Dataflow](https://cloud.google.com/dataflow/).
+
+To know more, check out the following resources:
+
+- https://github.com/snowplow/snowplow/wiki/Beam-Enrich
+- https://github.com/snowplow/snowplow/wiki/setting-up-beam-enrich
+- https://github.com/snowplow/snowplow/tree/master/3-enrich/beam-enrich
+
+### Stream Enrich
+
+The new version of Stream Enrich can be found in our Bintray
+[here](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.19.1#files).
+
+It incorporates a fix for users of the PII enrichment.
+
+### Clojure Collector
+
+The new Clojure Collector is stored in S3 at:
+`s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.1-standalone.war`.
+
+It incorporates a fix for CORS requests.
+
+### Read more
+
+* [R110 Blog Post](https://snowplowanalytics.com/blog/2018/09/xx/snowplow-r110-valle-dei-templi-gcp-real-time-pipeline/)
+* [R109 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r110-valle-dei-templi)
 
 <a name="r109" />
 
