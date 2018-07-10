@@ -5,7 +5,9 @@
 ### Compatibility
 
 JSON Schema   [iglu:com.snowplowanalytics.snowplow.enrichments/iab_spiders_and_robots_enrichment/jsonschema/1-0-0][schema]
+
 Compatibility R107
+
 Data provider [IAB][iab]
 
 ### Overview
@@ -27,7 +29,10 @@ The table below describes the three types of database fields:
 | `excludeUseragentFile` | Blacklist of useragent strings considered to be robots or spiders | `"exclude_current.txt"` |
 | `includeUseragentFile` | Whitelist of useragent strings considered to be browsers | `"include_current.txt"` |
 
-All three of these fields **must** be added to the enrichment JSON, as the IAB lookup process uses all three databases in order to detect robots and spiders.
+All three of these fields **must** be added to the enrichment JSON, as the IAB lookup
+process uses all three databases in order to detect robots and spiders. Note that the database files
+are commercial and proprietary and should not be stored publically - for instance, on unprotected
+HTTPS or in a public S3 bucket.
 
 ### Examples
 
@@ -67,11 +72,14 @@ This enrichment uses the following fields of a Snowplow event:
 
 ### Algorithm
 
-As mentioned previously, this enrichment uses the IAB/ABC International Spiders & Robots List to look up information about an event based on it's IP address and useragent. It processes IAB/ABC database files using the Snowplow [IAB Spiders And Robots Java Client](https://github.com/snowplow/iab-spiders-and-robots-java-client).
+As mentioned previously, this enrichment uses the IAB/ABC International Spiders & Robots List
+to look up information about an event based on it's IP address and useragent. It processes IAB/ABC
+database files using the Snowplow [IAB Spiders And Robots Java Client][iab-client].
 
 ### Data generated
 
-The enrichment adds a new derived context to the enriched event, which is based on the [com.iab.snowplow/spiders_and_robots/jsonschema/1-0-0](https://github.com/snowplow/iglu-central/pull/767/files) schema and contains the following data:
+The enrichment adds a new derived context to the enriched event, which is based on the [com.iab.snowplow/spiders_and_robots/jsonschema/1-0-0][context-schema]
+schema and contains the following data:
 
 Field | Purpose
 :---|:---
@@ -86,10 +94,10 @@ Here is an example of the derived context attached to an enriched Snowplow event
 {
     "schema": "iglu:com.iab.snowplow/spiders_and_robots/jsonschema/1-0-0",
     "data": {
-        "spiderOrRobot": true,
-        "category": "",
-        "reason": "FAILED_UA_INCLUDE",
-        "primaryImpact": "UNKNOWN"
+        "spiderOrRobot": false,
+        "category": "BROWSER",
+        "reason": "PASSED_ALL",
+        "primaryImpact": "NONE"
     }
 }
 ```
@@ -97,3 +105,5 @@ Here is an example of the derived context attached to an enriched Snowplow event
 [schema]: http://iglucentral.com/schemas/com.snowplowanalytics.snowplow.enrichments/iab_spiders_and_robots_enrichment/jsonschema/1-0-0
 [iab]: https://www.iab.com/
 [iab-list]: https://www.iab.com/guidelines/iab-abc-international-spiders-bots-list/
+[iab-client]: https://github.com/snowplow/iab-spiders-and-robots-java-client
+[context-schema]: http://iglucentral.com/schemas/com.iab.snowplow/spiders_and_robots/jsonschema/1-0-0
