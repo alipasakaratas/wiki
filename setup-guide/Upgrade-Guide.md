@@ -73,10 +73,20 @@ For easier navigation, please, follow the links below.
 
 ## Snowplow 106 Acropolis
 
-This release adds further capabilities to the PII Pseudonymization Enrichment. Specifically, it adds the
+This release adds further capabilities to the PII Pseudonymization Enrichment to *both* stream and batch enrich. Specifically, it adds the
 capability to emit a stream of events which contain the original along with the modified value. The PII
 transformation event also contains information about the field and the parent event (the event whence this
-PII event originated).
+PII event originated). 
+
+### Upgrading Spark Enrich
+
+To upgrade, update your EmrEtlRunner configuration to the following:
+
+```
+enrich:
+  version:
+    spark_enrich: 1.14.0 # WAS 1.13.0
+```
 
 ### Upgrading Stream Enrich
 
