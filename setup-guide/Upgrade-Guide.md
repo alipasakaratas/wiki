@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-xx
 - [Snowplow 106 Acropolis](#r106) (**r106**) 2018-06-01
 - [Snowplow 105 Pompeii](#r105) (**r105**) 2018-05-07
 - [Snowplow 104 Stoplesteinan](#r104) (**r104**) 2018-04-30
@@ -68,6 +69,37 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r107" />
+
+## Snowplow 107 Trypillia
+
+This release introduces the IAB Spiders & Robots enrichment for detecting bots and spiders,
+as well as new Marketo and Vero webhook adapters and fixes to the Google Analytics enrichment.
+
+#### Stream Enrich
+
+If you are a streaming pipeline user, a version of Stream Enrich incorporating the new IAB
+enrichment can be found on our Bintray [here](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.18.0#files).
+
+#### Spark Enrich
+
+If you are a batch pipeline user, you'll need to either update your EmrEtlRunner configuration
+to the following:
+
+```yaml
+enrich:
+  version:
+    spark_enrich: 1.15.0 # WAS 1.14.0
+```
+
+or directly make use of the new Spark Enrich available at:
+`s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.15.0.jar`.
+
+### Read more
+
+* [R107 Blog Post](https://snowplowanalytics.com/blog/2018/07/xx/xxxxxxxxxx)
+* [R107 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r107-trypillia)
 
 <a name="r106" />
 

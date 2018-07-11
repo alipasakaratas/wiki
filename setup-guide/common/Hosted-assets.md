@@ -58,7 +58,7 @@ Choose an artifact according to the supported targeted platform:
 The Spark Enrich process uses a single jarfile containing the Spark job. This is made available in a
 public Amazon S3 bucket, for Snowplowers who are running their Spark Enrich process on Amazon EMR:
 
-    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.13.0.jar
+    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.15.0.jar
 
 Right-click on this [Download link][spark-enrich-download] to save it down locally via CloudFront CDN.
 
@@ -74,7 +74,7 @@ Right-click on this [Download link][hadoop-event-recovery-download] to save it d
 
 The Stream Enrich app is available on Bintray here:
 
-    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.17.0#files
+    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.18.0#files
 
 Choose an artifact according to the supported targeted platform:
 
