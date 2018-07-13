@@ -33,6 +33,8 @@ The following Webhooks are currently available for setup:
 | **[Olark](Olark-webhook-setup)** | For tracking [Olark][olark] transcripts and off-line messages | [Release 97][r97]+ |
 | **[Unbounce](Unbounce-webhook-setup)** | For tracking [Unbounce][unbounce] form submission events | [Release 97][r97]+ |
 | **[StatusGator](StatusGator-webhook-setup)** | For tracking [StatusGator][statusgator] cloud provider availability events | [Release 97][r97]+ |
+| **[Marketo](Marketo-webhook-setup)** | For tracking events related to [Marketo][marketo] | [Release 107][r107]+ |
+| **[Vero](Vero-webhook-setup)** | For tracking events emitted by [Vero][vero] webhooks | [Release 107][r107]+ |
 
 **If you are interested in sponsoring a new webhook integration for Snowplow, please [talk to us](Talk-to-us).**
 
@@ -53,8 +55,12 @@ Back to [Snowplow setup](Setting-up-Snowplow).
 [olark]: https://www.olark.com/
 [unbounce]: https://unbounce.com
 [statusgator]: https://statusgator.com/
+[marketo]: https://www.marketo.com/
+[vero]: https://www.getvero.com/
+
 
 [snowplow-0.9.11]: https://github.com/snowplow/snowplow/releases/tag/0.9.11
 [snowplow-0.9.14]: https://github.com/snowplow/snowplow/releases/tag/0.9.14
 [r75]: https://github.com/snowplow/snowplow/releases/tag/r75-long-legged-buzzard
 [r97]: https://github.com/snowplow/snowplow/releases/tag/r97-knossos
+[r107]: https://github.com/snowplow/snowplow/releases/tag/r107-trypillia

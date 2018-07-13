@@ -40,6 +40,8 @@ The technical documentation reflects the Snowplow architecture, with six loosely
 [[Olark webhook adapter]]
 [[Unbounce webhook adapter]]
 [[StatusGator webhook adapter]]
+[[Marketo webhook adapter]]
+[[Vero webhook adapter]]
 
 ### A. [Snowplow tracker protocol](snowplow-tracker-protocol)
 
