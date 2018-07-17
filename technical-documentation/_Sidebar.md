@@ -35,6 +35,8 @@
 [[StatusGator webhook adapter]]  
 [[Unbounce webhook adapter]]  
 [[Olark webhook adapter]]  
+[[Marketo webhook adapter]]
+[[Vero webhook adapter]]
 
 **[A. Snowplow Tracker Protocol](snowplow-tracker-protocol)**  
 
