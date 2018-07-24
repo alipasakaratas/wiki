@@ -13,6 +13,7 @@
     - [3.1.4: Self-host Spark Enrich](4-Self-hosting-Spark-Enrich)  
     - [3.1.5: Configuring-enrichments](5-Configuring-enrichments)  
     - [3.1.6: Configuring shredding](6-Configuring-shredding)  
+    - [3.1.7: Configure encryption (optional)](7-Setting-up-end-to-end-encryption)
   - [3.2: Setup Stream Enrich](setting-up-stream-enrich)
   - [Configurable enrichments](Configurable-enrichments)
 - [Step 4: Setup alternative data stores](setting-up-alternative-data-stores)   
