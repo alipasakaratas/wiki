@@ -85,7 +85,7 @@ $ aws elasticbeanstalk create-application --application-name "Clojure Collector 
 $ aws elasticbeanstalk create-application-version \
     --application-name "Clojure Collector Demo" \
     --version-label cc-endpoint-demo \
-    --cli-input-json "{\"SourceBundle\":{\"S3Bucket\":\"snowplow-hosted-assets\",\"S3Key\":\"2-collectors/clojure-collector/clojure-collector-1.1.0-standalone.war\"}}"
+    --cli-input-json "{\"SourceBundle\":{\"S3Bucket\":\"snowplow-hosted-assets\",\"S3Key\":\"2-collectors/clojure-collector/clojure-collector-2.1.0-standalone.war\"}}"
 ```
 
 3.Create environment making sure you provide the valid `solution-stack-name`. Note the `environment-name` will form the collector endpoint URL.

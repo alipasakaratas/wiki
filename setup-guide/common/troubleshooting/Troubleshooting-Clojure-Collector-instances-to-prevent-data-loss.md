@@ -49,7 +49,11 @@ There are three scenarios in which a collector instance can be terminated:
 2. AutoScaling spins up multiple instances for a load spike and they scale back down during a less busy time
 3. You or one of your team manually terminate an instance (e.g. because it has become unresponsive)
 
-There is currently no workaround for scenario 1. We avoid scenario 2 by configuring our Elastic Beanstalk environment to never automatically scale down.
+There is currently no workaround for scenario 1.
+
+When scaling down, scenario 2 above, we can associate [a lifecycle hook](http://docs.amazonaws.cn/en_us/autoscaling/ec2/userguide/lifecycle-hooks.html)
+to the auto-scaling group so that the instance spends 2 hours in a waiting state. This ensures that
+all the logs present in the machine are correctly rotated to S3 given it happens once every hour.
 
 For scenario 3, the case where you need to manually terminate a Clojure Collector instance, the AWS team have compiled a set of steps which should prevent data loss. For simplicity, the following guide assumes that you have a single instance environment and wish to replace that instance with a new instance (terminating the old one) without either:
 
