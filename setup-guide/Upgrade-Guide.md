@@ -6,7 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
-- [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-06-XX
+- [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-07-24
 - [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-18
 - [Snowplow 106 Acropolis](#r106) (**r106**) 2018-06-01
 - [Snowplow 105 Pompeii](#r105) (**r105**) 2018-05-07
@@ -118,7 +118,7 @@ environment property to your Elastic Beanstalk application.
 
 ### Read more
 
-* [R108 Blog Post](https://snowplowanalytics.com/blog/2018/06/xx/snowplow-r108-val-camonica/)
+* [R108 Blog Post](https://snowplowanalytics.com/blog/2018/07/24/snowplow-r108-val-camonica/)
 * [R108 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r108-val-camonica)
 * [Setting up end-to-end encryption guide](7-Setting-up-end-to-end-encryption)
 
