@@ -42,9 +42,9 @@ The JSON Event Transformer converts a Snowplow enriched event into a single JSON
 
 The most complex piece of processing is the handling of the self-describing JSONs found in the enriched event's `unstruct_event`, `contexts` and `derived_contexts` fields. All self-describing JSONs found in the event are flattened into top-level plain (i.e. not self-describing) objects within the enriched event JSON.
 
-As of `0.3.1` there are two alternative behaviors for the event transformer: 
+Currently  there are two alternative behaviors for the event transformer: 
 
-Under the original behavior, if an enriched event contained a `com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-1`, then the final JSON would contain:
+Under the original (flattening) behavior, if an enriched event contained a `com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-1`, then the final JSON would contain:
 
 ```json
 { "app_id":"demo","platform":"web","etl_tstamp":"2015-12-01T08:32:35.048Z",
@@ -55,7 +55,7 @@ Under the original behavior, if an enriched event contained a `com.snowplowanaly
   },...
 ```
 
-Under the new (as of `0.3.1`) behavior, if an enriched event contained a `com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-1`, then the final JSON (if turned into a string) would contain instead:
+Under the new (non-flattening, available since `0.3.1`) behavior, if an enriched event contained a `com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-1`, then the final JSON (if turned into a string) would contain instead:
 
 ```json
 { "app_id":"demo","platform":"web","etl_tstamp":"2015-12-01T08:32:35.048Z",
