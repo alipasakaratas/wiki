@@ -142,6 +142,37 @@ Right-click on this [Download link][s3-loader-download] to save it down locally.
 
 No hosted assets currently.
 
+## 6. Relays (AWS Lambda)
+
+You can find the jars for our relays in our public S3 buckets close to your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket) 
+
+### 6.1 Piinguin relay
+
+You can find the piinguin relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
+
+For instance for `eu-west-1` teh asset will be at: 
+`s3://snowplow-hosted-assets/relays/piinguin/snowplow-piinguin-relay-0.1.0.jar`
+
+## 7. S3 hosted asset bucket per region
+
+| Region | Bucket |
+|--------|--------|
+|eu-west-1|snowplow-hosted-assets|
+|us-east-1|snowplow-hosted-assets-us-east-1|
+|us-west-1|snowplow-hosted-assets-us-west-1|
+|us-west-2|snowplow-hosted-assets-us-west-2|
+|sa-east-1|snowplow-hosted-assets-sa-east-1|
+|eu-central-1|snowplow-hosted-assets-eu-central-1|
+|ap-southeast-1|snowplow-hosted-assets-ap-southeast-1|
+|ap-southeast-2|snowplow-hosted-assets-ap-southeast-2|
+|ap-northeast-1|snowplow-hosted-assets-ap-northeast-1|
+|ap-south-1|snowplow-hosted-assets-ap-south-1|
+|us-east-2|snowplow-hosted-assets-us-east-2|
+|ca-central-1|snowplow-hosted-assets-ca-central-1|
+|eu-west-2|snowplow-hosted-assets-eu-west-2|
+|ap-northeast-2|snowplow-hosted-assets-ap-northeast-2|
+
+
 ## See also
 
 As well as these hosted assets for running Snowplow, the Snowplow Analytics team also make code components and libraries available through Ruby and Java artifact repositories.
