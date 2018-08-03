@@ -146,11 +146,11 @@ No hosted assets currently.
 
 You can find the jars for our relays in our public S3 buckets close to your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket) 
 
-### 6.1 Piinguin relay
+### 6.1 Snowplow Piinguin Relay
 
-You can find the piinguin relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
+You can find the Snowplow Piinguin Relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
 
-For instance for `eu-west-1` teh asset will be at: 
+For instance for `eu-west-1` the asset will be at: 
 `s3://snowplow-hosted-assets/relays/piinguin/snowplow-piinguin-relay-0.1.0.jar`
 
 ## 7. S3 hosted asset bucket per region
