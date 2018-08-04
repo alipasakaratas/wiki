@@ -118,7 +118,7 @@ environment property to your Elastic Beanstalk application.
 
 ### Read more
 
-* [R108 Blog Post](https://snowplowanalytics.com/blog/2018/07/24/snowplow-r108-val-camonica/)
+* [R108 Blog Post](https://snowplowanalytics.com/blog/2018/07/24/snowplow-r108-val-camonica-with-batch-pipeline-encryption-released/)
 * [R108 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r108-val-camonica)
 * [Setting up end-to-end encryption guide](7-Setting-up-end-to-end-encryption)
 
