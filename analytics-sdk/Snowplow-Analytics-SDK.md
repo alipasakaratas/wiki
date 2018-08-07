@@ -2,7 +2,7 @@
 
 ## Overview
 
-We are pleased to announce the releases of our first analytics SDKs for Snowplow, created for data engineers and data scientists working with Snowplow in Scala.
+We are pleased to announce the releases of our first analytics SDKs for Snowplow, created for data engineers and data scientists working with Snowplow in a number of languages.
 
 Some good use cases for the SDK include:
 
