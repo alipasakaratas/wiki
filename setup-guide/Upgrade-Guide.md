@@ -183,7 +183,7 @@ For a complete example, see our sample [`config.yml`](https://github.com/snowplo
 
 ### Read more
 
-* [R109 Blog Post](https://snowplowanalytics.com/blog/2018/08/21/snowplow-r109-lambaesis-real-time-pipeline-mainteance/)
+* [R109 Blog Post](https://snowplowanalytics.com/blog/2018/08/21/snowplow-r109-lambaesis-real-time-pipeline-upgrade/)
 * [R109 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r109-lambaesis)
 
 <a name="r108" />
