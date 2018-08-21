@@ -37,8 +37,8 @@
   - 4.5 [`TrackEcommerceTransaction()`](#ecommerce-transaction)
   - 4.6 [`TrackStructEvent()`](#struct-event)
   - 4.7 [`TrackTiming()`](#timing-event)
-- 5 [Emitters](#emitter)
-  - 5.1 [Under the hood](#emitter-inner-workings)
+- 5 [Emitters](#emitters)
+  - 5.1 [Under the hood](#emitters-inner-workings)
 
 <a name="overview" />
 
@@ -67,13 +67,13 @@ Assuming you have completed the [[Golang Tracker Setup]] for your project, you a
 Import the Golang Tracker library like so:
 
 ```golang
-import "gopkg.in/snowplow/snowplow-golang-tracker.v1/tracker"
+import "gopkg.in/snowplow/snowplow-golang-tracker.v2/tracker"
 ```
 
 You will need to refer to the package as `tracker`.  If you wish to use something shorter (or if `tracker` is already taken):
 
 ```golang
-import sp "gopkg.in/snowplow/snowplow-golang-tracker.v1/tracker"
+import sp "gopkg.in/snowplow/snowplow-golang-tracker.v2/tracker"
 ```
 
 The package can now be referred to as `sp` rather than `tracker`.
@@ -87,7 +87,7 @@ That's it - you are now ready to initialize a tracker instance.
 The simplest tracker initialization only requires you to provide the URI of the collector to which the tracker will log events:
 
 ```golang
-import sp "gopkg.in/snowplow/snowplow-golang-tracker.v1/tracker"
+import sp "gopkg.in/snowplow/snowplow-golang-tracker.v2/tracker"
 
 emitter := sp.InitEmitter(sp.RequireCollectorUri("com.acme"))
 tracker := sp.InitTracker(sp.RequireEmitter(emitter))
@@ -123,7 +123,7 @@ tracker := sp.InitTracker(
 
 #### 2.2.1 `RequireEmitter`
 
-Accepts an argument of an Emitter instance pointer; if the object is `nil` will `panic`. See [Emitters](#emitter) for more on emitter configuration.
+Accepts an argument of an Emitter instance pointer; if the object is `nil` will `panic`. See [Emitters](#emitters) for more on emitter configuration.
 
 <a name="subject" />
 
@@ -714,7 +714,7 @@ tracker.TrackTiming(sp.TimingEvent{
 
 [Back to top](#top)
 
-<a name="emitter" />
+<a name="emitters" />
 
 ## 5. Emitters
 
@@ -798,7 +798,7 @@ emitter := sp.InitEmitter(
 
 [Back to top](#top)
 
-<a name="emitter-inner-workings">
+<a name="emitters-inner-workings">
 
 ### 5.1 Under the hood
 
