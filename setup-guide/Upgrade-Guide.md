@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 109 Lambaesis](#r109) (**r109**) 2018-08-21
 - [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-07-24
 - [Snowplow 107 Trypillia](#r107) (**r107**) 2018-07-18
 - [Snowplow 106 Acropolis](#r106) (**r106**) 2018-06-01
@@ -71,11 +72,125 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
 
+<a name="r109" />
+
+## Snowplow 109 Lambaesis
+
+This release bring the possibility to enable end-to-end encryption for the batch pipeline as well
+as a way to specify the cookie path for the Clojure Collector.
+
+### UA parser enrichment
+
+If you want to leverage the monthly-updated database of useragent regexes we host on S3, you'll
+need to update your enrichment configuration to the following:
+
+```json
+{
+  “schema": "iglu:com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-1", # Was 1-0-0
+  "data": {
+    "vendor": "com.snowplowanalytics.snowplow",
+    "name": "ua_parser_config",
+    "enabled": true,
+    "parameters": {
+      "database": "regexes.yaml",                                                    # New
+      "uri": "s3://snowplow-hosted-assets/third-party/ua-parser/"                    # New
+    }
+  }
+}
+```
+
+Note that this change is not mandatory.
+
+### Stream Enrich
+
+If you are a real-time pipeline user, a version of Stream Enrich can be found on our Bintray
+[here](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.19.0#files).
+
+### Spark Enrich
+
+If you are a batch pipeline user, you'll need to either update your EmrEtlRunner configuration
+to the following:
+
+```yaml
+enrich:
+  version:
+    spark_enrich: 1.16.0 # WAS 1.15.0
+```
+
+or directly make use of the new Spark Enrich available at:
+`s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.16.0.jar`.
+
+### Scala Stream Collector
+
+The latest version of the *Scala Stream Collector* is available from our Bintray [here](https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.14.0#files).
+
+#### Updating the configuration
+
+```hocon
+collector {
+  crossDomain {
+    enabled = true
+    domains = [ "*"] # WAS domain and not an array
+    secure = true
+  }
+
+  doNotTrackCookie { # New section
+    enabled = false
+    name = cookie-name
+    value = cookie-value
+  }
+
+  rootResponse {     # New section
+    enabled = false
+    statusCode = 200
+    body = “ok”
+  }
+}
+```
+
+For a complete example, see our sample [`config.hocon`](https://github.com/snowplow/snowplow/blob/r109-lambaesis/2-collectors/scala-stream-collector/examples/config.hocon.sample) template.
+
+### EmrEtlRunner
+
+The latest version of the *EmrEtlRunner* is available from our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r109_lambaesis.zip).
+
+#### Updating config.yml
+
+We encourage people to change their S3 buckets to use the `s3a` scheme because usage
+of the `s3a` protocol doesn't generate [empty files](https://aws.amazon.com/premiumsupport/knowledge-center/emr-s3-empty-files/):
+
+```yaml
+aws:
+  s3:
+   raw:
+     in:
+       - "s3a://in-bucket"
+     processing: "s3a://processing-bucket"
+     archive: "s3a://archive-bucket/raw"
+   enriched:
+     good: "s3a://enriched-bucket/good"
+     bad: "s3a://enriched-bucket/bad"
+     errors: "s3a://enriched-bucket/errors"
+     archive: "s3a://archive-bucket/enriched"
+   shredded:
+     good: "s3a://shredded-bucket/good"
+     bad: "s3a://shredded-bucket/bad"
+     errors: "s3a://shredded-bucket/errors"
+     archive: "s3a://archive-bucket/shredded"
+```
+
+For a complete example, see our sample [`config.yml`](https://github.com/snowplow/snowplow/blob/r109-lambaesis/3-enrich/emr-etl-runner/config/config.yml.sample) template.
+
+### Read more
+
+* [R109 Blog Post](https://snowplowanalytics.com/blog/2018/08/21/snowplow-r109-lambaesis-real-time-pipeline-mainteance/)
+* [R109 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r109-lambaesis)
+
 <a name="r108" />
 
 ## Snowplow 108 Val Camonica
 
-This release bring the possibility to enable end-to-end encryption for the batch pipeline as well
+This release brings the possibility to enable end-to-end encryption for the batch pipeline as well
 as a way to specify the cookie path for the Clojure Collector.
 
 ### EmrEtlRunner
