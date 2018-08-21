@@ -12,11 +12,11 @@ We are steadily moving over to [Bintray][bintray] for hosting binaries and artif
 
 To make operating Snowplow easier, the EmrEtlRunner app are now available as prebuilt executables in a single zipfile here:
 
-    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r108_val_camonica.zip
+    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r109_lambaesis.zip
 
 Right-click on this [Download link][emr-download] to save it down locally.
 
-**Note**: The link above refers to the latest version at the time of writing (R108). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
+**Note**: The link above refers to the latest version at the time of writing (R109). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
 
 ## 1. Trackers
 
@@ -42,7 +42,7 @@ Right-click on this [Download link][cc-download] to save it down locally via Clo
 
 The Scala Stream Collectors are available on Bintray here:
 
-    https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.13.0#files
+    https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.14.0#files
 
 Choose an artifact according to the supported targeted platform:
 
@@ -58,19 +58,11 @@ Choose an artifact according to the supported targeted platform:
 The Spark Enrich process uses a single jarfile containing the Spark job. This is made available in a
 public Amazon S3 bucket, for Snowplowers who are running their Spark Enrich process on Amazon EMR:
 
-    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.15.0.jar
+    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.16.0.jar
 
 Right-click on this [Download link][spark-enrich-download] to save it down locally via CloudFront CDN.
 
-### 3.2 Scala Hadoop Event Recovery resources
-
-The Scala Hadoop Event Recovery (formerly Hadoop Bad Rows) tool uses a single jarfile containing the MapReduce job. This is made available in a public Amazon S3 bucket:
-
-    s3://snowplow-hosted-assets/3-enrich/hadoop-event-recovery/snowplow-hadoop-event-recovery-0.2.0.jar
-
-Right-click on this [Download link][hadoop-event-recovery-download] to save it down locally via CloudFront CDN.
-
-### 3.3 Stream Enrich resources
+### 3.2 Stream Enrich resources
 
 The Stream Enrich app is available on Bintray here:
 
@@ -83,17 +75,33 @@ Choose an artifact according to the supported targeted platform:
 - Kafka
 - NSQ
 
-### 3.3 Shared resources
+### 3.3 Scala Hadoop Event Recovery resources
 
-#### 3.3.1 MaxMind GeoLiteCity
+The Scala Hadoop Event Recovery (formerly Hadoop Bad Rows) tool uses a single jarfile containing the MapReduce job. This is made available in a public Amazon S3 bucket:
 
-Both Enrichment processes make use of the free [GeoLite City database][geolite] from [MaxMind, Inc][maxmind], also stored in this public Amazon S3 bucket:
+    s3://snowplow-hosted-assets/3-enrich/hadoop-event-recovery/snowplow-hadoop-event-recovery-0.2.0.jar
+
+Right-click on this [Download link][hadoop-event-recovery-download] to save it down locally via CloudFront CDN.
+
+### 3.4 Shared resources
+
+#### 3.4.1 MaxMind GeoLiteCity
+
+The [ip lookups enrichment](IP-lookups-enrichment) makes use of the free [GeoLite City database][geolite] from [MaxMind, Inc][maxmind], also stored in this public Amazon S3 bucket:
 
     s3://snowplow-hosted-assets/third-party/maxmind/GeoLite2-City.mmdb
 
 This file is updated every month by the Snowplow Analytics team.
+See [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket.
 
-If you are running Stream Enrich, you will need a local copy of this file. Right-click on this [Download link][glc-download] to save it down locally via CloudFront CDN.
+#### 3.4.1 User-Agent parser database
+
+[The UA parser enrichment](ua-parser-enrichment) makes use of the [uap-core database](https://github.com/ua-parser/uap-core/), also stored in this public Amazon S3 bucket:
+
+    s3://snowplow-hosted-assets/third-party/ua-parser/regexes.yaml
+
+This file is updated every month by the Snowplow Analytics team.
+See [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket.
 
 ## 4. Storage
 
@@ -153,6 +161,13 @@ You can find the Snowplow Piinguin Relay in an S3 bucket in your region (see [th
 For instance for `eu-west-1` the asset will be at: 
 `s3://snowplow-hosted-assets/relays/piinguin/snowplow-piinguin-relay-0.1.0.jar`
 
+### 6.2 Snowplow Indicative Relay
+
+You can find the Snowplow Indicative Relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
+
+For instance for `eu-west-1` the asset will be at: 
+`s3://snowplow-hosted-assets/relays/indicative/snowplow-indicative-relay-0.1.0.jar`
+
 ## 7. S3 hosted asset bucket per region
 
 | Region | Bucket |
@@ -181,7 +196,7 @@ Please see the [[Artifact repositories]] wiki page for more information.
 
 [snowplow-repo]: https://github.com/snowplow/snowplow
 [cc-download]: http://d2io1hx8u877l0.cloudfront.net/2-collectors/clojure-collector/clojure-collector-2.1.0-standalone.war
-[spark-enrich-download]: http://d2io1hx8u877l0.cloudfront.net/3-enrich/spark-enrich/snowplow-spark-enrich-1.13.0.jar
+[spark-enrich-download]: http://d2io1hx8u877l0.cloudfront.net/3-enrich/spark-enrich/snowplow-spark-enrich-1.16.0.jar
 [rdb-download]: http://d2io1hx8u877l0.cloudfront.net/4-storage/rdb-shredder/snowplow-rdb-shredder-0.13.0.jar
 [hadoop-event-recovery-download]: http://d2io1hx8u877l0.cloudfront.net/3-enrich/hadoop-event-recovery/snowplow-hadoop-event-recovery-0.2.0.jar
 [glc-download]: http://d2io1hx8u877l0.cloudfront.net/third-party/maxmind/GeoLite2-City.mmdb
