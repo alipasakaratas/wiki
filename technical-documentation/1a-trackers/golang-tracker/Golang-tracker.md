@@ -123,7 +123,7 @@ tracker := sp.InitTracker(
 
 #### 2.2.1 `RequireEmitter`
 
-Accepts an argument of an Emitter instance pointer; if the object is `nil` will `panic`. See [Emitters](#emitters) for more on emitter configuration.
+Accepts an argument of an Emitter instance pointer; if the object is `nil` will `panic`. See [Emitters](#emitter) for more on emitter configuration.
 
 <a name="subject" />
 
@@ -737,6 +737,7 @@ There are other optional builder functions:
 | `OptionByteLimitGet`  | The byte limit when sending a GET request      | No            | `40000`      |
 | `OptionByteLimitPost` | The byte limit when sending a POST request     | No            | `40000`      |
 | `OptionDbName`        | Defines the path and file name of the database | No            | `events.db`  |
+| `OptionStorage`       | Use a custom Storage target                    | No            | `nil`        |
 | `OptionCallback`      | Defines a custom callback function             | No            | `nil`        |
 
 A more complete example:
@@ -757,7 +758,43 @@ emitter := sp.InitEmitter(
 )
 ```
 
-The OptionDbName can be any valid path on your host file system (that can be created with the current user).  By default it will create the required files wherever the application is being run from.
+__Note__: The OptionDbName must be a valid path on your host file system (that can be created with the current user).  By default it will create the required files wherever the application is being run from.
+
+As of Version 2 of the Tracker you can now also use OptionStorage to pass in different Storage options for the Emitter.  Out of the box we now support the following:
+
+* __StorageMemory__: A fully in-memory implementation utilising `go-memdb`
+* __StorageSQLite3__: The default option that is used and which is configured by default with the `OptionDbName` argument
+
+You can also define your own Storage system by implementing the `Storage` interface:
+
+```golang
+type Storage interface {
+  AddEventRow(payload Payload) bool
+  DeleteAllEventRows() int64
+  DeleteEventRows(ids []int) int64
+  GetAllEventRows() []EventRow
+  GetEventRowsWithinRange(eventRange int) []EventRow
+}
+```
+
+To use `StorageMemory` instead the constructor likes like so:
+
+```golang
+storage := sp.InitStorageMemory()
+emitter := sp.InitEmitter(
+  sp.RequireCollectorUri("com.acme"),
+  sp.OptionRequestType("GET"),
+  sp.OptionProtocol("https"),
+  sp.OptionSendLimit(50),
+  sp.OptionByteLimitGet(52000),
+  sp.OptionByteLimitPost(52000),
+  sp.OptionStorage(storage),
+  sp.OptionCallback(func(g []CallbackResult, b []CallbackResult)) {
+    log.Println("Successes: " + IntToString(len(g)))
+    log.Println("Failures: " + IntToString(len(b)))
+  }),
+)
+```
 
 [Back to top](#top)
 
