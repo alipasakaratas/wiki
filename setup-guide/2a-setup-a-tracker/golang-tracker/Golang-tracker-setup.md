@@ -22,7 +22,7 @@ Ready? Let's get started.
 
 ## 2 Tracker compatibility
 
-The Snowplow Golang Tracker has been built and tested using Golang versions 1.3, 1.4, 1.5 and 1.6.
+The Snowplow Golang Tracker has been built and tested using Golang versions 1.9.x, and 1.10.x.
 
 [Back to top](#top)
 
@@ -35,16 +35,16 @@ The Tracker is hosted on Github and versions of the Tracker are fetched using [g
 To get the package, execute:
 
 ```bash
-$host go get gopkg.in/snowplow/snowplow-golang-tracker.v1/tracker
+$host go get gopkg.in/snowplow/snowplow-golang-tracker.v2/tracker
 ```
 
 To import the package, add the following line to your code:
 
 ```go
-import "gopkg.in/snowplow/snowplow-golang-tracker.v1/tracker"
+import "gopkg.in/snowplow/snowplow-golang-tracker.v2/tracker"
 ```
 
-The current version of the Snowplow Golang Tracker is 1.1.0.
+The current version of the Snowplow Golang Tracker is 2.0.0.
 
 [Back to top](#top)
 
