@@ -2,9 +2,8 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers) » iOS Tracker
 
-This page refers to version 0.9.0 of the Snowplow Objective-C Tracker, which is the latest version. Documentation for earlier versions is available:
+This page refers to version 0.8.0 of the Snowplow Objective-C Tracker, which is the latest version. Documentation for earlier versions is available:
 
-* *[Version 0.8][ios-0.8]*
 * *[Version 0.7][ios-0.7]*
 * *[Version 0.6][ios-0.6]*
 * *[Version 0.5][ios-0.5]*
@@ -31,9 +30,8 @@ This page refers to version 0.9.0 of the Snowplow Objective-C Tracker, which is 
     - 2.2.3 [`appId`](#app-id)
     - 2.2.4 [`base64Encoded`](#base64)
     - 2.2.5 [`client_session`](#sessionization)
-    - 2.2.6 [`lifecycleEvents`](#lifecycle-events)
-    - 2.2.7 [`pauseEventTracking`](#pause-event-tracking)
-    - 2.2.8 [`resumeEventTracking`](#resume-event-tracking)
+    - 2.2.6 [`pauseEventTracking`](#pause-event-tracking)
+    - 2.2.7 [`resumeEventTracking`](#resume-event-tracking)
 - 3. [Adding extra data](#add-data)
   - 3.1 [Sending IFA](#sending-ifa)
   - 3.2 [`setUserId`](#set-user-id)
@@ -307,7 +305,6 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
     [builder setForegroundTimeout:300]; // Optional
     [builder setBackgroundTimeout:150]; // Optional
     [builder setCheckInterval:10]; // Optional
-    [builder setLifecycleEvents:YES]; // Optional
 }];
 ```
 
@@ -322,7 +319,6 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
 | `setForegroundTimeout` | The session foreground timeout               |
 | `setBackgroundTimeout` | The session background timeout               |
 |     `setCheckInterval` | The session checking interval                |
-|   `setLifecycleEvents` | Whether to enable lifecycle events           |
 
 [Back to top](#top)
 
@@ -366,15 +362,9 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
 }];
 ```
 
-<a name="lifecycle-events" />
-
-#### 2.2.6 `lifecycleEvents`
-
-When enabled, `lifecycleEvents` will send an event containing the foreground index or background index (count of how many times each state has been reached) whenever the app transitions to being viewed or backgrounded. In order for this feature to be used, client sessionization must be enabled.
-
 <a name="pause-event-tracking" />
 
-#### 2.2.7 `pauseEventTracking`
+#### 2.2.6 `pauseEventTracking`
 
 This function when called will pause all event tracking and sessionization actions until resume is called.
 
@@ -384,7 +374,7 @@ This function when called will pause all event tracking and sessionization actio
 
 <a name="resume-event-tracking" />
 
-#### 2.2.8 `resumeEventTracking`
+#### 2.2.7 `resumeEventTracking`
 
 This function will resume all event tracking when called (if it was paused) and will also re-enable sessionization if it was already on.
 
