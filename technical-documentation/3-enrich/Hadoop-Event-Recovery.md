@@ -1,5 +1,7 @@
 [**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) > [**Enrichment**](Enrichment) > Hadoop Event Recovery
 
+**WARNING**. This document describes recovery process for raw data produced by Clojure Collector in TSV format. Scala Stream Collector produces data in Thrift format.
+
 ### Overview
 
 Hadoop Event Recovery allows you to fix Snowplow bad rows and make them ready for reprocessing.
