@@ -407,8 +407,8 @@ We highly recommend to use this context instead of previous ones because it is h
 ##### 2.2.15.13 optimizelyXSummary context
 
 Support for OptimizelyX has been introduced in the tracker, you can have a look
-at the JsonSchema in [com.optimizely/optimizelyx_summary/jsonschema/1-0-0](
-https://raw.githubusercontent.com/snowplow/iglu-central/blob/master/schemas/com.optimizely/optimizelyx_summary/jsonschema/1-0-0)
+at the JsonSchema in [com.optimizely.optimizelyx/summary/jsonschema/1-0-0](
+https://github.com/snowplow/iglu-central/blob/master/schemas/com.optimizely.optimizelyx/summary/jsonschema/1-0-0)
 to see what is being captured.
 
 If you're planning on leveraging the context's variation names, you'll have
