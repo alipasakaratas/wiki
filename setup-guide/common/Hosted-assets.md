@@ -166,7 +166,7 @@ For instance for `eu-west-1` the asset will be at:
 You can find the Snowplow Indicative Relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
 
 For instance for `eu-west-1` the asset will be at: 
-`s3://snowplow-hosted-assets/relays/indicative/snowplow-indicative-relay-0.1.0.jar`
+`s3://snowplow-hosted-assets/relays/indicative/indicative-relay-0.1.0.jar`
 
 ## 7. S3 hosted asset bucket per region
 
