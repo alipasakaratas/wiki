@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 111 Selinunte](#r111) (**r111**) 2018-10-01
 - [Snowplow 110 Valle dei Templi](#r110) (**r110**) 2018-09-07
 - [Snowplow 109 Lambaesis](#r109) (**r109**) 2018-08-21
 - [Snowplow 108 Val Camonica](#r108) (**r108**) 2018-07-24
@@ -73,6 +74,23 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
 
+<a name="r111" />
+
+## Snowplow 111 Selinunte
+
+This small release adds CORS-related headers to POST requests as a follow-up of R110 which added
+them to OPTIONS requests.
+
+### Clojure Collector
+
+The new Clojure Collector is stored in S3 at:
+`s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.2-standalone.war`.
+
+### Read more
+
+* [R111 Blog Post](https://snowplowanalytics.com/blog/2018/09/27/snowplow-r111-selinunte-clojure-collector-bug-fix/)
+* [R111 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r111-selinunte)
+
 <a name="r110" />
 
 ## Snowplow 110 Valle dei Templi
@@ -107,8 +125,8 @@ It incorporates a fix for CORS requests.
 
 ### Read more
 
-* [R110 Blog Post](https://snowplowanalytics.com/blog/2018/09/xx/snowplow-r110-valle-dei-templi-gcp-real-time-pipeline/)
-* [R109 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r110-valle-dei-templi)
+* [R110 Blog Post](https://snowplowanalytics.com/blog/2018/09/12/snowplow-r110-valle-dei-templi-introduces-real-time-enrichments-on-gcp)
+* [R110 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r110-valle-dei-templi)
 
 <a name="r109" />
 

@@ -34,7 +34,7 @@ The minified JavaScript tracker is hosted on CloudFront against its full semanti
 
 The Clojure Collector packaged as a complete WAR file, ready for Amazon Elastic Beanstalk, is here:
 
-    s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.0-standalone.war
+    s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.2-standalone.war
 
 Right-click on this [Download link][cc-download] to save it down locally via CloudFront CDN.
 
@@ -195,7 +195,7 @@ As well as these hosted assets for running Snowplow, the Snowplow Analytics team
 Please see the [[Artifact repositories]] wiki page for more information.
 
 [snowplow-repo]: https://github.com/snowplow/snowplow
-[cc-download]: http://d2io1hx8u877l0.cloudfront.net/2-collectors/clojure-collector/clojure-collector-2.1.0-standalone.war
+[cc-download]: http://d2io1hx8u877l0.cloudfront.net/2-collectors/clojure-collector/clojure-collector-2.1.2-standalone.war
 [spark-enrich-download]: http://d2io1hx8u877l0.cloudfront.net/3-enrich/spark-enrich/snowplow-spark-enrich-1.16.0.jar
 [rdb-download]: http://d2io1hx8u877l0.cloudfront.net/4-storage/rdb-shredder/snowplow-rdb-shredder-0.13.0.jar
 [hadoop-event-recovery-download]: http://d2io1hx8u877l0.cloudfront.net/3-enrich/hadoop-event-recovery/snowplow-hadoop-event-recovery-0.2.0.jar
