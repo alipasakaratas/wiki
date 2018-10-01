@@ -88,7 +88,7 @@ The new Clojure Collector is stored in S3 at:
 
 ### Read more
 
-* [R111 Blog Post](https://snowplowanalytics.com/blog/2018/09/27/snowplow-r111-selinunte-clojure-collector-bug-fix/)
+* [R111 Blog Post](https://snowplowanalytics.com/blog/2018/10/01/snowplow-r111-selinunte-clojure-collector-bug-fix/)
 * [R111 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r111-selinunte)
 
 <a name="r110" />
