@@ -1,13 +1,14 @@
 <a name="top" />
 
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > [Configurable enrichments](Configurable-enrichments) > Campaign attribution enrichment
+[**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Configurable enrichments](Configurable-enrichments) » Campaign attribution enrichment
 
 ### Compatibility
 
 JSON Schema   [iglu:com.snowplowanalytics.snowplow/campaign_attribution/jsonschema/1-0-0][schema-1]
-Compatibility 0.9.6+
+- Compatibility 0.9.6+
+
 JSON Schema   [iglu:com.snowplowanalytics.snowplow/campaign_attribution/jsonschema/1-0-1][schema-2]
-Compatibility r63+
+- Compatibility r63+
 
 ### Overview
 
@@ -144,7 +145,7 @@ The "mapping" field is currently not implemented. In the future, setting it to "
 
 ### Data sources
 
-The input values for this enrichment come from querystring of `url` parameter. It is mapped to `page_urlquery` field in `atomic.events` table.
+The input values for this enrichment come from querystring of `url` (`page_url`) parameter. It is mapped to `page_urlquery` field in `atomic.events` table.
 
 ### Algorithm
 
