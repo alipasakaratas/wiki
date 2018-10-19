@@ -2,9 +2,8 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers) » iOS Tracker
 
-This page refers to version 0.9.0 of the Snowplow Objective-C Tracker, which is the latest version. Documentation for earlier versions is available:
+This page refers to version 0.8.0 of the Snowplow Objective-C Tracker, which is the latest version. Documentation for earlier versions is available:
 
-* *[Version 0.8][ios-0.8]*
 * *[Version 0.7][ios-0.7]*
 * *[Version 0.6][ios-0.6]*
 * *[Version 0.5][ios-0.5]*
@@ -31,9 +30,8 @@ This page refers to version 0.9.0 of the Snowplow Objective-C Tracker, which is 
     - 2.2.3 [`appId`](#app-id)
     - 2.2.4 [`base64Encoded`](#base64)
     - 2.2.5 [`client_session`](#sessionization)
-    - 2.2.6 [Application context](#set-application-context)
-    - 2.2.7 [`pauseEventTracking`](#pause-event-tracking)
-    - 2.2.8 [`resumeEventTracking`](#resume-event-tracking)
+    - 2.2.6 [`pauseEventTracking`](#pause-event-tracking)
+    - 2.2.7 [`resumeEventTracking`](#resume-event-tracking)
 - 3. [Adding extra data](#add-data)
   - 3.1 [Sending IFA](#sending-ifa)
   - 3.2 [`setUserId`](#set-user-id)
@@ -307,8 +305,6 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
     [builder setForegroundTimeout:300]; // Optional
     [builder setBackgroundTimeout:150]; // Optional
     [builder setCheckInterval:10]; // Optional
-    [builder setLifecycleEvents:YES]; // Optional
-    [builder setApplicationContext:YES]; // Optional
 }];
 ```
 
@@ -323,8 +319,6 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
 | `setForegroundTimeout` | The session foreground timeout               |
 | `setBackgroundTimeout` | The session background timeout               |
 |     `setCheckInterval` | The session checking interval                |
-| `setApplicationContext`| Whether to send application contexts|
-| `setLifecycleEvents` | Whether to send lifecycle events on background and foreground |
 
 [Back to top](#top)
 
@@ -358,10 +352,6 @@ By default, unstructured events and custom contexts are encoded into Base64 to e
 
 By default, no client sessionization is activated.  Once enabled the Tracker will start appending a `client_session` context to each event it sends and it will maintain this session information for the life of the application; i.e. as long as the application is installed on the device.
 
-Lifecycle events can be sent when the session changes, i.e. whenever the session goes to background or foreground, a `application_foreground` or `application_background` event will be sent. This is enabled in the Tracker builder with `setLifecycleEvents`.
-
-It can also be changed after initialization with the tracker method `[tracker setLifecycleEvents:YES]`.
-
 __NOTE__: A known [bug existed](https://github.com/snowplow/snowplow-objc-tracker/issues/265) in version 0.6.0 for the default settings where the foreground and background timeouts are passed as `ms` rather than `s`.  To ensure a sane timeout please add the following to your Tracker creation:
 
 ```objective-c
@@ -369,28 +359,12 @@ SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
     ...
     [builder setForegroundTimeout:600]; // 10 minutes
     [builder setBackgroundTimeout:300]; // 5 minutes
-    [builder setLifecycleEvents:YES];
-}];
-```
-
-<a name="set-application-context" />
-
-#### 2.2.6 `Application context`
-
-An application context can be attached to events that tracks information related to the application build and version.
-
-This is enabled in the Tracker builder as below, or after initialization with the tracker method `[tracker setApplicationContext:YES]`.
-
-```objective-c
-SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
-    ...
-    [builder setApplicationContext:YES];
 }];
 ```
 
 <a name="pause-event-tracking" />
 
-#### 2.2.7 `pauseEventTracking`
+#### 2.2.6 `pauseEventTracking`
 
 This function when called will pause all event tracking and sessionization actions until resume is called.
 
@@ -400,7 +374,7 @@ This function when called will pause all event tracking and sessionization actio
 
 <a name="resume-event-tracking" />
 
-#### 2.2.8 `resumeEventTracking`
+#### 2.2.7 `resumeEventTracking`
 
 This function will resume all event tracking when called (if it was paused) and will also re-enable sessionization if it was already on.
 
@@ -1360,7 +1334,6 @@ NSString* openIdfa = [SPUtilities getOpenIdfa];
 [ios-0.5]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.5
 [ios-0.6]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.6
 [ios-0.7]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.7
-[ios-0.8]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.8
 
 [base64]: https://en.wikipedia.org/wiki/Base64
 [self-describing-jsons]: http://snowplowanalytics.com/blog/2014/05/15/introducing-self-describing-jsons/
