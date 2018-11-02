@@ -1,10 +1,10 @@
 <a name="top" />
 
-[HOME](Home) » [SNOWPLOW SETUP GUIDE](Setting-up-Snowplow) » [Step 4: setting up alternative data stores](Setting-up-alternative-data-stores) » Setting up Google Cloud Storage loader
+[HOME](Home) » [SNOWPLOW SETUP GUIDE](Setting-up-Snowplow) » [Step 4: setting up alternative data stores](Setting-up-alternative-data-stores) » Setting up Snowplow Google Cloud Storage loader
 
 ## Overview
 
-Refer to the [[Cloud Storage Loader]] document.
+Refer to the [[Snowplow Google Cloud Storage Loader]] document.
 You can find the code [on GitHub][csl].
 
 ## Configuration
@@ -66,7 +66,7 @@ Here, we provide an example using `gcloud`:
 
 ```bash
 gcloud dataflow jobs run [JOB-NAME] \
-  --gcs-location gs://snowplow-hosted-assets/4-storage/cloud-storage-loader/0.1.0/CloudStorageLoaderTemplate-0.1.0 \
+  --gcs-location gs://snowplow-hosted-assets/4-storage/snowplow-google-cloud-storage-loader/0.1.0/SNowplowGoogleCloudStorageLoaderTemplate-0.1.0 \
   --parameters \
     inputSubscription=projects/[PROJECT]/subscriptions/[SUBSCRIPTION],\
     outputDirectory=gs://[BUCKET]/YYYY/MM/dd/HH/,\ # partitions by date
@@ -86,7 +86,7 @@ You can find the archive hosted on [our Bintray][bintray].
 Once unzipped the artifact can be run as follows:
 
 ```bash
-./bin/cloud-storage-loader \
+./bin/snowplow-google-cloud-storage-loader \
   --runner=DataFlowRunner \
   --project=[PROJECT] \
   --streaming=true \
@@ -104,17 +104,16 @@ Once unzipped the artifact can be run as follows:
 To display the help message:
 
 ```bash
-./bin/cloud-storage-loader --help
+./bin/snowplow-google-cloud-storage-loader --help
 ```
 
 To display documentation about Cloud Storage Loader-specific options:
 
 ```bash
-./bin/cloud-storage-loader --help=com.snowplowanalytics.storage.cloudstorage.loader.Options
+./bin/snowplow-google-cloud-storage-loader --help=com.snowplowanalytics.storage.googlecloudstorage.loader.Options
 ```
 
 ### Docker image
-
 
 You can also find the imageon [our Bintray][bintray-docker].
 
@@ -123,7 +122,7 @@ A container can be run as follows:
 ```bash
 docker run \
   -e GOOGLE_APPLICATION_CREDENTIALS=/snowplow/config/credentials.json \ # if running outside GCP
-  snowplow-docker-registry.bintray.io/snowplow/cloud-storage-loader:0.1.0 \
+  snowplow-docker-registry.bintray.io/snowplow/snowplow-google-cloud-storage-loader:0.1.0 \
   --runner=DataFlowRunner \
   --job-name=[JOB-NAME] \
   --project=[PROJECT] \
@@ -142,15 +141,15 @@ docker run \
 To display the help message:
 
 ```bash
-docker run snowplow-docker-registry.bintray.io/snowplow/cloud-storage-loader:0.1.0 \
+docker run snowplow-docker-registry.bintray.io/snowplow/snowplow-google-cloud-storage-loader:0.1.0 \
   --help
 ```
 
 To display documentation about Cloud Storage Loader-specific options:
 
 ```bash
-docker run snowplow-docker-registry.bintray.io/snowplow/cloud-storage-loader:0.1.0 \
-  --help=com.snowplowanalytics.storage.cloudstorage.loader.Options
+docker run snowplow-docker-registry.bintray.io/snowplow/snowplow-google-cloud-storage-loader:0.1.0 \
+  --help=com.snowplowanalytics.storage.googlecloudstorage.loader.Options
 ```
 
 ### Additional information
@@ -170,7 +169,7 @@ The tests for this codebase can be run with `sbt test`.
 You can run the job locally and experiment with its different parts using the
 [SCIO REPL](https://github.com/spotify/scio/wiki/Scio-REPL) by running `sbt repl/run`.
 
-[csl]: https://github.com/snowplow-incubator/snowplow-cloud-storage-loader/
+[csl]: https://github.com/snowplow-incubator/snowplow-google-cloud-storage-loader/
 [template]: https://cloud.google.com/dataflow/docs/templates/overview
 [executing-templates]: https://cloud.google.com/dataflow/docs/templates/executing-templates
 [bintray]: https://bintray.com/snowplow/snowplow-generic/snowplow-cloud-storage-loader

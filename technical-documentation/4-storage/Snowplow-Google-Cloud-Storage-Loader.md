@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) > [**Storage**](Storage) > [[Google Cloud Storage Loader]]
+[**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) > [**Storage**](Storage) > [[Snowplow Google Cloud Storage Loader]]
 
 ## Overview
 
@@ -39,8 +39,8 @@ For now, it only runs on [GCP's Dataflow][dataflow].
 + [Setup guide][setup]
 + [Repository][csl]
 
-[setup]: https://github.com/snowplow/snowplow/wiki/setting-up-google-cloud-storage-loader
-[csl]: https://github.com/snowplow-incubator/snowplow-cloud-storage-loader/
+[setup]: https://github.com/snowplow/snowplow/wiki/setting-up-snowplow-google-cloud-storage-loader
+[csl]: https://github.com/snowplow-incubator/snowplow-google-cloud-storage-loader/
 
 Cloud Storage Loader is a [Dataflow][dataflow] job which dumps event from an input
 [PubSub][pubsub] subscription into a [Cloud Storage][storage] bucket.
