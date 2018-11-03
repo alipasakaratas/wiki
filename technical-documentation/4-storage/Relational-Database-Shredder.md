@@ -23,7 +23,7 @@ RDB Shredder has two primary tasks:
 
 <a name="usage" />
 
-## 2. Usage
+### 2. Usage
 
 RDB Shredder need to be used as an EMR step submitted by [[EmrEtlRunner]], which exactly knows what arguments need to be passed. 
 In classic batch pipeline there's no need to know about any RDB Shredder internals, everything should be handled by EmrEtlRunner.
@@ -96,7 +96,7 @@ We will cover these in turn:
 
 <a name="inbatch-natural-deduplication">
 
-#### 3.1 In-batch natural de-duplication
+#### 4.1 In-batch natural de-duplication
 
 As of [the R76 Changeable Eagle-Hawk release][r76-release], RDP de-duplicates "natural duplicates"
 - i.e. events which share the same event ID (`event_id`) and the same event payload (based by
@@ -110,7 +110,7 @@ the `event_fingerprint` property.
 
 <a name="inbatch-synthetic-deduplication">
 
-#### 3.2 In-batch synthetic de-duplication
+#### 4.2 In-batch synthetic de-duplication
 
 As of [the R86 Petra][r86-release], RDP de-duplicates "synthetic duplicates" - i.e. events which
 share the same event ID (`event_id`), but have different event payload (based on
@@ -131,7 +131,7 @@ automatically in RDB Shredder, but it is highly recommended to use the
 
 <a name="crossbatch-deduplication">
 
-#### 3.3 Cross-batch natural de-duplication
+#### 4.3 Cross-batch natural de-duplication
 
 With cross-batch natural de-duplication, we have to face a new issue: we need to track events across
 multiple ETL batches to detect duplicates. We don't need to store the whole event - just the
@@ -207,7 +207,7 @@ Default write capacity is 100 units, which means no matter how powerful your EMR
 RDB Shredder can be throttled by AWS DynamoDB. The rough cost of the default setup is 50USD per
 month, however throughput can be [tweaked][dynamodb-setup-guide] according to your needs.
 
-#### 3.4 Cross-batch synthetic de-duplication
+#### 4.4 Cross-batch synthetic de-duplication
 
 This section hasn't been written yet.
 
