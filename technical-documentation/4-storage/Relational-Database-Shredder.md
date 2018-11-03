@@ -1,5 +1,10 @@
 [**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) > [**Storage**](storage-documentation) > Relational Database Shredder
 
+- 1 [Overview](#overview)
+- 2 [Usage](#usage)
+- 3 [Shredding](#shredding)
+- 4 [Deduplication](#deduplication)
+
 <a name="overview">
 
 ### 1. Overview
@@ -16,9 +21,26 @@ RDB Shredder has two primary tasks:
 1. Shred enriched event into `atomic-events` TSV and associated JSONs
 2. Make `event_id`s for all events unique
 
+<a name="usage" />
+
+## 2. Usage
+
+RDB Shredder need to be used as an EMR step submitted by [[EmrEtlRunner]], which exactly knows what arguments need to be passed. 
+In classic batch pipeline there's no need to know about any RDB Shredder internals, everything should be handled by EmrEtlRunner.
+
+In case one wants to submit RDB Shredder step manually, it accepts following arguments:
+
+* `--input-folder <path>` S3 or HDFS path with enriched TSV data. Required
+* `--output-folder <path>` S3 or HDFS path to output shredded data. Required
+* `--bad-folder <path>` S3 or HDFS path to output data that failed processing. Required
+* `--iglu-config <resolver.json>` accepts full **base64-encoded** Iglu Resolver JSON configuration. Used to validate Storage Target JSON config. Required
+* `--duplicate-storage-config <config.json>` base64-encoded JSON file, providing a configuration for event manifest table. Optional
+* `--processing-manifest-table <name>` processing manifest DynamoDB table name. Optional
+* `--item-id <id>` in case processing manifest is used, this option provides an id for processed item. Optional and usable only with processing manifest
+
 <a name="shredding">
 
-### 2. Shredding
+### 3. Shredding
 
 Snowplow [enriched event][EnrichedEvent] is a 131-column TSV file, produced by Spark Enrich. Each
 line contains all information about a specific event, including its id, timestamps, custom and
@@ -51,7 +73,7 @@ More details on what shredding is can be found on the dedicated [shredding](Shre
 
 <a name="deduplication">
 
-### 3. Deduplication
+### 4. Deduplication
 
 Duplicates is a common problem in event pipelines, it has been described and studied
 [many][dealing-with-duplicate-event-ids][times][r76-release]. Basically, the
