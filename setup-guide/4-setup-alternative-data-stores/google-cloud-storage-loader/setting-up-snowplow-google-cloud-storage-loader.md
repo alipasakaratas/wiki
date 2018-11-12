@@ -66,7 +66,7 @@ Here, we provide an example using `gcloud`:
 
 ```bash
 gcloud dataflow jobs run [JOB-NAME] \
-  --gcs-location gs://snowplow-hosted-assets/4-storage/snowplow-google-cloud-storage-loader/0.1.0/SNowplowGoogleCloudStorageLoaderTemplate-0.1.0 \
+  --gcs-location gs://sp-hosted-assets/4-storage/snowplow-google-cloud-storage-loader/0.1.0/SnowplowGoogleCloudStorageLoaderTemplate-0.1.0 \
   --parameters \
     inputSubscription=projects/[PROJECT]/subscriptions/[SUBSCRIPTION],\
     outputDirectory=gs://[BUCKET]/YYYY/MM/dd/HH/,\ # partitions by date
