@@ -121,10 +121,11 @@ A container can be run as follows:
 
 ```bash
 docker run \
+  -v $PWD/config:/snowplow/config \ # if running outside GCP
   -e GOOGLE_APPLICATION_CREDENTIALS=/snowplow/config/credentials.json \ # if running outside GCP
   snowplow-docker-registry.bintray.io/snowplow/snowplow-google-cloud-storage-loader:0.1.0 \
   --runner=DataFlowRunner \
-  --job-name=[JOB-NAME] \
+  --jobName=[JOB-NAME] \
   --project=[PROJECT] \
   --streaming=true \
   --zone=[ZONE] \
