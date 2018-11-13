@@ -41,6 +41,7 @@ For now, it only runs on [GCP's Dataflow][dataflow].
 
 [setup]: https://github.com/snowplow/snowplow/wiki/setting-up-snowplow-google-cloud-storage-loader
 [csl]: https://github.com/snowplow-incubator/snowplow-google-cloud-storage-loader/
+[dataflow]: https://cloud.google.com/dataflow/
+[pubsub]: https://cloud.google.com/pubsub/
+[storage]: https://cloud.google.com/storage/
 
-Cloud Storage Loader is a [Dataflow][dataflow] job which dumps event from an input
-[PubSub][pubsub] subscription into a [Cloud Storage][storage] bucket.
