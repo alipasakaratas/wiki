@@ -102,6 +102,9 @@ Here is an example of the derived context attached to an enriched Snowplow event
 }
 ```
 
+[[/images/warning.png]] | IAB enrichment treats *Android tracker* events as spider-generated. To resolve, see [Discource post](https://discourse.snowplowanalytics.com/t/warning-iab-enrichment-treats-android-tracker-events-as-spider-generated/2482).
+---|:---
+
 [schema]: http://iglucentral.com/schemas/com.snowplowanalytics.snowplow.enrichments/iab_spiders_and_robots_enrichment/jsonschema/1-0-0
 [iab]: https://www.iab.com/
 [iab-list]: https://www.iab.com/guidelines/iab-abc-international-spiders-bots-list/
