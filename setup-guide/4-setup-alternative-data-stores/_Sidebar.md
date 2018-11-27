@@ -18,6 +18,7 @@
   - [4.9: setup Druid](Setting-up-Druid)  
   - [4.10: setup Amazon DynamoDB](Setting-up-Amazon-DynamoDB)  
   - [4.11: configuring storage targets](Configuring-storage-targets)  
+  - [4.12: setup Google Cloud Storage Loader](setting-up-google-cloud-storage-loader)
 - [Step 5: Data modeling](getting-started-with-data-modeling)  
 - [Step 6: Analyze your data!](getting-started-analyzing-snowplow-data)
 
