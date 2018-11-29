@@ -84,5 +84,5 @@ That's it - with this table deployed, your CallRail call complete events should 
 [callrail-webhooks]: https://support.callrail.com/hc/en-us/articles/201211133-Webhooks
 [snowplow-0.9.11]: https://github.com/snowplow/snowplow/releases/tag/0.9.11
 
-[call-complete-sql]: xxx
+[call-complete-sql]: https://github.com/snowplow/iglu-central/blob/master/sql/com.callrail/call_complete_1.sql
 [tracker-protocol]: https://github.com/snowplow/snowplow/wiki/snowplow-tracker-protocol#1-common-parameters-platform-and-event-independent
