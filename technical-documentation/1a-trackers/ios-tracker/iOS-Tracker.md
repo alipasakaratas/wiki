@@ -228,7 +228,7 @@ That's it - you are now ready to initialize a tracker instance.
 Adding the library into a Swift project can be done through Cocoapods. Add the pod `SnowplowTracker` to your project:
 
 ```ruby
-pod 'SnowplowTracker', '~> 0.8'
+pod 'SnowplowTracker', '~> 0.9'
 ```
 
 Note: you must use an import statement (`import SnowplowTracker`) if the library is added through Cocoapods.
