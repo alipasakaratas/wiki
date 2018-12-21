@@ -1506,11 +1506,10 @@ For more information on custom contexts, see [this][contexts] blog post.
 <a name="context-generators" />
 
 #### 3.17.1 Context generators
-Contexts can be generated dynamically with **context generators**. These are callbacks that take three standard arguments:
-
-- `event` : self-describing JSON
-- `eventType` : string
-- `eventSchema` : string (schema URI)
+Generating contexts on-the-fly is accomplished with **context generators**. A context generator is a callback that will be evaluated with an optional argument that contains useful information. The optional input is an associative array that contains three elements:
+* `event` : self-describing JSON
+* `eventType` : string
+* `eventSchema` : string (schema URI)
 
 Keep in mind that the arguments `eventType` and `eventSchema` are data found in `event`. `eventType` and `eventSchema` are provided for convenience, so that simple tasks don't require users to search through the event payload.
 
@@ -1538,22 +1537,26 @@ Further information about the event payload can be found in the [tracker protoco
 
 ##### 3.17.1.2 `eventSchema`
 
-Users should be aware of the behavior of the argument `eventSchema`. Since 'first-class events' (e.g. structured events, transactions, pageviews, etc.) lack a proper schema (their event type is determined by the `e` field), callbacks will be provided the upper-level schema that defines the payload of all events: `iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-4`
+Users should be aware of the behavior of the argument `eventSchema`. Since 'first-class events' (e.g. structured events, transactions, pageviews, etc.) lack a proper schema (their event type is determined by the `e` field), callbacks will be provided the upper-level schema that defines the payload of all events:
 
-For unstructured events, `eventSchema` will be the schema that describes the unstructured event, not the event payload. Again, this behavior isn't necessarily uniform, rather it seeks to be useful and convenient.
+```iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-4```
+
+For unstructured events, `eventSchema` will be the schema that describes the unstructured event, not the event payload. Again, this behavior isn't necessarily uniform, but provides more utility to differentiate events.
 
 <a name="cond-context-providers" />
 
 #### 3.17.2 Conditional context providers
 
-We can augment context primitives by allowing them to be sent conditionally. While it's possible to define this functionality within context generators (with conditional logic), it's easier to define regular SDJs and attaching another object that defines conditional behavior.
+We can augment context primitives by allowing them to be sent conditionally. While it's possible to define this functionality within context generators (with conditional logic), conditional context providers simplify common ways of sending contexts that follow certain rules.
 
 The general form is an array of two objects:
-`[conditional part, context primitive or [array of primitives]]`
+
+```[conditional part, context primitive or [array of primitives]]```
 
 The conditional part is standardized into two options:
-- a filter function
-- a schema ruleset
+
+* a filter function
+* a schema ruleset
 
 <a name="filter-functions" />
 
@@ -1561,12 +1564,12 @@ The conditional part is standardized into two options:
 
 Filter functions take the standard callback arguments defined for context generators, but instead of returning a SDJ, return a boolean value. As should be expected: `true` will attach the context part, `false` will not attach the context part.
 
-##### Example
+#### Example
 
 ```
 // A filter that will only attach contexts to structured events
-function structuredEventFilter(payload, eventType, schema) {
-  return eventType === 'se';
+function structuredEventFilter(args) {
+  return args['eventType'] === 'se';
 }
 ```
 
@@ -1585,7 +1588,8 @@ Here's the specific structure of a ruleset, it's an object with certain optional
 }
 ```
 
-Some examples, take note that wild-card matching URI path components is defined with a period, `.`, in place of the component:
+Some examples, take note that wild-card matching URI path components is defined with an asterisk, `*`, in place of the component:
+
 ```
 // Only attaches contexts to this one schema
 var ruleSetAcceptOne = {
@@ -1600,12 +1604,12 @@ var ruleSetAcceptTwo = {
 
 // Only attaches contexts to schemas with mailchimp vendor
 var ruleSetAcceptVendor = {
-  accept: ['iglu:com.mailchimp/././.']
+  accept: ['iglu:com.mailchimp/*/jsonschema/*']
 };
 
 // Only attaches contexts to schemas that aren't mailchimp vendor
 var ruleSetRejectVendor = {
-  reject: ['iglu:com.mailchimp/././.']
+  reject: ['iglu:com.mailchimp/*/jsonschema/*']
 };
 
 // Only attach to Snowplow first class events
@@ -1613,6 +1617,26 @@ var ruleSet = {
   accept: ['iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-4']
 };
 ```
+
+#### Rule requirements
+
+All rules and schemas follow a standard form:
+
+```protocol:vendor/event_name/format/version```
+
+And rules must meet some requirements to be considered valid:
+
+* Two parts are invariant: protocol and format. They are always `iglu` and `jsonschema` respectively.
+    * Wildcards can therefore be used only in `vendor`, `event_name` and `version`.
+
+* Version matching must be specified like so: `*-*-*`, where any part of the versioning can be defined, e.g. `1-*-*`, but only sequential parts are to be wildcarded, e.g. `1-*-1` is invalid but `1-*-*` is valid.
+
+* Vendors require the first two "larger parts":
+    * `com.acme.*`
+
+* Vendors cannot be defined with non-wildcarded parts between wildcarded parts:
+    * `com.acme.*.marketing.*` is invalid
+    * `com.acme.*.*` is valid
 
 <a name="global-contexts-methods" />
 
