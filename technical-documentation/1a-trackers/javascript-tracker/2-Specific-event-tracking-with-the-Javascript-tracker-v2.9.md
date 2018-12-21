@@ -2,7 +2,7 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers) » [**JavaScript Tracker**](Javascript-Tracker) » Specific event tracking
 
-*This page refers to version 2.10.0 of the Snowplow JavaScript Tracker.*
+*This page refers to version 2.9.0 of the Snowplow JavaScript Tracker.*
 
 *Click [here][specific-events-v1] for the corresponding documentation for version 1.*
 
@@ -21,8 +21,6 @@
 *Click [here][specific-events-v2.7] for the corresponding documentation for version 2.7.2.*
 
 *Click [here][specific-events-v2.8] for the corresponding documentation for version 2.8.2.*
-
-*Click [here][specific-events-v2.9] for the corresponding documentation for version 2.9.0.*
 
 <a name="tracking-specific-events" />
 
@@ -74,21 +72,10 @@ Snowplow has been built to enable users to track a wide range of events that occ
     - 3.15.2 [`trackConsentWithdrawn`](#trackConsentWithdrawn)
     - 3.15.3 [Consent documents](#consent-documents)
   - 3.16 [Custom contexts](#custom-contexts)
-  - 3.17 [Global contexts](#global-contexts)
-    - 3.17.1 [Context generators](#context-generators)
-      - 3.17.1.1 [`eventType`](#event-type)
-      - 3.17.1.2 [`eventSchema`](#event-schema)
-    - 3.17.2 [Conditional context providers](#cond-context-providers)
-    - 3.17.3 [Filter functions](#filter-functions)
-    - 3.17.4 [Rulesets](#rulesets)
-    - 3.17.5 [Global contexts methods](#global-contexts-methods)
-      - 3.17.5.1 [`addGlobalContexts`](#add-global-contexts)
-      - 3.17.5.2 [`removeGlobalContexts`](#remove-global-contexts)
-      - 3.17.5.3 [`clearGlobalContexts`](#clear-global-contexts)
-  - 3.18 [Error tracking](#error-tracking)
-    - 3.18.1 [`trackError`](#trackError)
-    - 3.18.2 [`enableErrorTracking`](#enableErrorTracking)
-  - 3.19 [Setting the true timestamp](#trueTimestamps)
+  - 3.17 [Error tracking](#316-error-tracking)
+    - 3.17.1 [`trackError`](#trackError)
+    - 3.17.2 [`enableErrorTracking`](#enableErrorTracking)
+  - 3.18 [Setting the true timestamp](#trueTimestamps)
 
 <a name="page" />
 
@@ -233,7 +220,7 @@ Modelled on Google Analytics ecommerce tracking capability, Snowplow uses three 
 2. **Add items to the transaction.** Use the `addItem()` method to add data about each individual item to the transaction object.
 3. **Submit the transaction to Snowplow** using the trackTrans() method, once all the relevant data has been loaded into the object.
 
-<a name="addTrans" />
+<a name="addTrans" >
 
 #### 3.3.1 `addTrans`
 
@@ -1493,157 +1480,9 @@ In this case an empty string has been provided to the optional `customTitle` arg
 
 For more information on custom contexts, see [this][contexts] blog post.
 
-<a name="global-contexts" />
-
-### 3.17 Global contexts
-
-**Global contexts** allow you to:
-
-- Create your own pre-defined contexts that are sent with all events
-- Define contexts that are sent under certain conditions
-- Generate contexts on the fly, i.e. they're evaluated whenever an event is sent
-
-<a name="context-generators" />
-
-#### 3.17.1 Context generators
-Contexts can be generated dynamically with **context generators**. These are callbacks that take three standard arguments:
-
-- `event` : self-describing JSON
-- `eventType` : string
-- `eventSchema` : string (schema URI)
-
-Keep in mind that the arguments `eventType` and `eventSchema` are data found in `event`. `eventType` and `eventSchema` are provided for convenience, so that simple tasks don't require users to search through the event payload.
-
-<a name="event-type" />
-
-##### 3.17.1.1 `eventType`
-
-This argument is a string taken from the event payload field, `e`.
-
-`eventType` takes the following values:
-
-| Type                           | `e`       |
-|--------------------------------|-----------|
-| Pageview tracking              | pv        |
-| Page pings                     | pp        |
-| Link click                     | ue        |
-| Ad impression tracking         | ue        |
-| Ecommerce transaction tracking | tr and ti |
-| Custom structured event        | se        |
-| Custom unstructured event      | ue        |
-
-Further information about the event payload can be found in the [tracker protocol documentation](https://github.com/snowplow/snowplow/wiki/snowplow-tracker-protocol#3-snowplow-events).
-
-<a name="event-schema" />
-
-##### 3.17.1.2 `eventSchema`
-
-Users should be aware of the behavior of the argument `eventSchema`. Since 'first-class events' (e.g. structured events, transactions, pageviews, etc.) lack a proper schema (their event type is determined by the `e` field), callbacks will be provided the upper-level schema that defines the payload of all events: `iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-4`
-
-For unstructured events, `eventSchema` will be the schema that describes the unstructured event, not the event payload. Again, this behavior isn't necessarily uniform, rather it seeks to be useful and convenient.
-
-<a name="cond-context-providers" />
-
-#### 3.17.2 Conditional context providers
-
-We can augment context primitives by allowing them to be sent conditionally. While it's possible to define this functionality within context generators (with conditional logic), it's easier to define regular SDJs and attaching another object that defines conditional behavior.
-
-The general form is an array of two objects:
-`[conditional part, context primitive or [array of primitives]]`
-
-The conditional part is standardized into two options:
-- a filter function
-- a schema ruleset
-
-<a name="filter-functions" />
-
-#### 3.17.3 Filter functions
-
-Filter functions take the standard callback arguments defined for context generators, but instead of returning a SDJ, return a boolean value. As should be expected: `true` will attach the context part, `false` will not attach the context part.
-
-##### Example
-
-```
-// A filter that will only attach contexts to structured events
-function structuredEventFilter(payload, eventType, schema) {
-  return eventType === 'se';
-}
-```
-
-<a name="rulesets" />
-
-#### 3.17.4 Rulesets
-
-Rulesets define when to attach context primitives based on the event schema. This follows the standard behavior for all callbacks (the schema used to evaluate is the same provided in `eventSchema`, namely the payload schema for "first-class events" and otherwise the schema found within the unstructured event).
-
-Here's the specific structure of a ruleset, it's an object with certain optional rules that take the form of fields, each holding an array of strings:
-
-```
-{
-    accept: [],
-    reject: []
-}
-```
-
-Some examples, take note that wild-card matching URI path components is defined with a period, `.`, in place of the component:
-```
-// Only attaches contexts to this one schema
-var ruleSetAcceptOne = {
-  accept: ['iglu:com.mailchimp/cleaned_email/jsonschema/1-0-0']
-};
-
-// Only attaches contexts to these schemas
-var ruleSetAcceptTwo = {
-  accept: ['iglu:com.mailchimp/cleaned_email/jsonschema/1-0-0',
-  'iglu:com.mailchimp/subscribe/jsonschema/1-0-0']
-};
-
-// Only attaches contexts to schemas with mailchimp vendor
-var ruleSetAcceptVendor = {
-  accept: ['iglu:com.mailchimp/././.']
-};
-
-// Only attaches contexts to schemas that aren't mailchimp vendor
-var ruleSetRejectVendor = {
-  reject: ['iglu:com.mailchimp/././.']
-};
-
-// Only attach to Snowplow first class events
-var ruleSet = {
-  accept: ['iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-4']
-};
-```
-
-<a name="global-contexts-methods" />
-
-#### 3.17.5 Global contexts methods
-
-These are the standard methods to add and remove global contexts:
-
-<a name="add-global-contexts" />
-
-#### 3.17.5.1 `addGlobalContexts`
-
-To add global contexts:
-`window.snowplow('addGlobalContexts', [array of global contexts])`
-
-<a name="remove-global-contexts" />
-
-#### 3.17.5.2 `removeGlobalContexts`
-
-To remove a global context:
-`window.snowplow('removeGlobalContexts', [array of global contexts])`
-
-<a name="clear-global-contexts" />
-
-#### 3.17.5.3 `clearGlobalContexts`
-
-To remove all global contexts:
-`window.snowplow('clearGlobalContexts')`
-
 <a name="error-tracking" />
 
-#### 3.18 Error tracking
+#### 3.17 Error tracking
 
 *Note that this is only available on version 2.7.0 and above of the JS tracker.*
 
@@ -1651,7 +1490,7 @@ Snowplow JS tracker provides two ways of tracking exceptions: manual tracking of
 
 <a name="trackError" />
 
-##### 3.18.1 `trackError`
+##### 3.17.1 `trackError`
 
 Use the `trackError` method to track handled exceptions (application errors) in your JS code. This is its signature:
 
@@ -1684,7 +1523,7 @@ Using `trackError` it's assumed that developer knows where error could happen, w
 
 <a name="enableErrorTracking" />
 
-##### 3.18.2 `enableErrorTracking`
+##### 3.17.2 `enableErrorTracking`
 
 Use the `enableErrorTracking` method to track unhandled exceptions (application errors) in your JS code. This is its signature:
 
@@ -1710,7 +1549,7 @@ Application error events are implemented as Snowplow unstructured events. [Here]
 
 <a name="trueTimestamps" />
 
-### 3.19 Setting the true timestamp
+### 3.18 Setting the true timestamp
 
 As standard, every event tracked by the Javascript tracker will be recorded with two timestamps:
 
@@ -1776,7 +1615,6 @@ window.snowplow_name_here('trackSelfDescribingEvent', {
 [specific-events-v2.6]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v2.6
 [specific-events-v2.7]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v2.7
 [specific-events-v2.8]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v2.8
-[specific-events-v2.9]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v2.9
 [multiple-trackers]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker#24-managing-multiple-trackers
 [json-schema]: http://json-schema.org/
 [self-describing-jsons]: http://snowplowanalytics.com/blog/2014/05/15/introducing-self-describing-jsons/
