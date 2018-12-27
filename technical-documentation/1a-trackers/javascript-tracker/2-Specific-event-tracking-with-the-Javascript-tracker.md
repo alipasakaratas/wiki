@@ -26,25 +26,25 @@
 
 <a name="tracking-specific-events" />
 
-## 3. Tracking specific events
+## 3 Tracking specific events
 
 Snowplow has been built to enable users to track a wide range of events that occur when consumers interact with their websites and webapps. We are constantly growing the range of functions available in order to capture that data more richly.
 
   - 3.1 [Pageviews](#page)
     - 3.1.1 [`trackPageView`](#trackPageView)
-  - 3.2 [Pagepings](#pagepings)
+  - 3.2 [Track engagement with a web page over time: page pings](#pagepings)
     - 3.2.1 [`enableActivityTracking`](#enableActivityTracking)
     - 3.2.2 [`updatePageActivity`](#updatePageActivity)
-  - 3.3 [Ecommerce transaction tracking](#ecommerce)
+  - 3.3 [Ecommerce tracking](#ecommerce)
     - 3.3.1 [`addTrans`](#addTrans)
     - 3.3.2 [`addItem`](#addItem)
     - 3.3.3 [`trackTrans`](#trackTrans)
-    - 3.3.4 [Pulling it all together: an example](#ecomm-example)
+    - 3.3.4 [Putting the three methods together: a complete example](#ecomm-example)
   - 3.4 [Social tracking](#social)
     - 3.4.1 [`trackSocialInteraction`](#trackSocial)
   - 3.5 [Campaign tracking](#campaign)
     - 3.5.1 [Identifying paid sources](#identifying-paid-sources)
-    - 3.5.2 [Anatomy of the query parameter](#anatomy-of-the-query-parameters)
+    - 3.5.2 [Anatomy of the query parameters](#anatomy-of-the-query-parameters)
   - 3.6 [Ad tracking methods](#ad-tracking)
     - 3.6.1 [`trackAdImpression`](#adImpression)
     - 3.6.2 [`trackAdClick`](#adClick)
@@ -52,14 +52,15 @@ Snowplow has been built to enable users to track a wide range of events that occ
     - 3.6.4 [Example: implementing impression tracking with Snowplow and OpenX](#ad-example)
   - 3.7 [Tracking custom structured events](#custom-structured-events)
     - 3.7.1 [`trackStructEvent`](#trackStructEvent)
-  - 3.8 [Tracking custom self-describing (unstructured) events](#38-tracking-custom-self-describing-unstructured-events)
-    - 3.8.1 [`trackSelfDescribingEvent`](#381-trackselfdescribingevent)
+  - 3.8 [Tracking custom self-describing (unstructured) events](#custom-selfdescribing-events)
+    - 3.8.1 [`trackSelfDescribingEvent`](#trackSelfDescribingEvent)
   - 3.9 [Link click tracking](#link-click-tracking)
     - 3.9.1 [`enableLinkClickTracking`](#enableLinkClickTracking)
     - 3.9.2 [`refreshLinkClickTracking`](#refreshLinkClickTracking)
     - 3.9.3 [`trackLinkClick`](#trackLinkClick)
   - 3.10 [Form tracking](#form-tracking)
     - 3.10.1 [`enableFormTracking`](#enableFormTracking)
+    - 3.10.2 [Custom form tracking](#custom-form-tracking)
   - 3.11 [`trackAddToCart` and `trackRemoveFromCart`](#cart)
   - 3.12 [`trackSiteSearch`](#siteSearch)
   - 3.13 [`trackTiming`](#timing)
@@ -69,7 +70,7 @@ Snowplow has been built to enable users to track a wide range of events that occ
     - 3.14.3 [`addEnhancedEcommerceProductContext`](#addEnhancedEcommerceProductContext)
     - 3.14.4 [`addEnhancedEcommercePromoContext`](#addEnhancedEcommercePromoContext)
     - 3.14.5 [`trackEnhancedEcommerceAction`](#trackEnhancedEcommerceAction)
-  - 3.15 [Consent event tracking](#consent)
+  - 3.15 [Consent tracking](#consent)
     - 3.15.1 [`trackConsentGranted`](#trackConsentGranted)
     - 3.15.2 [`trackConsentWithdrawn`](#trackConsentWithdrawn)
     - 3.15.3 [Consent documents](#consent-documents)
@@ -89,6 +90,7 @@ Snowplow has been built to enable users to track a wide range of events that occ
     - 3.18.1 [`trackError`](#trackError)
     - 3.18.2 [`enableErrorTracking`](#enableErrorTracking)
   - 3.19 [Setting the true timestamp](#trueTimestamps)
+  - 3.20 [Error output](#error-output)
 
 <a name="page" />
 
@@ -799,7 +801,7 @@ snowplow_name_here('enableLinkClickTracking');
 This is its signature:
 
 ```javascript
-enableLinkClickTracking(filter, pseudoclicks, content);
+enableLinkClickTracking(filter, pseudoclicks, content, contexts);
 ```
 
 You can control which links are tracked using the second argument. There are three ways to do this: a blacklist, a whitelist, and a filter function.
@@ -862,7 +864,26 @@ The innerHTML of a link is all the text between the `a` tags. Note that if you u
 
 Each link click event will include (if available) the destination URL, id, classes and target of the clicked link. (The target attribute of a link specifies a window or frame where the linked document will be loaded.)
 
-`enableLinkClickTracking` can also be passed an array of custom contexts to attach to every link click event as an additional final parameter. See [Contexts](#custom-contexts) for more information.
+__Contexts__
+
+`enableLinkClickTracking` can also be passed an array of custom contexts to attach to every link click event as an additional final parameter. 
+
+Link click tracking supports dynamic contexts. Callbacks passed in the contexts argument will be evaluated with the source element passed as the only argument. The self-describing JSON context object returned by the callback will be sent with the link click event.
+
+A dynamic context could therefore look something like this for link click events:
+
+```javascript
+let dynamicContext = function (element) {
+  // perform operations here to construct the context
+  return context;
+};
+
+let contexts = [dynamicContext];
+
+snowplow('enableLinkClickTracking', null, null, contexts);
+```
+
+See [Contexts](#custom-contexts) for more information.
 
 <a name="refreshLinkClickTracking" />
 
@@ -911,6 +932,10 @@ When a user submits a form, a [`submit_form`][submit_form] event will be fired. 
 
 Note that this will only work if the original form submission event is actually fired. If you prevent it from firing, for example by using a jQuery event handler which returns `false` to handle clicks on the form's submission button, the Snowplow `submit_form` event will not be fired.
 
+##### `focus_form`
+
+When a user focuses on a form element, a [`focus_form`][focus_form] event will be fired. It will capture the id and classes of the form and the name, type, and value of the `textarea`, `input`, or `select` element inside the form that received focus.
+
 <a name="enableFormTracking" />
 
 #### 3.10.1 `enableFormTracking`
@@ -946,6 +971,32 @@ This is a function used to determine which elements are tracked. The element is 
 __Transform functions__
 
 This is a function used to transform data in each form field. The element is passed as the argument to the function and is replaced by the value returned.
+
+__Contexts__
+
+Contexts can be sent with all form tracking events by supplying them in an array in the `contexts` argument.
+
+```javascript
+snowplow('enableFormTracking', config, contexts);
+```
+
+These contexts can be dynamic, i.e. they can be traditional self-describing JSON objects, or callbacks that generate valid self-describing JSON objects.
+
+For form change events, context generators are passed `(elt, type, value)`, and form submission events are passed `(elt, innerElements)`.
+
+A dynamic context could therefore look something like this for form change events:
+
+```javascript
+let dynamicContext = function (elt, type, value) {
+  // perform operations here to construct the context
+  return context;
+};
+
+let contexts = [dynamicContext];
+let config = {};
+
+snowplow('enableFormTracking', config, contexts);
+```
 
 __Examples__
 
@@ -1787,6 +1838,14 @@ window.snowplow_name_here('trackSelfDescribingEvent', {
 }, null, {type: 'ttm', value: 1482511723});
 ```
 
+<a name="error-output" />
+
+### 3.20 Error output
+
+Errors raised by the operation of the tracker are disabled by default.
+
+Errors can be enabled with the tracker method `tracker.setDebug(true)`.
+
 [Back to top](#top)
 [Back to JavaScript technical documentation contents][contents]
 
@@ -1823,6 +1882,7 @@ window.snowplow_name_here('trackSelfDescribingEvent', {
 [iglu-repo]: https://github.com/snowplow/iglu
 
 [change_form]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/change_form/jsonschema/1-0-0
+[focus_form]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/focus_form/jsonschema/1-0-0
 [submit_form]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/submit_form/jsonschema/1-0-0
 [social_interaction]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/social_interaction/jsonschema/1-0-0
 [add_to_cart]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/add_to_cart/jsonschema/1-0-0

@@ -24,9 +24,9 @@
 
 *Click [here][general-parameters-v2.9] for the corresponding documentation for version 2.9.0.*
 
-<a name="general"></a>
+<a name="general" />
 
-## 2. General parameters
+## 2 General parameters
 
   - 2.1 [Loading Snowplow.js](#loading)
   - 2.2 [Initialising a tracker](#initialisation)
@@ -60,13 +60,14 @@
       - 2.2.15.13 [optimizelyXSummary context](#optimizelyXSummary)
       - 2.2.15.14 [parrable context](#parrable)
     - 2.2.16 [POST support](#post)
+      - 2.2.16.1 [Beacon API support](#beacon-support)
     - 2.2.17 [Configuring cross-domain tracking](#cross-domain)
     - 2.2.18 [Configuring the maximum payload size in bytes](#maxPostBytes)
     - 2.2.19 [Automatically discover and set the root domain](#discoverRootDomain)
-    - 2.2.20 [Configuring the cookie lifetime](#visitorCookieDuration)
+    - 2.2.20 [Configuring the cookies lifetime](#visitorCookieDuration)
     - 2.2.21 [Tracking prerendered pages](#prerenderedTracking)
   - 2.3 [Other parameters](#other-methods)
-    - 2.3.1 [Setting the user id](#user-id)
+    - 2.3.1 [Setting the user ID](#user-id)
       - 2.3.1.1 [`setUserId`](#set-user-id)
       - 2.3.1.2 [`setUserIdFromLocation`](#set-user-id-from-location)
       - 2.3.1.3 [`setUserIdFromReferrer`](#set-user-id-from-referrer)
@@ -75,7 +76,7 @@
   - 2.4 [Setting onload callbacks](#callback)
   - 2.5 [Managing multiple trackers](#multiple-trackers)
   - 2.6 [How the Tracker stores state](#state)
-  - 2.7 [Getting the user ID from the first-party cookie](#get-id)
+  - 2.7 [Getting the user ID from the Snowplow cookie](#get-id)
   - 2.8 [Optional timestamp argument](#timestamp)
   - 2.9 [Preserving pageViewId](#preservePageViewId)
 
@@ -216,7 +217,7 @@ method where basename is id or ses for the domain and session cookie
 respectively. As an example, you can retrieve the complete name of the domain
 cookie with `getCookieName('id')`.
 
-<a name="base-64">
+<a name="base-64" />
 
 #### 2.2.5 Configuring base 64 encoding
 By default, self-describing events and custom contexts are encoded into Base64 to ensure that no data is lost or corrupted. You can turn encoding on or off using the `encodeBase64` field of the argmap.
@@ -438,7 +439,7 @@ If you set the `post` field of the argmap to `true`, the tracker will send event
 
 The main advantage of POST requests is that they circumvent Internet Explorer's maximum URL length of 2083 characters by storing the event data in the body of the request rather than the querystring.
 
-The [Clojure Collector][clojure-collector] and [Scala Stream Collector][ssc] accept events sent by POST; the [Cloudfront Collector][cloudfront-collector] does not..
+The [Clojure Collector][clojure-collector] and [Scala Stream Collector][ssc] accept events sent by POST; the [Cloudfront Collector][cloudfront-collector] does not.
 
 You can also batch events sent by POST by setting a numeric `bufferSize` field in the argmap. This is the number of events to buffer before sending them all in a single POST. If the user navigates away from the page while the buffer is only partially full, the tracker will attempt to send all stored events immediately, but this often doesn't happen before the page unloads. Normally the tracker will store unsent events in `localStorage`, meaning that unsent events will be resent when the user next visits a page on the same domain. The `bufferSize` defaults to 1, meaning events are sent as soon as they are created.
 
@@ -451,6 +452,18 @@ snowplow("flushBuffer");
 For instance, if you wish to send several events at once, you might make the API calls to create the events and store them and then and call `flushBuffer` afterwards to ensure they are all sent before the user leaves the page.
 
 Note that if `localStorage` is inaccessible or you are not using it to store data, the buffer size will always be 1 to prevent losing events when the user leaves the page.
+
+<a name="beacon-support" />
+
+##### 2.2.16.1 Beacon API support
+
+The Beacon interface is used to schedule asynchronous and non-blocking requests to a web server. This will allow events to be sent even after a webpage is closed. This browser interface can be used to send events by setting the `beacon` field in the argmap to `true`.
+
+Note: the Beacon API makes POST requests.
+
+More information and documentation about the Beacon API can be found [here][beacon-api].
+
+<a name="cross-domain" />
 
 #### 2.2.17 Configuring cross-domain tracking
 
@@ -594,7 +607,7 @@ Note: `setUserId` can also be called using the alias `identifyUser`.
 
 <a name="set-user-id-from-location" />
 
-##### 2.3.1.1 `setUserIdFromLocation`
+##### 2.3.1.2 `setUserIdFromLocation`
 
 `setUserIdFromLocation` lets you set the user ID based on a querystring field of your choice. For example, if the URL is `http://www.mysite.com/home?id=user345`, then the following code would set the user ID to "user345":
 
@@ -604,7 +617,7 @@ snowplow_name_here('setUserIdFromLocation', 'id');
 
 <a name="set-user-id-from-referrer" />
 
-##### 2.3.1.1 `setUserIdFromReferrer`
+##### 2.3.1.3 `setUserIdFromReferrer`
 
 `setUserIdFromReferrer` functions in the same way as `setUserIdFromLocation`, except that it uses the referrer querystring rather than the querystring of the current page.
 
@@ -614,7 +627,7 @@ snowplow_name_here('setUserIdFromReferrer', 'id');
 
 <a name="set-user-id-from-cookie" />
 
-##### 2.3.1.1 `setUserIdFromCookie`
+##### 2.3.1.4 `setUserIdFromCookie`
 
 Use `setUserIdFromCookie` to set the value of a cookie as the user ID. For example, if you have a cookie called "cookieid" whose value is "user123", the following code would set the user ID to "user123":
 
@@ -808,7 +821,7 @@ If you set a custom `cookieName` field in the argmap, pass that name into the fu
 
 <a name="timestamp" />
 
-### 2.9 Optional timestamp argument
+### 2.8 Optional timestamp argument
 
 Since 2.7.0 each `track...()` method supports an optional timestamp as its final argument; this allows you to manually override the timestamp attached to this event.
 The timestamp should be in milliseconds since the Unix epoch.
@@ -834,7 +847,7 @@ You can also use, plain number or `{type: 'dtm', value: stamp}` to send `device_
 
 <a name="preservePageViewId" />
 
-### 2.10 Preserving pageViewId
+### 2.9 Preserving pageViewId
 
 As explained in [webPage section](#webPage), JS tracker regenerates `webPage` context each time `trackPageView` was called.
 However, before 2.7.0 this was not always the case - `webPage` context was regenerating only when whole HTML page loaded, initialising the tracker.
@@ -862,6 +875,7 @@ snowplow_name_here("preservePageViewId")
 [ssc]: https://github.com/snowplow/snowplow/wiki/scala-stream-collector
 [cloudfront-collector]: https://github.com/snowplow/snowplow/wiki/Setting-up-the-Cloudfront-collector
 [performancetiming]: https://github.com/snowplow/iglu-central/blob/master/schemas/org.w3/PerformanceTiming/jsonschema/1-0-0
+[beacon-api]: https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API
 [performance-spec]: http://www.w3.org/TR/2012/REC-navigation-timing-20121217/#sec-window.performance-attribute
 [geolocation-spec]: http://dev.w3.org/geo/api/spec-source.html
 [optimizely-export]: https://developers.optimizely.com/classic/events/export/index.html
