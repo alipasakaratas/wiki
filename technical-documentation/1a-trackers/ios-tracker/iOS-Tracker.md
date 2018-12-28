@@ -62,15 +62,19 @@ This page refers to version 0.9.0 of the Snowplow Objective-C Tracker, which is 
   - 4.8 [`trackPushNotification`](#notification)
   - 4.9 [`trackConsentGrantedEvent`](#consent-granted)
   - 4.10 [`trackConsentWithdrawnEvent`](#consent-withdrawn)
-- 5. [Sending events: `SPEmitter`](#emitters)
-  - 5.1 [Using a protocol](#protocol)
-  - 5.2 [Choosing the HTTP method](#http-method)
-  - 5.3 [Emitter Callback](#emitter-callback)
-  - 5.4 [Sending HTTP requests](#http-request)
-- 6. [Utility Functions](#utils)
-  - 6.1 [`getAppleIdfa`](#apple-idfa)
-  - 6.2 [`getAppleIdfv`](#apple-idfv)
-  - 6.3 [`getOpenIdfa`](#open-idfa)
+- 5. [Tracking single users: `SPSubject`](#spsubject)
+  - 5.1 [Mobile context](#mobile-context)
+  - 5.2 [Desktop context](#desktop-context)
+  - 5.3 [Geolocation context](#geo-context)
+- 6. [Sending events: `SPEmitter`](#emitters)
+  - 6.1 [Using a protocol](#protocol)
+  - 6.2 [Choosing the HTTP method](#http-method)
+  - 6.3 [Adding an Emitter Callback](#emitter-callback)
+  - 6.4 [Sending HTTP requests](#http-request)
+- 7. [Utility Functions](#utils)
+  - 7.1 [`getAppleIdfa`](#apple-idfa)
+  - 7.2 [`getAppleIdfv`](#apple-idfv)
+  - 7.3 [`getOpenIdfa`](#open-idfa)
 
 <a name="overview" />
 
@@ -1156,9 +1160,61 @@ SPConsentWithdrawn * event = [SPConsentWithdrawn build:^(id<SPConsentWithdrawnBu
 
 [Back to top](#top)
 
+<a name="spsubject" />
+
+## 5. Tracking single users: `SPSubject`
+
+`SPSubject` is an object that represents a single user being tracked. An `SPSubject` instance can be added to the Tracker instance. The associated `SPSujbect` will act as the active user, and all that Subject's data (user ID, timezone, and so on) will be sent with every event.
+
+<a name="mobile-context" />
+
+### 5.1 Mobile context
+
+The [`mobile_context`][iglu-mobile-context] can be enabled with `initWithPlatformContext:YES` in the Subject intialization. Any context enabled in the Subject will be sent automatically when the Subject is set in the tracker with `setSubject`.
+
+```objective-c
+SPSubject *subject = [[SPSubject alloc] initWithPlatformContext:YES andGeoContext:NO];
+
+// Add it to the Tracker during construction...
+SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
+    [...]
+    [builder setSubject:subject]; // Optional
+}];
+
+// Or add it later...
+
+[tracker setSubject:subject];
+```
+
+<a name="desktop-context" />
+
+### 5.2 Desktop context
+
+The [`desktop_context`][iglu-desktop-context] is automatically sent instead of the [`mobile_context`][iglu-mobile-context] if the platform is detected as a desktop device. `initWithPlatformContext:YES` must be used in the Subject initialization.
+
+<a name="geo-context" />
+
+### 5.3 Geolocation context
+
+The [`geolocation_context`][iglu-geo-context] can be enabled by setting `andGeoContext:YES` when creating the Subject.
+
+```objective-c
+SPSubject *subject = [[SPSubject alloc] initWithPlatformContext:NO andGeoContext:YES];
+
+// Add it to the Tracker during construction...
+SPTracker *tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {
+    [...]
+    [builder setSubject:subject]; // Optional
+}];
+
+// Or add it later...
+
+[tracker setSubject:subject];
+```
+
 <a name="emitters" />
 
-## 5. Sending events: `SPEmitter`
+## 6. Sending events: `SPEmitter`
 
 Events created by the Tracker are sent to a collector using a `SnowplowEmitter` instance. You can create one using the following builder example:
 
@@ -1195,7 +1251,7 @@ __NOTE__: The current safe maximum byte threshold is 52000, however, this may ch
 
 <a name="protocol" />
 
-### 5.1 Using a protocol
+### 6.1 Using a protocol
 
 The protocol argument determines if the event is sent over HTTP or HTTPS.  In the case of iOS 9.0 all events are automatically sent with HTTPS.
 
@@ -1219,7 +1275,7 @@ Here are all the possible options that you can use:
 
 <a name="http-method" />
 
-### 5.2 Choosing the HTTP method
+### 6.2 Choosing the HTTP method
 
 Snowplow supports receiving events via GET and POST requests. In a GET request, each event is sent in an individual request. With POST requests, events can be bundled together in one request.
 
@@ -1232,7 +1288,7 @@ Here are all the posibile options that you can use:
 
 <a name="emitter-callback" />
 
-### 5.3 Adding an Emitter Callback
+### 6.3 Adding an Emitter Callback
 
 You are now also able to include an emitter callback which will return the count of successful and failed events.
 
@@ -1276,7 +1332,7 @@ The `self` will work only if you have declared the callback functions in the sam
 
 <a name="http-request" />
 
-### 5.4 Sending HTTP requests
+### 6.4 Sending HTTP requests
 
 You can set this during the creation of a `SPEmitter` object:
 
@@ -1297,7 +1353,7 @@ SPEmitter *emitter = [SPEmitter build:^(id<SPEmitterBuilder> builder) {
 
 <a name="utils" />
 
-## 6. Utility Functions
+## 7. Utility Functions
 
 The `SPUtilities` class contains a host of static functions which are used throughout the Tracker.  To see all of the available functions please consult the [`SPUtilities.h`](https://github.com/snowplow/snowplow-objc-tracker/blob/master/Snowplow/SPUtilities.h) file.
 
@@ -1305,7 +1361,7 @@ The `SPUtilities` class contains a host of static functions which are used throu
 
 <a name="apple-idfa" />
 
-### 6.1 `getAppleIdfa`
+### 7.1 `getAppleIdfa`
 
 This function will only return the IDFA under the following conditions:
 
@@ -1322,7 +1378,7 @@ NSString* appleIdfa = [SPUtilities getAppleIdfa];
 
 <a name="apple-idfv" />
 
-### 6.2 `getAppleIdfv`
+### 7.2 `getAppleIdfv`
 
 This function will only return the IDFV under the following conditions:
 
@@ -1338,7 +1394,7 @@ NSString* appleIdfv = [SPUtilities getAppleIdfv];
 
 <a name="open-idfa" />
 
-### 6.3 `getOpenIdfa`
+### 7.3 `getOpenIdfa`
 
 This function will only return the OpenIDFA under the following conditions:
 
@@ -1361,6 +1417,10 @@ NSString* openIdfa = [SPUtilities getOpenIdfa];
 [ios-0.6]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.6
 [ios-0.7]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.7
 [ios-0.8]: https://github.com/snowplow/snowplow/wiki/iOS-Tracker-v0.8
+
+[iglu-mobile-context]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/mobile_context/jsonschema/1-0-1
+[iglu-desktop-context]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/desktop_context/jsonschema/1-0-0
+[iglu-geo-context]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/geolocation_context/jsonschema/1-0-1
 
 [base64]: https://en.wikipedia.org/wiki/Base64
 [self-describing-jsons]: http://snowplowanalytics.com/blog/2014/05/15/introducing-self-describing-jsons/
