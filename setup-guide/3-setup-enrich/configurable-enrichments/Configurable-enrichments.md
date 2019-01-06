@@ -30,7 +30,8 @@ For each enrichment, the JSON used to configure the enrichment has:
 
 The `enabled` and `parameters` fields are the ones which you may wish to customize.
 
-__Please note that the pipeline can only run one enrichment each.__
+[[/images/warning.png]] | Please note that the pipeline can only run one enrichment each
+---|:---
 
 
 These are the available configurable enrichments:
