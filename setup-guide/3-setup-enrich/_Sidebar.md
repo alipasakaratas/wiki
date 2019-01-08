@@ -10,6 +10,7 @@
   - [3.2: Setup Stream Enrich](setting-up-stream-enrich)  
   - [3.3: Setup Beam Enrich](setting-up-beam-enrich)
   - [Configurable enrichments](configurable-enrichments)  
+  - [Setup event recovery](setting-up-snowplow-event-recovery)  
 - [Step 4: Setup alternative data stores](setting-up-alternative-data-stores)  
 - [Step 5: Data modeling](getting-started-with-data-modeling)  
 - [Step 6: Analyze your data!](getting-started-analyzing-snowplow-data)  
