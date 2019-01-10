@@ -19,7 +19,7 @@ This enrichment uses the [ua-parser][ua-parser] library to parse the useragent a
 
 ```json
 {
-  "schema": "iglu:com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-0",
+  "schema": "iglu:com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-1",
   "data": {
     "vendor": "com.snowplowanalytics.snowplow",
     "name": "ua_parser_config",
@@ -33,7 +33,7 @@ You can additionally specify a database:
 
 ```json
 {
-  "schema": "iglu:com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-0",
+  "schema": "iglu:com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-1",
   "data": {
     "vendor": "com.snowplowanalytics.snowplow",
     "name": "ua_parser_config",
@@ -101,4 +101,4 @@ Field | Purpose
 
 [schema]: http://iglucentral.com/schemas/com.snowplowanalytics.snowplow/ua_parser_config/jsonschema/1-0-1
 [ua-parser]: https://github.com/ua-parser/uap-core/
-[ua-parser-context]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/ua_parser_context/jsonschema/1-0-0
+[ua-parser-context]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/ua_parser_context/jsonschema/1-0-1
