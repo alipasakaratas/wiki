@@ -2,7 +2,8 @@
 
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > [Configurable enrichments](Configurable-enrichments) > user-agent-utils enrichment
 
-__This enrichment is deprecated__
+[[/images/warning.png]] | This enrichment is deprecated
+---|:---
 
 The library powering this enrichment has now been declared as end of life and won't receive any
 updates: www.bitwalker.eu/software/user-agent-utils.
