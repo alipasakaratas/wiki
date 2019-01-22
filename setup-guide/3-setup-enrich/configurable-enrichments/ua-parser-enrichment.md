@@ -1,6 +1,6 @@
 <a name="top" />
 
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > [Configurable enrichments](Configurable-enrichments) > ua-parser enrichment
+[**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Configurable enrichments](Configurable-enrichments) » ua-parser enrichment
 
 ### Compatibility
 
@@ -82,7 +82,7 @@ Generated with http://www.whatsmyua.info/
 
 ### Data generated
 
-If `ua-parser` is enabled, then the Snowplow Enrichment process will write its results into a new context, `ua_parser_context`. As a result the following fields in the dedicated `com_snowplowanalytics_snowplow_ua_parser_context_1` table would be populated.
+If `ua-parser` is enabled, then the Snowplow Enrichment process will write its results into a new *derived* context, `ua_parser_context`. As a result the following fields in the dedicated `com_snowplowanalytics_snowplow_ua_parser_context_1` table would be populated.
 
 Field | Purpose
 :---|:---
