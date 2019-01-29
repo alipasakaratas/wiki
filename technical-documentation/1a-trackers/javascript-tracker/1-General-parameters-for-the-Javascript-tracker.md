@@ -61,6 +61,7 @@
       - 2.2.15.14 [parrable context](#parrable)
     - 2.2.16 [POST support](#post)
       - 2.2.16.1 [Beacon API support](#beacon-support)
+      - 2.2.16.2 [POST path](#post-path)
     - 2.2.17 [Configuring cross-domain tracking](#cross-domain)
     - 2.2.18 [Configuring the maximum payload size in bytes](#maxPostBytes)
     - 2.2.19 [Automatically discover and set the root domain](#discoverRootDomain)
@@ -462,6 +463,18 @@ The Beacon interface is used to schedule asynchronous and non-blocking requests 
 Note: the Beacon API makes POST requests.
 
 More information and documentation about the Beacon API can be found [here][beacon-api].
+
+<a name="post-path" />
+
+##### 2.2.16.1 POST path
+
+The POST path that is used to send POST requests to a collector can be change with the argmap value `postPath`.
+
+`postPath` defaults to the standard path: `/com.snowplowanalytics.snowplow/tp2`
+
+Note: changing `postPath` is non-standard behavior that does not conform to well-defined collector protocol.
+
+Care must be taken to ensure that requests are redirected to the collector at the correct endpoint (normally this is `/com.snowplowanalytics.snowplow/tp2`).
 
 <a name="cross-domain" />
 
@@ -869,6 +882,7 @@ snowplow_name_here("preservePageViewId")
 [general-parameters-v2.6]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.6
 [general-parameters-v2.7]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.7
 [general-parameters-v2.8]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.8
+[general-parameters-v2.9]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.9
 [snowplow-tracker-protocol]: https://github.com/snowplow/snowplow/wiki/SnowPlow-Tracker-Protocol
 [contexts]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v1#custom-contexts
 [clojure-collector]: https://github.com/snowplow/snowplow/wiki/Clojure-collector
