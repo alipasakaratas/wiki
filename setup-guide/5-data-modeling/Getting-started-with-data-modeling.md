@@ -33,6 +33,6 @@ The data model consists of a set of SQL queries which are executed in sequence u
 [analytics-cookbook]: http://snowplowanalytics.com/analytics/index.html
 [cookbook-data-modeling]: https://snowplowanalytics.com/blog/2016/03/16/introduction-to-event-data-modeling/
 [snowplow-website]: http://snowplowanalytics.com
-[github-data-models]: https://github.com/snowplow/snowplow/tree/master/5-data-modeling/web-model/redshift
-[github-data-models-config-example]: https://github.com/snowplow/snowplow/blob/master/5-data-modeling/web-model/sql-runner/playbook/web-model.yml.tmpl
+[github-data-models]: https://github.com/snowplow/web-data-model/tree/master/redshift
+[github-data-models-config-example]: https://github.com/snowplow/web-data-model/blob/master/sql-runner/playbooks/web-model.yml.tmpl
 [sql-runner-github]: https://github.com/snowplow/sql-runner
