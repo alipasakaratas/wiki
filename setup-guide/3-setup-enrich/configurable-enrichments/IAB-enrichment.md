@@ -40,7 +40,7 @@ Here is an example configuration JSON, containing all databases required by the 
 
 ```json
 {
-    "schema": "com.snowplowanalytics.snowplow.enrichments/iab_spiders_and_robots_enrichment/jsonschema/1-0-0",
+    "schema": "iglu:com.snowplowanalytics.snowplow.enrichments/iab_spiders_and_robots_enrichment/jsonschema/1-0-0",
     "data": {
         "name": "iab_spiders_and_robots_enrichment",
         "vendor": "com.snowplowanalytics.snowplow.enrichments",
