@@ -655,11 +655,11 @@ All events are tracked with specific methods on the tracker instance, of the for
 
 ### 4.1.1 Custom contexts
 
-In short, custom contexts let you add additional information about the circumstances surrounding an event in the form of an NSDictionary object. Each tracking method accepts an additional optional contexts builder method.
+In short, custom contexts let you add additional information about the circumstances surrounding an event in the form of a self-describing JSON. Each tracking method accepts an additional optional contexts builder method.
 
-The `context` argument should consist of a `NSMutableArray` of `NSDictionary` representing an array of one or more contexts. The format of each individual context element is the same as for an [unstructured event](#unstruct-event).
+The `context` argument should consist of a `NSMutableArray` of `SPSelfDescribingJson` representing an array of one or more contexts.
 
-If a visitor arrives on a page advertising a movie, the context dictionary might look like this:
+If a visitor arrives on a page advertising a movie, the event might look like this:
 
 ```json
 {
@@ -672,17 +672,17 @@ If a visitor arrives on a page advertising a movie, the context dictionary might
 }
 ```
 
-The corresponding `NSDictionary` would look like this:
+The corresponding `SPSelfDescribingJson` would look like this:
 
 ```objective-c
-NSDictionary *poster = @{
-                         @"schema":@"iglu:com.acme_company/movie_poster/jsonschema/1-0-0",
-                         @"data": @{
-                                 @"movieName": @"The Guns of Navarone",
-                                 @"posterCountry": @"US",
-                                 @"posterYear": @"1961"
-                                 }
-                         };
+NSString *posterSchema = @"iglu:com.acme_company/movie_poster/jsonschema/1-0-0";
+NSDictionary *data = @{
+                        @"movieName": @"The Guns of Navarone",
+                        @"posterCountry": @"US",
+                        @"posterYear": @"1961"
+                      };
+
+SPSelfDescribingJson *posterContext = [SPSelfDescribingJson alloc] initWithSchema:posterSchema andData:data]
 ```
 
 Sending the movie poster context with an event looks like this:
@@ -691,7 +691,7 @@ Sending the movie poster context with an event looks like this:
 event = [SPStructured build:^(id<SPStructuredBuilder> builder) {
   [builder setCategory:@"DemoCategory"];
   [builder setAction:@"DemoAction"];
-  [builder setContexts:[NSMutableArray arrayWithArray:@[poster]]];
+  [builder setContexts:[NSMutableArray arrayWithArray:@[posterContext]]];
 }];
 [tracker trackStructuredEvent:event];
 ```
