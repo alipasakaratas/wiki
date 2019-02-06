@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 112 Baalbek](#r112) (**r112**) 2019-xx-xx
 - [Snowplow 111 Selinunte](#r111) (**r111**) 2018-10-01
 - [Snowplow 110 Valle dei Templi](#r110) (**r110**) 2018-09-07
 - [Snowplow 109 Lambaesis](#r109) (**r109**) 2018-08-21
@@ -73,6 +74,38 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r112" />
+
+## Snowplow 112 Baalbek
+
+### EmrEtlRunner
+
+The latest version of the *EmrEtlRunner* is available from our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r112_baalbek.zip).
+
+#### Updating config.yml
+
+A settings is needed to enable or disable compaction of the output of the shred job.
+
+```yaml
+aws:
+  s3:
+    consolidate_shredded_output: false
+```
+
+If you're not making use of any enrichment and contexts, you'll need to disable this setting.
+
+For a complete example, see our sample [`config.yml`](https://github.com/snowplow/snowplow/blob/r112-baalbek/3-enrich/emr-etl-runner/config/config.yml.sample) template.
+
+### Clojure Collector
+
+The new Clojure Collector is stored in S3 at:
+`s3://snowplow-hosted-assets/2-collectors/clojure-collector/clojure-collector-2.1.3-standalone.war`.
+
+### Read more
+
+* [R112 Blog Post](https://snowplowanalytics.com/blog/2019/xx/xx/snowplow-r112-baalbek-batch-reliability-improvements/)
+* [R112 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r112-baalbek)
 
 <a name="r111" />
 
