@@ -2,6 +2,9 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Snowplow Analytics SDK**](Snowplow-Analytics-SDK) » Scala Analytics SDK
 
+*This page refers to version 0.3.0 of the Snowplow Scala Analytics SDK.*  
+*Click [here](https://github.com/snowplow/snowplow/wiki/Scala-Analytics-SDK-Event-Transformer) for the corresponding documentation for version 0.4.0.*  
+
 - 1 [Overview](#overview)  
 - 2 [The JSON Event Transformer](#transformer)  
 - 3 [Examples](#example)  
