@@ -2,9 +2,8 @@
 
 [HOME](Home) » [SNOWPLOW SETUP GUIDE](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Step 3.2: setting up Stream Enrich](setting-up-stream-enrich) » [[Install Stream Enrich]] » [[Configure Stream Enrich]] » Run Stream Enrich
 
-**This documentation is for version 0.18.x-0.20.x of Stream Enrich. Documentation for other versions is available:**
+**This documentation is for version 0.17.x of Stream Enrich. Documentation for other versions is available:**
 
-- [Stream Enrich v0.14.0 - v0.17.0][v017]
 - [Stream Enrich v0.10.0 - v0.14.0][v014]
 - [Stream Enrich v0.5.0 - v0.10.0][v010]
 
@@ -17,6 +16,7 @@ Stream Enrich is a jarfile. Simply provide the configuration file as a parameter
 Where targeted platform can be one of:
 
 - kinesis
+- google-pubsub
 - kafka
 - nsq
 - stdin
@@ -67,7 +67,6 @@ Return to the [setup guide](Setting-up-Snowplow).
 
 [v010]: https://github.com/snowplow/snowplow/wiki/Run-Stream-Enrich-0-10.md
 [v014]: https://github.com/snowplow/snowplow/wiki/Run-Stream-Enrich-0-14.md
-[v014]: https://github.com/snowplow/snowplow/wiki/Run-Stream-Enrich-0-17.md
 
 [logging]: http://www.slf4j.org/api/org/slf4j/impl/SimpleLogger.html
 [kcl]: https://github.com/awslabs/amazon-kinesis-client

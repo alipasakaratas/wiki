@@ -2,16 +2,16 @@
 
 ## Overview
 
-Stream Enrich is an [Amazon Kinesis][kinesis] app, written in Scala and using the Kinesis Client Library, which:
+Stream Enrich is an app, written in Scala, which:
 
 1. **Reads** raw Snowplow events off a Kinesis stream populated by the Scala Stream Collector
 2. **Validates** each raw event
 2. **Enriches** each event (e.g. infers the location of the user from his/her IP address)
-3. **Writes** the enriched Snowplow event to another Kinesis stream
+3. **Writes** the enriched Snowplow event to another stream
 
 It is designed to be used downstream of the [[Scala Stream Collector]].
 
-It also supports reading raw events from `stdin` and writing enriched events to `stdout`, which is useful for debugging.
+It works with Kinesis, Kafka, NSQ and stdin/stdout.
 
 Stream Enrich utilizes the [scala-common-enrich][common-enrich] Scala project to enrich events and the [SnowplowRawEvent][schema] for reading Thrift-serialized objects collected with the Scala Stream Collector.
 

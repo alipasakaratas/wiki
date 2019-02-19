@@ -1,6 +1,6 @@
 [HOME](Home) » [SNOWPLOW SETUP GUIDE](Setting-up-Snowplow) » [Step 1: setup a Collector](Setting-up-a-Collector) » [[Setting up the Scala Stream Collector]] » [[Install the Scala Stream Collector]] » Configure the Scala Stream Collector
 
-**This documentation refers to version 0.12.0 and 0.13.0 of the Scala Stream Collector**
+**This documentation refers to version 0.12.0-0.15.0 of the Scala Stream Collector**
 
 **[Version 0.10.0][v0.10]**
 **[Version 0.11.0][v0.11]**
@@ -45,8 +45,9 @@ You will also need to set appropriate limits for:
 The `collector.streams.sink.enabled` setting determines which of the supported sinks to write raw
 events to:
 + `"kinesis"` for writing Thrift-serialized records and error rows to a Kinesis stream
++ `"kafka"` for writing Thrift-serialized records and error rows to a Kafka topic
++ `"googlepubsub"` for writing Thrift-serialized records and error rows to a Google PubSub topic
 + `"stdout"` for writing Base64-encoded Thrift-serialized records and error rows to stdout and stderr respectively
-+ `"kafka"` for writing Thrift-serialized records and error rows to Kafka stream
 + `"nsq"` for writing Thrift-serialized records and error rows to NSQ topic
 
 If you switch to `"stdout"`, we recommend setting 'akka.loglevel = OFF' and 'akka.loggers = []' to prevent Akka debug information from polluting your event stream on stdout.

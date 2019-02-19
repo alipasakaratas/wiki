@@ -107,7 +107,7 @@ The lookup algorithm is short-circuiting: the first match for a given key will b
 
 #### `api`
 
-The `api` section lets you configure how the enrichment should access your API. At the moment only `http` is supported, with this option covering both HTTP and HTTPS - the protocol on the `uri` field will determine which to use. Currently only `GET` is supported as the HTTP `method` for the lookup.
+The `api` section lets you configure how the enrichment should access your API. At the moment only `http` is supported, with this option covering both HTTP and HTTPS - the protocol on the `uri` field will determine which to use. Before R113, only `GET` was supported as the HTTP `method` for the lookup. Now it supports both `GET` and `POST`.
 
 For the `uri` field, specify the full URI including the protocol. You can attach a querystring to the end of the URI. You can also embed the keys from your `inputs` section in the URI, by wrapping the key in `{{}}` brackets thus:
 
