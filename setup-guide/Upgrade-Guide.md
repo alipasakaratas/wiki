@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
 - [Snowplow 111 Selinunte](#r111) (**r111**) 2018-10-01
 - [Snowplow 110 Valle dei Templi](#r110) (**r110**) 2018-09-07
 - [Snowplow 109 Lambaesis](#r109) (**r109**) 2018-08-21
@@ -73,6 +74,84 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r113" />
+
+## Snowplow 113 Filitosa
+
+### Upgrading the Scala Stream Collector
+
+A new version of the Scala Stream Collector incorporating the changes discussed above can be found
+on [our Bintray](https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.15.0#files).
+
+To make use of this new version, you’ll need to amend your configuration in the following ways:
+
+- Add a `collector.cors` section to specify the `Access-Control-Max-Age` duration:
+
+```hocon
+cors {
+  accessControlMaxAge = 5 seconds # -1 seconds disables the cache
+}
+```
+
+- Add a `collector.prometheusMetrics` section:
+
+```hocon
+prometheusMetrics {
+  enabled = false
+  durationBuckets = [0.1, 3, 10] # optional buckets by which to group by the `http_request_duration_seconds` metric
+}
+```
+
+- Modify the `collector.doNotTrackCookie` section if you want to make use of a regex:
+
+```hocon
+doNotTrackCookie {
+  enabled = true
+  name = cookie-name
+  value = ".+cookie-value.+"
+}
+```
+
+- Add the optional `collector.streams.sink.producerConf` if you want to specify additional Kafka
+producer configuration:
+
+```hocon
+producerConf {
+  acks = all
+}
+```
+
+This also holds true for Stream Enrich `enrich.streams.sourceSink.{producerConf, consumerConf}`.
+
+A full example configuration can be found in [the repository][config-ssc].
+
+### Upgrading your enrichment platform
+
+If you are a GCP pipeline user, a new Beam Enrich can be found on Bintray:
+- as [a ZIP archive](https://bintray.com/snowplow/snowplow-generic/snowplow-beam-enrich/0.2.0#files)
+- as [a Docker image](https://bintray.com/snowplow/registry/snowplow%3Abeam-enrich)
+
+If you are a Kinesis or Kafka pipeline user, a new Stream Enrich can be found on
+[Bintray](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.20.0#files).
+
+Finally, if you are a batch pipeline user, a new Spark Enrich can be used by setting the new version
+in your EmrEtlRunner configuration:
+
+```yaml
+enrich:
+  version:
+    spark_enrich: 1.17.0 # WAS 1.16.0
+```
+
+or directly make use of the new Spark Enrich available at:
+
+`s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.17.0.jar`
+
+### Read more
+
+* [R113 Blog Post](https://snowplowanalytics.com/blog/2018/10/02/snowplow-r111-filitosa-real-time-pipeline-improvements/)
+* [R113 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r113-filitosa)
 
 <a name="r111" />
 

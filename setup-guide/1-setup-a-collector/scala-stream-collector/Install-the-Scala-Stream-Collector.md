@@ -37,7 +37,7 @@ file with all dependencies.
 where `targeted platform` can be:
 
 - kinesis
-- pubsub
+- google-pubsub
 - kafka
 - nsq
 - stdout
