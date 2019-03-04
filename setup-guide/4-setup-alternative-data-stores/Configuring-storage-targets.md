@@ -24,7 +24,7 @@ Here's a list of currently supported targets, grouped by purpose:
 
 ### Redshift
 
-Schema: [iglu:com.snowplowanalytics.snowplow.storage/redshift_config/jsonschema/2-1-0][redshift-schema]
+Schema: [iglu:com.snowplowanalytics.snowplow.storage/redshift_config/jsonschema/3-0-0][redshift-schema]
 
 1. `name`, a descriptive name for this Snowplow storage target
 2. `host`, the host (endpoint in Redshift parlance) of the databse to load.
