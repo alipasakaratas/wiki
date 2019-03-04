@@ -46,12 +46,11 @@ Schema: [iglu:com.snowplowanalytics.snowplow.storage/redshift_config/jsonschema/
 
 Note: The difference between `VERIFY_CA` and `VERIFY_FULL` depends on the policy of the root CA. If a public CA is used, `VERIFY_CA` allows connections to a server that somebody else may have registered with the CA to succeed. In this case, `verify-full` should always be used. If a local CA is used, or even a self-signed certificate, using `VERIFY_CA` often provides enough protection.
 
-
 <a name="postgres" />
 
 ### Postgres
 
-Schema: [iglu:com.snowplowanalytics.snowplow.storage/postgresql_config/jsonschema/1-0-1][postgresql-schema]
+Schema: [iglu:com.snowplowanalytics.snowplow.storage/postgresql_config/jsonschema/2-0-0][postgresql-schema]
 
 1. `name`, enter a descriptive name for this Snowplow storage target
 2. `host`, the host (endpoint in Redshift parlance) of the databse to
@@ -70,17 +69,16 @@ Schema: [iglu:com.snowplowanalytics.snowplow.storage/postgresql_config/jsonschem
  - `VERIFY_CA`: SSL must be used and the server certificate must be verified.
  - `VERIFY_FULL`: SSL must be used. The server certificate must be verified and the server hostname must match the hostname attribute on the certificate.
 10. `purpose`: common for all targets. PostgreSQL supports only `ENRICHED_EVENTS`
-11. `id`: optional machine-readable config id
+11. `id`: machine-readable config id in UUID format
 12. `sshTunnel`: optional bastion host configuration
 
 <a name="snowflake" />
 
 ### Snowflake
 
-Schema: [iglu:com.snowplowanalytics.snowplow.storage/snowflake_config/jsonschema/1-0-0][snowflake-schema]
+Schema: [iglu:com.snowplowanalytics.snowplow.storage/snowflake_config/jsonschema/1-0-1][snowflake-schema]
 
 Snowflake configuration is available at dedicated [Snowflake Loader wiki][snowflake-setup].
-
 
 <a name="elasticsearch" />
 
@@ -114,9 +112,9 @@ Schema: [iglu:com.snowplowanalytics.snowplow.storage/amazon_dynamodb_config/json
 
 [amazon-dynamodb-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/amazon_dynamodb_config/jsonschema/1-0-1
 [elastic-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/elastic_config/jsonschema/1-0-1
-[postgresql-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/postgresql_config/jsonschema/1-0-1
-[redshift-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/redshift_config/jsonschema/2-1-0
-[snowflake-schema]:  https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/snowflake_config/jsonschema/1-0-0
+[postgresql-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/postgresql_config/jsonschema/2-0-0
+[redshift-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/redshift_config/jsonschema/3-0-0
+[snowflake-schema]:  https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow.storage/snowflake_config/jsonschema/1-0-1
 
 [redshift-copy]: http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html
 
