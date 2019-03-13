@@ -80,6 +80,8 @@ For easier navigation, please, follow the links below.
 
 ## Snowplow 113 Filitosa
 
+This release focuses on improvements to the Scala Stream Collector as well as new features for Scala Common Enrich such as HubSpot webhook integration and `POST` support in the API request enrichment.
+
 ### Upgrading the Scala Stream Collector
 
 A new version of the Scala Stream Collector incorporating the changes discussed above can be found
@@ -160,6 +162,8 @@ A new version of EmrEtlRunner is also available in
 <a name="r112" />
 
 ## Snowplow 112 Baalbek
+
+This release focuses on reliability improvements for the batch pipeline. It also itroduces support for persistent EMR cluster.
 
 ### EmrEtlRunner
 
