@@ -1,8 +1,10 @@
 ## Our documentation has moved!
 
-Instructions to setup the latest version of our iOS tracker can be found [here](http://docs.snowplowanalytics.com/open-source/snowplow/trackers/objective-c-tracker/1.0.0/).
+Instructions to setup the latest version of our iOS tracker can be found **[here](http://docs.snowplowanalytics.com/open-source/snowplow/trackers/objective-c-tracker/1.0.0/)**.
 
 The below documentation is legacy - covering older versions of our iOS tracker. We strongly recommend users of the tracker upgrade to the latest version, as documented [here](http://docs.snowplowanalytics.com/open-source/snowplow/trackers/objective-c-tracker/1.0.0/).
+
+## Legacy documentation
 
 <a name="top" />
 
