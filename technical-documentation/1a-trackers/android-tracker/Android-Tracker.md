@@ -2,6 +2,8 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers) » Android Tracker
 
+**Note**: We've transitioned to hosting documentation at the [Snowplow documentation site](http://docs.snowplowanalytics.com/snowplow-insights/trackers/android-tracker/).
+
 This page refers to version 0.8.0+ of the Snowplow Android Tracker.
 
 Documentation for older versions of this tracker is available:
