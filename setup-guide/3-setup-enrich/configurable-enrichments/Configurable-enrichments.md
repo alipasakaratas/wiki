@@ -51,7 +51,7 @@ These are the available configurable enrichments:
 [[HTTP Header extractor enrichment]]  
 [[SQL Query enrichment]]  
 [[PII Pseudonymization Enrichment]]  
-[[IAB enrichment]]
+[[IAB enrichment]]  
 [[YAUAA enrichment]]
 
 Snowplow ships with a set of sensible default configurations for the configurable enrichments. You can browser them on GitHub: [3-enrich/config/enrichments][enrichment-json-examples].
