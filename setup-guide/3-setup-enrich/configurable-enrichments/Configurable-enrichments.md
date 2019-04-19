@@ -2,7 +2,7 @@
 
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > Configurable enrichments
 
-Snowplow offers the option to configure certain enrichments. This is done using configuration JSONs. When running EmrEtlRunner or Kinesis Enrich, the `--enrichments` argument should be populated with the filepath of a directory containing your configuration JSONs. The files in the directory should be named "{{name-of-enrichment}}.json", where "name-of-enrichment" is the value of the "name" field in the JSON.
+Snowplow offers the option to configure certain enrichments. This is done using configuration JSONs. When running EmrEtlRunner or Kinesis Enrich, the `--enrichments` argument should be populated with the filepath of a directory containing your configuration JSONs. The files in the directory should be named "{{name-of-enrichment}}.json", where "name-of-enrichment" is the value of the "name" field in the configuration JSON.
 
 Each enrichment has a JSON schema against which it is validated. (For more information on how Snowplow uses JSON schemas, see [this blog post][snowplow-schemas]) The enrichment JSONs follow a common pattern:
 
@@ -30,7 +30,7 @@ For each enrichment, the JSON used to configure the enrichment has:
 
 The `enabled` and `parameters` fields are the ones which you may wish to customize.
 
-[[/images/warning.png]] | Please note that the pipeline can only run one enrichment each
+[[/images/warning.png]] | Please note that the pipeline can run each enrichment only once
 ---|:---
 
 
