@@ -39,6 +39,36 @@ If a field can't be figured out by the algorithm, it won't be in the output. But
 
 More information about the output values can be found [here][yauaa_fields].  
 
+Here is an example of derived context attached to an enriched event by this enrichment for a page visited with a Samsung Galaxy S9:
+
+```json
+{
+    "schema":"iglu:com.snowplowanalytics.snowplow/ua_parser_context/jsonschema/1-0-0",
+    "data": {
+        "deviceClass":"Phone",
+        "deviceName":"Samsung SM-G960F",
+        "deviceBrand":"Samsung",
+        "operatingSystemClass":"Mobile",
+        "operatingSystemName":"Android",
+        "operatingSystemVersion":"8.0.0",
+        "operatingSystemNameVersion":"Android 8.0.0",
+        "operatingSystemVersionBuild":"R16NW",
+        "layoutEngineClass":"Browser",
+        "layoutEngineName":"Blink",
+        "layoutEngineVersion":"62.0",
+        "layoutEngineVersionMajor":"62",
+        "layoutEngineNameVersion":"Blink 62.0",
+        "layoutEngineNameVersionMajor":"Blink 62",
+        "agentClass":"Browser",
+        "agentName":"Chrome",
+        "agentVersion":"62.0.3202.84",
+        "agentVersionMajor":"62",
+        "agentNameVersion":"Chrome 62.0.3202.84",
+        "agentNameVersionMajor":"Chrome 62"
+   }
+}
+```
+
 [[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)). Additional memory is also needed if caching is enabled (by default).
 ---|:---
 
