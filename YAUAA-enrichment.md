@@ -2,6 +2,8 @@
 
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > [Configurable enrichments](Configurable-enrichments) > YAUAA enrichment
 
+[[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)). Additional memory is also needed if caching is enabled (by default).
+---|:---
 ### Compatibility
 
 JSON schema for config : [iglu:com.snowplowanalytics.snowplow.enrichments/yauaa_enrichment_config/jsonschema/1-0-0][schema]  
@@ -68,9 +70,6 @@ Here is an example of derived context attached to an enriched event by this enri
    }
 }
 ```
-
-[[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)). Additional memory is also needed if caching is enabled (by default).
----|:---
 
 [schema]: http://iglucentral.com/schemas/com.snowplowanalytics.snowplow.enrichments/yauaa_enrichment_config/jsonschema/1-0-0
 [yauaa]: https://yauaa.basjes.nl/
