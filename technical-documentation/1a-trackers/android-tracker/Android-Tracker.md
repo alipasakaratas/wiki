@@ -4,7 +4,9 @@
 
 <br />
 <br />
-**Note**: We've transitioned to hosting documentation at the [Snowplow documentation site](http://docs.snowplowanalytics.com/snowplow-insights/trackers/android-tracker/).
+**Note**: We've transitioned to hosting this documentation at the [Snowplow documentation site](http://docs.snowplowanalytics.com/snowplow-insights/trackers/android-tracker/).
+<br />
+<br />
 <br />
 <br />
 
