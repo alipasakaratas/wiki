@@ -159,7 +159,7 @@ snowplow_name_here("newTracker", "cf", "d3rkrsqld9gmqf.cloudfront.net", {
   userFingerprintSeed: 6385926734,
   pageUnloadTimer: 0,
   forceSecureTracker: true,
-  post: true,
+  eventMethod: "post",
   bufferSize: 5,
   maxPostBytes: 45000,
   crossDomainLinker: function (linkElement) {
@@ -436,7 +436,9 @@ https://raw.githubusercontent.com/snowplow/iglu-central/master/schemas/com.parra
 
 #### 2.2.16 POST support
 
-If you set the `post` field of the argmap to `true`, the tracker will send events using POST requests rather than GET requests. In browsers such as Internet Explorer 9 which do not support cross-origin XMLHttpRequests, the tracker will fall back to using GET.
+If you set the `eventMethod` field of the argmap to `post`, the tracker will send events using POST requests rather than GET requests. In browsers such as Internet Explorer 9 which do not support cross-origin XMLHttpRequests, the tracker will fall back to using GET.
+
+`eventMethod` defaults to `post`, other options available are `get` for GET requests and `beacon` for using the Beacon API.
 
 The main advantage of POST requests is that they circumvent Internet Explorer's maximum URL length of 2083 characters by storing the event data in the body of the request rather than the querystring.
 
@@ -458,7 +460,7 @@ Note that if `localStorage` is inaccessible or you are not using it to store dat
 
 ##### 2.2.16.1 Beacon API support
 
-The Beacon interface is used to schedule asynchronous and non-blocking requests to a web server. This will allow events to be sent even after a webpage is closed. This browser interface can be used to send events by setting the `beacon` field in the argmap to `true`.
+The Beacon interface is used to schedule asynchronous and non-blocking requests to a web server. This will allow events to be sent even after a webpage is closed. This browser interface can be used to send events by setting the `eventMethod` field in the argmap to `beacon`.
 
 Note: the Beacon API makes POST requests.
 
