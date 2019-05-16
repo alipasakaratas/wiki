@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 114 Polonnaruwa](#r114) (**r114**) 2019-05-16
 - [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
 - [Snowplow 112 Baalbek](#r112) (**r112**) 2019-02-20
 - [Snowplow 111 Selinunte](#r111) (**r111**) 2018-10-01
@@ -75,6 +76,62 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r114" />
+
+## Snowplow 114 Polonnaruwa
+
+This release includes a number of new features and updates, most of which live in
+Scala Common Enrich. Mainly, a new user agent enrichment has been added, as well as the possibility to use a remote adapter.
+
+### Upgrading your enrichment platform
+
+If you are a GCP pipeline user, a new Beam Enrich can be found on Bintray:
+- as [a ZIP archive](https://bintray.com/snowplow/snowplow-generic/snowplow-beam-enrich/0.3.0#files)
+- as [a Docker image](https://bintray.com/snowplow/registry/snowplow%3Abeam-enrich)
+
+If you are a Kinesis or Kafka pipeline user, a new Stream Enrich can be found on
+[Bintray](https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.21.0#files).
+
+Finally, if you are a batch pipeline user, a new Spark Enrich can be used by setting the new version
+in your EmrEtlRunner configuration:
+
+```yaml
+enrich:
+  version:
+    spark_enrich: 1.18.0 # WAS 1.17.0
+```
+
+or directly make use of the new Spark Enrich available at:
+
+`s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.18.0.jar`
+
+A new version of EmrEtlRunner is also available in
+[our Bintray](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r114_polonnaruwa.zip).
+
+### Using YAUAA enrichment
+
+[[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)). Additional memory is also needed if caching is enabled (by default).
+---|:---
+
+To use new YAUAA enrichment, add `yauaa_enrichment_config.json` to the configuration files for enrichments with:
+```json
+{
+    "schema": "iglu:com.snowplowanalytics.snowplow.enrichments/yauaa_enrichment_config/jsonschema/1-0-0",
+    "data": {
+        "enabled": true,
+        "vendor": "com.snowplowanalytics.snowplow.enrichments",
+        "name": "yauaa_enrichment_config"
+    }
+}
+```
+
+The schema for the new context added by this enrichment can be found [here](https://github.com/snowplow/iglu-central/blob/master/schemas/nl.basjes/yauaa_context/jsonschema/1-0-0).
+
+### Read more
+
+* [R114 Blog Post](https://snowplowanalytics.com/blog/2019/05/14/snowplow-r114-polonnaruwa-enrichments/)
+* [R114 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r114-polonnaruwa)
 
 <a name="r113" />
 
