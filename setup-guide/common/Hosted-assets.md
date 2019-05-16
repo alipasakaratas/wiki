@@ -1,4 +1,4 @@
-To simplify setting up and running Snowplow, the Snowplow Analytics team provide public hosting for some of the Snowplow sub-components. These hosted assets are publically available through Amazon Web Services (CloudFront and S3), and using them is free for Snowplow community members.
+To simplify setting up and running Snowplow, the Snowplow Analytics team provide public hosting for some of the Snowplow sub-components. These hosted assets are publicly available through Amazon Web Services (CloudFront and S3), and using them is free for Snowplow community members.
 
 As we release new versions of these assets, we will leave old versions unchanged on their existing URLs - so you won't have to upgrade your own Snowplow installation unless you want to.
 
@@ -12,11 +12,11 @@ We are steadily moving over to [Bintray][bintray] for hosting binaries and artif
 
 To make operating Snowplow easier, the EmrEtlRunner app are now available as prebuilt executables in a single zipfile here:
 
-    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r112_baalbek.zip
+    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r114_polonnaruwa.zip
 
 Right-click on this [Download link][emr-download] to save it down locally.
 
-**Note**: The link above refers to the latest version at the time of writing (R109). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
+**Note**: The link above refers to the latest version at the time of writing (R114). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
 
 ## 1. Trackers
 
@@ -58,7 +58,7 @@ Choose an artifact according to the supported targeted platform:
 The Spark Enrich process uses a single jarfile containing the Spark job. This is made available in a
 public Amazon S3 bucket, for Snowplowers who are running their Spark Enrich process on Amazon EMR:
 
-    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.17.0.jar
+    s3://snowplow-hosted-assets/3-enrich/spark-enrich/snowplow-spark-enrich-1.18.0.jar
 
 Right-click on this [Download link][spark-enrich-download] to save it down locally via CloudFront CDN.
 
@@ -66,7 +66,7 @@ Right-click on this [Download link][spark-enrich-download] to save it down local
 
 The Stream Enrich app is available on Bintray here:
 
-    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.20.0#files
+    https://bintray.com/snowplow/snowplow-generic/snowplow-stream-enrich/0.21.0#files
 
 Choose an artifact according to the supported targeted platform:
 
@@ -74,7 +74,13 @@ Choose an artifact according to the supported targeted platform:
 - Kafka
 - NSQ
 
-### 3.3 Scala Hadoop Event Recovery resources
+### 3.3 Beam Enrich resources
+
+Beam Enrich can be found on Bintray:
+- as [a ZIP archive](https://bintray.com/snowplow/snowplow-generic/snowplow-beam-enrich/0.3.0#files)
+- as [a Docker image](https://bintray.com/snowplow/registry/snowplow%3Abeam-enrich)
+
+### 3.4 Scala Hadoop Event Recovery resources
 
 The Scala Hadoop Event Recovery (formerly Hadoop Bad Rows) tool uses a single jarfile containing the MapReduce job. This is made available in a public Amazon S3 bucket:
 
@@ -82,9 +88,9 @@ The Scala Hadoop Event Recovery (formerly Hadoop Bad Rows) tool uses a single ja
 
 Right-click on this [Download link][hadoop-event-recovery-download] to save it down locally via CloudFront CDN.
 
-### 3.4 Shared resources
+### 3.5 Shared resources
 
-#### 3.4.1 MaxMind GeoLiteCity
+#### 3.5.1 MaxMind GeoLiteCity
 
 The [ip lookups enrichment](IP-lookups-enrichment) makes use of the free [GeoLite City database][geolite] from [MaxMind, Inc][maxmind], also stored in this public Amazon S3 bucket:
 
@@ -93,7 +99,7 @@ The [ip lookups enrichment](IP-lookups-enrichment) makes use of the free [GeoLit
 This file is updated every month by the Snowplow Analytics team.
 See [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket.
 
-#### 3.4.1 User-Agent parser database
+#### 3.5.1 User-Agent parser database
 
 [The UA parser enrichment](ua-parser-enrichment) makes use of the [uap-core database](https://github.com/ua-parser/uap-core/), also stored in this public Amazon S3 bucket:
 
