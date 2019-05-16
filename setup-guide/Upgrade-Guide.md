@@ -111,7 +111,7 @@ A new version of EmrEtlRunner is also available in
 
 ### Using YAUAA enrichment
 
-[[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)). Additional memory is also needed if caching is enabled (by default).
+[[/images/warning.png]] | This enrichment is based on in-memory HashMaps and require roughly 400 MB of RAM (see [here](https://yauaa.basjes.nl/README-MemoryUsage.html)).
 ---|:---
 
 To use new YAUAA enrichment, add `yauaa_enrichment_config.json` to the configuration files for enrichments with:
@@ -126,7 +126,7 @@ To use new YAUAA enrichment, add `yauaa_enrichment_config.json` to the configura
 }
 ```
 
-The schema for the new context added by this enrichment can be found [here](https://github.com/snowplow/iglu-central/blob/master/schemas/nl.basjes/yauaa_context/jsonschema/1-0-0).
+More information about this enrichment can be found on the [dedicated wiki page](https://github.com/snowplow/snowplow/wiki/YAUAA-enrichment).
 
 ### Read more
 
