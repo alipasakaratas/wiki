@@ -28,7 +28,7 @@ Below configuration allows to extract all headers present in HTTP request, inclu
 		"vendor": "com.snowplowanalytics.snowplow.enrichments",
 		"enabled": true,
 		"parameters": {
-			"headersPattern": [".*"]
+			"headersPattern": ".*"
 		}
 	}
 }
