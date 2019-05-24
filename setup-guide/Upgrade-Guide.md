@@ -213,7 +213,7 @@ A new version of EmrEtlRunner is also available in
 
 ### Read more
 
-* [R113 Blog Post](https://snowplowanalytics.com/blog/2018/03/06/snowplow-r113-filitosa-real-time-pipeline-improvements/)
+* [R113 Blog Post](https://snowplowanalytics.com/blog/2019/03/06/snowplow-r113-filitosa-real-time-pipeline-improvements/)
 * [R113 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r113-filitosa)
 
 <a name="r112" />
