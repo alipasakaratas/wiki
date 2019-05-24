@@ -130,7 +130,7 @@ More information about this enrichment can be found on the [dedicated wiki page]
 
 ### Read more
 
-* [R114 Blog Post](https://snowplowanalytics.com/blog/2019/05/14/snowplow-r114-polonnaruwa-enrichments/)
+* [R114 Blog Post](https://snowplowanalytics.com/blog/2019/05/20/snowplow-r114-polonnaruwa-enrichments/)
 * [R114 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r114-polonnaruwa)
 
 <a name="r113" />
