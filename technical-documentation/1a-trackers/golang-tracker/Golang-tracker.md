@@ -14,6 +14,7 @@
     - 2.2.4 [`OptionAppId`](#app-id)
     - 2.2.5 [`OptionPlatform`](#platform)
     - 2.2.6 [`OptionBase64Encode`](#base64)
+    - 2.2.7 [`OptionHttpClient`](#http-client)
 - 3 [Adding extra data: the Subject class](#subject-class)
   - 3.1 [`SetUserId`](#set-user-id)
   - 3.2 [`SetScreenResolution`](#set-screen-resolution)
@@ -156,6 +157,16 @@ By default we assume the Tracker will be running in a server environment.  To ov
 #### 2.2.6 `OptionBase64Encode`
 
 By default, unstructured events and custom contexts are encoded into Base64 to ensure that no data is lost or corrupted. You can turn encoding on or off using the Boolean `OptionBase64Encode` function with either `true` or `false` passed in.
+
+[Back to top](#top)
+
+<a name="http-client" />
+
+#### 2.2.7 `OptionHttpClient`
+
+An HTTP client can be set with custom settings appropriate for the use-case, such as timeouts and other connection settings.
+
+This method accepts a reference to [http.Client](https://golang.org/pkg/net/http/#Client).
 
 [Back to top](#top)
 
