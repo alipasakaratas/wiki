@@ -14,7 +14,6 @@
     - 2.2.4 [`OptionAppId`](#app-id)
     - 2.2.5 [`OptionPlatform`](#platform)
     - 2.2.6 [`OptionBase64Encode`](#base64)
-    - 2.2.7 [`OptionHttpClient`](#http-client)
 - 3 [Adding extra data: the Subject class](#subject-class)
   - 3.1 [`SetUserId`](#set-user-id)
   - 3.2 [`SetScreenResolution`](#set-screen-resolution)
@@ -40,6 +39,8 @@
   - 4.7 [`TrackTiming()`](#timing-event)
 - 5 [Emitters](#emitters)
   - 5.1 [Under the hood](#emitters-inner-workings)
+  - 5.2 [Builder methods](#methods)
+    - 5.2.1 [`OptionHttpClient`](#http-client)
 
 <a name="overview" />
 
@@ -157,14 +158,6 @@ By default we assume the Tracker will be running in a server environment.  To ov
 #### 2.2.6 `OptionBase64Encode`
 
 By default, unstructured events and custom contexts are encoded into Base64 to ensure that no data is lost or corrupted. You can turn encoding on or off using the Boolean `OptionBase64Encode` function with either `true` or `false` passed in.
-
-<a name="http-client" />
-
-#### 2.2.7 `OptionHttpClient`
-
-An HTTP client can be set with custom settings appropriate for the use-case, such as timeouts and other connection settings.
-
-This method accepts a reference to [http.Client](https://golang.org/pkg/net/http/#Client).
 
 [Back to top](#top)
 
@@ -823,6 +816,18 @@ Once the emitter receives an event from the Tracker a few things start to happen
 
 __IF__ all of the requests failed this loop is terminated eagerly; this is seen as a network failure so attempting to send is a waste of resources.
 __IF__ there are no more events in the database the loop is terminated.
+
+<a name="methods" />
+
+### 5.2 Builder methods
+
+<a name="http-client" />
+
+#### 5.2.1 `OptionHttpClient`
+
+An HTTP client can be set with custom settings appropriate for the use-case, such as timeouts and other connection settings.
+
+This method accepts a reference to [http.Client](https://golang.org/pkg/net/http/#Client).
 
 [Back to top](#top)
 
