@@ -158,8 +158,6 @@ By default we assume the Tracker will be running in a server environment.  To ov
 
 By default, unstructured events and custom contexts are encoded into Base64 to ensure that no data is lost or corrupted. You can turn encoding on or off using the Boolean `OptionBase64Encode` function with either `true` or `false` passed in.
 
-[Back to top](#top)
-
 <a name="http-client" />
 
 #### 2.2.7 `OptionHttpClient`
@@ -750,6 +748,7 @@ There are other optional builder functions:
 | `OptionDbName`        | Defines the path and file name of the database | No            | `events.db`  |
 | `OptionStorage`       | Use a custom Storage target                    | No            | `nil`        |
 | `OptionCallback`      | Defines a custom callback function             | No            | `nil`        |
+| `OptionHttpClient`    | A custom HTTP client                           | No            | `&Client{}`  |
 
 A more complete example:
 
