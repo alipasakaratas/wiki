@@ -45,7 +45,7 @@ Here is an example of derived context attached to an enriched event by this enri
 
 ```json
 {
-    "schema":"iglu:com.snowplowanalytics.snowplow/ua_parser_context/jsonschema/1-0-0",
+    "schema":"iglu:com.snowplowanalytics.snowplow/yauaa_context/jsonschema/1-0-0",
     "data": {
         "deviceClass":"Phone",
         "deviceName":"Samsung SM-G960F",
