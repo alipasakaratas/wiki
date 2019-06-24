@@ -1,6 +1,6 @@
 [**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » Batch Pipeline Steps
 
-*This page refers to Snowplow R102+*
+*This page refers to Snowplow R104+*
 
 *Click [here](Batch-pipeline-steps-r91) for the corresponding documentation for R91-R101*
 
@@ -43,8 +43,6 @@ Failed step | Recovery actions
 [[/images/batch_pipeline_steps_r102_stream_mode.png]]
 
 ## Recovery steps for Stream Enrich mode
-
-**IMPORTANT**. Due [a bug in R102][r102-shred-bug] Stream Enrich mode, `--resume-from shred` and `--skip staging_stream_enrich` do not work as expected and subsequent S3DiscCp step fails. This was addressed in R104.
 
 Failed step | Recovery actions
 :---:|---
