@@ -2,7 +2,7 @@
 
 *This page refers to Snowplow R104+*
 
-*Click [here](Batch-pipeline-steps-r91) for the corresponding documentation for R91-R101*
+*Click [here](Batch-pipeline-steps-r91) for the corresponding documentation for R91-R103*
 
 *Click [here](Batch-pipeline-steps-r90) for the corresponding documentation for R90*
 
