@@ -72,6 +72,8 @@ $ aws ec2 run-instances \
     | jq -r '.Instances[0].InstanceId'
 ```
 
+*NOTE: you can find available image ID by following this [AWS guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html).*
+
 **6. Attach security group to Instance**
 
 ```sh
