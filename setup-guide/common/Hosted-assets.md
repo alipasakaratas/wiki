@@ -12,11 +12,11 @@ We are steadily moving over to [Bintray][bintray] for hosting binaries and artif
 
 To make operating Snowplow easier, the EmrEtlRunner app are now available as prebuilt executables in a single zipfile here:
 
-    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r114_polonnaruwa.zip
+    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip
 
 Right-click on this [Download link][emr-download] to save it down locally.
 
-**Note**: The link above refers to the latest version at the time of writing (R114). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
+**Note**: The link above refers to the latest version at the time of writing (R115). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
 
 ## 1. Trackers
 
@@ -213,4 +213,4 @@ Please see the [[Artifact repositories]] wiki page for more information.
 [esl-dl-http]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_http_0.10.1.zip
 [esl-dl-tcp]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_tcp_0.10.1.zip
 [esl-dl-tcp-2x]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_tcp_2x_0.10.1.zip
-[emr-download]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r112_baalbek.zip
+[emr-download]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip
