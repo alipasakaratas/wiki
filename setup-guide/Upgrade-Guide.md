@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 115 Sigiriya](#r115) (**r115**) 2019-07-17
 - [Snowplow 114 Polonnaruwa](#r114) (**r114**) 2019-05-16
 - [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
 - [Snowplow 112 Baalbek](#r112) (**r112**) 2019-02-20
@@ -76,6 +77,14 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.2](#v0.9.2) (**v0.9.2**) 2014-04-30
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
+
+<a name="r115" />
+
+## Snowplow 115 Sigiriya
+
+This release includes 2 updates for *EmrEtlRunner*, one bug fix and one to improve its reliability. 
+
+The latest version of *EmrEtlRunner* is available on our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip).
 
 <a name="r114" />
 
