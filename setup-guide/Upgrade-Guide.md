@@ -82,7 +82,11 @@ For easier navigation, please, follow the links below.
 
 ## Snowplow 115 Sigiriya
 
-This release includes 2 updates for *EmrEtlRunner*, one bug fix and one to improve its reliability. 
+This release includes 2 updates for *EmrEtlRunner*, one bug fix and one to improve its reliability.
+
+It also includes an update to *Event Manifest Populator*, so that it can read the files containing the events produced by *stream-enrich*.
+
+## EmrEtlRunner
 
 The latest version of *EmrEtlRunner* is available on our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip).
 
