@@ -1,6 +1,6 @@
 <a name="top" />
 
-[**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) > [**Trackers**](trackers)
+[**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers)
 
 <a name="overview" />
 
@@ -12,7 +12,7 @@ The Snowplow Tracker Protocol is the list of all the parameters that Snowplow tr
 
 Snowplow has been architected to be as easy as possible for developers to create their own alternative subsystems. This documentation should be used by anyone who would like to build their own tracker: by utilising the parameters documented here, the author of a new tracker can be confident that his / her tracker will work with the rest of the Snowplow stack, and be confident where the values associated with each parameter on every call will be available to query in Snowplow, whether that's in Hive or Infobright or another database.
 
-Please note that the end point where the `GET`/`POST` request should be made depends on which [collector](collectors) is used. Refer to the [collectors](collectors) documentation for more information. Also take into consideration that [Clodfront collector](Setting-up-the-Cloudfront-collector) accepts only `GET` requests.
+Please note that the endpoint where the `GET`/`POST` request should be made depends on which [collector](collectors) is used. Refer to the [collectors](collectors) documentation for more information. Also, take into consideration that [Clodfront collector](Setting-up-the-Cloudfront-collector) accepts only `GET` requests.
 
 In the [first part of this guide](#common), we cover the parameters in the Snowplow tracker protocol that are common across different event types. [In the second part](#events), we document the parameters that are relevant for specific events that are recognised in the Snowplow event model. Please note: this model is evolving over time as we incorporate more events and grow the set of fields associated with each of the standard events. In all cases, we do our best to ensure that any changes are backwards compatible. (So we are happy adding new parameters, but do not remove parameters once they have been incorporated.)
 
@@ -516,7 +516,7 @@ Back to the [top](#top).
 
 Custom event tracking is used to track events that are not natively supported by Snowplow. (Like ad impressions, page views, ecomm transactions.)
 
-As well as setting `e=ue`, there are five custom event specific parameters that can be set:
+As well as setting `e=se`, there are five custom event specific parameters that can be set:
 
 | **Parameter** | **Maps to**      | **Type** |**Description**                                     | **Implemented?** | **Example values**|
 |:--------------|:-----------------|:---------|:---------------------------------------------------|:-----------------|:------------------|
