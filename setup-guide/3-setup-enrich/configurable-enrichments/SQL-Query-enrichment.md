@@ -1,6 +1,6 @@
 <a name="top" />
 
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) > [Step 3: Setting up Enrich](Setting-up-enrich) > Configurable enrichments > SQL Query enrichment
+[**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » Configurable enrichments > SQL Query enrichment
 
 ### Compatibility
 
@@ -32,54 +32,59 @@ Below you can see an example configuration using imaginary PostgreSQL database w
 
 ```json
 {
-  "enabled": true,
-  "parameters": {
-    "inputs": [
-      {
-        "placeholder": 1,
-        "pojo": {
-          "field": "user_id"
+  "schema": "iglu:com.snowplowanalytics.snowplow.enrichments/sql_query_enrichment_config/jsonschema/1-0-0",
+  "data": {
+    "name": "sql_query_enrichment_config",
+    "vendor": "com.snowplowanalytics.snowplow.enrichments",
+    "enabled": true,
+    "parameters": {
+      "inputs": [
+        {
+          "placeholder": 1,
+          "pojo": {
+            "field": "user_id"
+          }
+        },
+        {
+          "placeholder": 1,
+          "json": {
+            "field": "contexts",
+            "schemaCriterion": "iglu:com.snowplowanalytics.snowplow/client_session/jsonschema/1-*-*",
+            "jsonPath": "$.userId"
+          }
+        },
+        {
+          "placeholder": 2,
+          "pojo": {
+            "field": "app_id"
+          }
+        }
+      ],
+      "database": {
+        "postgresql": {
+          "host": "rdms.intra.acme.com",
+          "port": 5439,
+          "sslMode": true,
+          "username": "snowplow_enrich_ro",
+          "password": "1asIkJed",
+          "database": "crm"
         }
       },
-      {
-        "placeholder": 1,
+      "query": {
+        "sql": "SELECT username, email_address, date_of_birth FROM tbl_users WHERE user = ? AND application = ? LIMIT 1"
+      },
+      "output": {
+        "expectedRows": "AT_MOST_ONE",
         "json": {
-          "field": "contexts",
-          "schemaCriterion": "iglu:com.snowplowanalytics.snowplow/client_session/jsonschema/1-*-*",
-          "jsonPath": "$.userId"
+          "schema": "iglu:com.acme/user/jsonschema/1-0-0",
+          "describes": "ALL_ROWS",
+          "propertyNames": "CAMEL_CASE"
         }
       },
-      {
-        "placeholder": 2,
-        "pojo": {
-          "field": "app_id"
-        }
+      "cache": {
+        "size": 3000,
+        "ttl": 60
       }
-    ],
-    "database": {
-      "postgresql": {
-        "host": "rdms.intra.acme.com",
-        "port": 5439,
-        "sslMode": true,
-        "username": "snowplow_enrich_ro",
-        "password": "1asIkJed",
-        "database": "crm"
-      }
-    },
-    "query": {
-      "sql": "SELECT username, email_address, date_of_birth FROM tbl_users WHERE user = ? AND application = ? LIMIT 1"
-    },
-    "output": {
-      "expectedRows": "AT_MOST_ONE",
-      "json": {
-        "schema": "iglu:com.acme/user/jsonschema/1-0-0",
-        "describes": "ALL_ROWS",
-        "propertyNames": "CAMEL_CASE"
-      }
-    },
-    "cache": {
-      "size": 3000,
-      "ttl": 60
     }
   }
 }
