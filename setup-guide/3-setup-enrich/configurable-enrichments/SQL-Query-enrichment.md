@@ -1,6 +1,6 @@
 <a name="top" />
 
-[**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » Configurable enrichments > SQL Query enrichment
+[**HOME**](Home) » [**SNOWPLOW SETUP GUIDE**](Setting-up-Snowplow) » [Step 3: Setting up Enrich](Setting-up-enrich) » [Configurable enrichments](Configurable-enrichments) > SQL Query enrichment
 
 ### Compatibility
 
