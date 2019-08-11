@@ -12,6 +12,7 @@ This guide will explain how to configure your Zendesk account so that whenever a
       * [Setting up body for ticket requester](#ticket-requester)
       * [Setting up body for ticket assignee](#ticket-assignee)
       * [Setting up body for ticket submitter](#ticket-submitter)
+      * [Setting up body for current user](#ticket-current-user)
 3. [Creating tables in Redshift](#redshift-tables)
 
 <a name="extension" />
@@ -151,7 +152,7 @@ In the ***JSON body*** box, paste the following:
 
 #### Setting up body for ticket assignee
 
-In the "Actions" section, select the 3nd "Notify target" and "Snowplow Collector - Iglu POST" extention.
+In the "Actions" section, select the 3nd "Notify target" and "Snowplow Collector - Iglu POST" extension.
 
 In the ***JSON body*** box, paste the following:
 
@@ -186,7 +187,7 @@ In the ***JSON body*** box, paste the following:
 
 #### Setting up body for ticket submitter
 
-In the "Actions" section, select the 4nd (final) "Notify target" and "Snowplow Collector - Iglu POST" extention.
+In the "Actions" section, select the 4th "Notify target" and "Snowplow Collector - Iglu POST" extension.
 
 In the ***JSON body*** box, paste the following:
 
@@ -213,6 +214,41 @@ In the ***JSON body*** box, paste the following:
       "organization": {% if ticket.submitter.organization.size > 0 %}"{{ticket.submitter.organization}}"{% else %}null{% endif %},
       "externalId": {% if ticket.submitter.external_id.size > 0 %}"{{ticket.submitter.external_id}}"{% else %}null{% endif %},
       "email": {% if ticket.submitter.email.size > 0 %}"{{ticket.submitter.email}}"{% else %}null{% endif %}
+  }
+}
+```
+
+<a name="ticket-current-user"/>
+
+#### Setting up body for current user
+
+In the "Actions" section, select the 5th (final) "Notify target" and "Snowplow Collector - Iglu POST" extention.
+
+In the ***JSON body*** box, paste the following:
+
+```
+{
+  "schema": "iglu:com.zendesk.snowplow/user/jsonschema/1-0-0",
+  "data": {
+      "ticketId": {{ticket.id}},
+      "updatedAt": "{{ticket.updated_at_with_timestamp}}",
+      "type": "current_user",
+      "firstName": {% if current_user.first_name.size > 0 %}"{{current_user.first_name}}"{% else %}null{% endif %},
+      "lastName": {% if current_user.last_name.size > 0 %}"{{current_user.last_name}}"{% else %}null{% endif %},
+      "language": {% if current_user.language.size > 0 %}"{{current_user.language}}"{% else %}null{% endif %},
+      "tags": {% if current_user.tags.size > 0 %}"{{current_user.tags}}"{% else %}null{% endif %},
+      "locale": {% if current_user.locale.size > 0 %}"{{current_user.locale}}"{% else %}null{% endif %},
+      "notes": {% if current_user.notes.size > 0 %}"{{current_user.notes}}"{% else %}null{% endif %},
+      "timeZone": {% if current_user.time_zone.size > 0 %}"{{current_user.time_zone}}"{% else %}null{% endif %},
+      "userId": {% if current_user.id %}{{current_user.id}}{% else %}null{% endif %},
+      "phone": {% if current_user.phone.size > 0 %}"{{current_user.phone}}"{% else %}null{% endif %},
+      "extendedRole": {% if current_user.extended_role.size > 0 %}"{{current_user.extended_role}}"{% else %}null{% endif %},
+      "role": {% if current_user.role.size > 0 %}"{{current_user.role}}"{% else %}null{% endif %},
+      "details": {% if current_user.details.size > 0 %}"{{current_user.details}}"{% else %}null{% endif %},
+      "signature": {% if current_user.signature.size > 0 %}"{{current_user.signature}}"{% else %}null{% endif %},
+      "organization": {% if current_user.organization.size > 0 %}"{{current_user.organization}}"{% else %}null{% endif %},
+      "externalId": {% if current_user.external_id.size > 0 %}"{{current_user.external_id}}"{% else %}null{% endif %},
+      "email": {% if current_user.email.size > 0 %}"{{current_user.email}}"{% else %}null{% endif %}
   }
 }
 ```
