@@ -111,7 +111,7 @@ Amazon helpfully keeps a range of packages including PostgreSQL in repos so that
 
 Initialize a database:
 
-	$ sudo service postgresql initdb
+	$  sudo postgresql-setup initdb
 
 Then edit your `pg_hba.conf` file:
 
