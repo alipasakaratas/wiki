@@ -4,7 +4,7 @@
 
 Before you integrate Snowplow's JavaScript Tracker, you need to decide whether you'll integrate it with a tag management system, or implement the Snowplow tags directly onto your site.
 
-We strongly advice new Snowplow users who are not using a Tag Management solution to implement one before implementing Snowplow, and integrate Snowplow using it. We have documented [how to setup Google Tag Manager](../wiki/Integrating-Javascript-tags-with-Google-Tag-Manager) and [how to setup QuBit's OpenTag](../wiki/Integrating-Javascript-tags-with-QuBit-OpenTag), as well as how to integrate Snowplow using both these solutions, as part of this setup guide.
+We strongly advise new Snowplow users who are not using a Tag Management solution to implement one before implementing Snowplow, and integrate Snowplow using it. We have documented [how to setup Google Tag Manager](../wiki/Integrating-Javascript-tags-with-Google-Tag-Manager) and [how to setup QuBit's OpenTag](../wiki/Integrating-Javascript-tags-with-QuBit-OpenTag), as well as how to integrate Snowplow using both these solutions, as part of this setup guide.
 
 Select a setup option below based on your choice of Tag Management solution:
 
