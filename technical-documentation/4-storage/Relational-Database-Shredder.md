@@ -92,6 +92,8 @@ There are four strategies planned regarding incorporating deduplication mechanis
 | Cross-batch natural de-duplication   | Cross-batch | Yes            | Yes                     | [R88 Angkor Wat][r88-release]             |
 | Cross-batch synthetic de-duplication | Cross-batch | Yes            | No                      | Planned                                   |
 
+Same deduplication algorithms techniques in [Snowplow Snowflake Transformer][snowflake-transformer] since 0.4.0.
+
 We will cover these in turn:
 
 <a name="inbatch-natural-deduplication">
@@ -137,6 +139,8 @@ With cross-batch natural de-duplication, we have to face a new issue: we need to
 multiple ETL batches to detect duplicates. We don't need to store the whole event - just the
 `event_id` and the `event_fingerprint` metadata. We also need to store these in a database that
 allows fast random access - we chose Amazon DynamoDB, a fully managed NoSQL database service.
+
+Cross-batch natural deduplication implemented in both RDB Shredder and Snowflake Transformer on top [Snowploe Events Manifest][events-manifest] Scala library.
 
 ##### DynamoDB table design
 
@@ -231,3 +235,5 @@ This section hasn't been written yet.
 [r88-release]: http://snowplowanalytics.com/blog/2017/04/27/snowplow-r88-angkor-wat-released/
 [duplicate-schema]: https://github.com/snowplow/iglu-central/blob/master/schemas/com.snowplowanalytics.snowplow/duplicate/jsonschema/1-0-0
 [dynamodb-storage-target]: https://github.com/snowplow/snowplow/wiki/Configuring-storage-targets#dynamodb
+[snowflake-transformer]: https://github.com/snowplow-incubator/snowplow-snowflake-loader/wiki#snowplow-snowflake-transformer
+[events-manifest]: https://github.com/snowplow-incubator/snowplow-events-manifest
