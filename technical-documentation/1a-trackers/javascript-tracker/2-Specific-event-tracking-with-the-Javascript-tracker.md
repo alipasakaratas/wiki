@@ -1507,7 +1507,7 @@ It takes the following arguments:
 |        `documentVersion` | Version of the document        | No            | String   |
 | `documentDescription` | Description of the document | No            | String   |
 
-The required basisForProcessing accepts only the following literals: `consent`, `contract`, `legalObligation`, `vitalInterests`, `publicTask`, `legitimateInterests` - in accordance with the [five legal bases for processing](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/)
+The required basisForProcessing accepts only the following literals: `consent`, `contract`, `legalObligation`, `vitalInterests`, `publicTask`, `legitimateInterests` - in accordance with the [five legal bases for processing][GDPR-bases]
 
 The GDPR context is enabled by calling the `enableGdprContext` method once the tracker has been initialised, for example:
 
@@ -1925,3 +1925,4 @@ Errors can be enabled with the tracker method `tracker.setDebug(true)`.
 [performancetiming]: https://github.com/snowplow/iglu-central/blob/master/schemas/org.w3/PerformanceTiming/jsonschema/1-0-0
 [performance-spec]: http://www.w3.org/TR/2012/REC-navigation-timing-20121217/#sec-window.performance-attribute
 [application_error]: https://raw.githubusercontent.com/snowplow/iglu-central/master/schemas/com.snowplowanalytics.snowplow/application_error/jsonschema/1-0-1
+[GDPR-bases]: https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/
