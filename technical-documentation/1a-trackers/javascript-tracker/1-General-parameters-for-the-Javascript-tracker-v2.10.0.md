@@ -2,7 +2,7 @@
 
 [**HOME**](Home) » [**SNOWPLOW TECHNICAL DOCUMENTATION**](Snowplow-technical-documentation) » [**Trackers**](trackers) » [**JavaScript Tracker**](Javascript-Tracker) » General parameters
 
-*This page refers to version 2.11.0 of the Snowplow JavaScript Tracker.*
+*This page refers to version 2.10.0 of the Snowplow JavaScript Tracker.*
 
 *Click [here][general-parameters-v1] for the corresponding documentation for version 1.*
 
@@ -23,8 +23,6 @@
 *Click [here][general-parameters-v2.8] for the corresponding documentation for version 2.8.2.*
 
 *Click [here][general-parameters-v2.9] for the corresponding documentation for version 2.9.0.*
-
-*Click [here][general-parameters-v2.10] for the corresponding documentation for version 2.10.0.*
 
 <a name="general" />
 
@@ -887,7 +885,6 @@ snowplow_name_here("preservePageViewId")
 [general-parameters-v2.7]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.7
 [general-parameters-v2.8]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.8
 [general-parameters-v2.9]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.9
-[general-parameters-v2.10]: https://github.com/snowplow/snowplow/wiki/1-General-parameters-for-the-Javascript-tracker-v2.10
 [snowplow-tracker-protocol]: https://github.com/snowplow/snowplow/wiki/SnowPlow-Tracker-Protocol
 [contexts]: https://github.com/snowplow/snowplow/wiki/2-Specific-event-tracking-with-the-Javascript-tracker-v1#custom-contexts
 [clojure-collector]: https://github.com/snowplow/snowplow/wiki/Clojure-collector
