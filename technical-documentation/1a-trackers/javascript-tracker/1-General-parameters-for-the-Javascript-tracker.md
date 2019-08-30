@@ -201,7 +201,7 @@ If your website spans multiple subdomains e.g.
 
 You will want to track user behaviour across all those subdomains, rather than within each individually. As a result, it is important that the domain for your first party cookies is set to '.mysite.com' rather than 'www.mysite.com'. By doing so, any values that are stored on the cookie on one of subdomain will be accessible on all the others.
 
-It is recommended that you [enable automatic discovery and setting of the root domain](#discoverRootDomain). 
+It is recommended that you [enable automatic discovery and setting of the root domain](#discoverRootDomain).
 
 Otherwise, set the cookie domain for the tracker instance using the `cookieDomain` field of the argmap. If this field is not set, the cookies will not be given a domain.
 
@@ -449,7 +449,7 @@ You can also batch events sent by POST by setting a numeric `bufferSize` field i
 If you have set `bufferSize` to greater than 1, you can flush the buffer using the `flushBuffer` method:
 
 ```
-snowplow("flushBuffer");
+snowplow_name_here("flushBuffer");
 ```
 
 For instance, if you wish to send several events at once, you might make the API calls to create the events and store them and then and call `flushBuffer` afterwards to ensure they are all sent before the user leaves the page.
@@ -517,7 +517,7 @@ If you want to decorate every link, regardless of its destination:
 Note that the above will decorate "links" which are actually just JavaScript actions (with an `href` of `"javascript:void(0)"`). To exclude these links:
 
 ```javascript
-window.snowplow('crossDomainLinker', function(linkElement) {
+window.snowplow_name_here('crossDomainLinker', function(linkElement) {
   return linkElement.href.indexOf('javascript:') < 0;
 });
 ```

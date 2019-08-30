@@ -143,9 +143,9 @@ For example:
 
 ```javascript
 // Turn on page pings every 10 seconds
-window.snowplow('enableActivityTracking', 10, 10);
+window.snowplow_name_here('enableActivityTracking', 10, 10);
 
-window.snowplow(
+window.snowplow_name_here(
   'trackPageView',
 
   // no custom title
@@ -1125,7 +1125,7 @@ Use the `trackTiming` method to track user timing events such as how long resour
 An example:
 
 ```javascript
-window.snowplow('trackTiming',
+window.snowplow_name_here('trackTiming',
   'load',            // Category of the timing variable
   'map_loaded',      // Variable being recorded
   50,                // Milliseconds taken
@@ -1180,7 +1180,7 @@ __NOTE__: The action type is passed with the action context in the Google Analyt
 Adding an action using Snowplow:
 
 ```javascript
-window.snowplow('addEnhancedEcommerceActionContext',
+window.snowplow_name_here('addEnhancedEcommerceActionContext',
   'T12345', // The Transaction ID
   'Google Store - Online', // The affiliate
   '37.39', // The revenue
@@ -1225,7 +1225,7 @@ ga('ec:addImpression', {
 Adding an impression using Snowplow:
 
 ```javascript
-window.snowplow('addEnhancedEcommerceImpressionContext',
+window.snowplow_name_here('addEnhancedEcommerceImpressionContext',
   'P12345', // The ID
   'Android Warhol T-Shirt', // The name
   'Search Results', // The list
@@ -1272,7 +1272,7 @@ ga('ec:addProduct', {
 Adding a product using Snowplow:
 
 ```javascript
-window.snowplow('addEnhancedEcommerceProductContext',
+window.snowplow_name_here('addEnhancedEcommerceProductContext',
   'P12345', // The ID
   'Android Warhol T-Shirt', // The name
   'Search Results', // The list
@@ -1311,7 +1311,7 @@ ga('ec:addPromo', {
 Adding a promotion using Snowplow:
 
 ```javascript
-window.snowplow('addEnhancedEcommercePromoContext',
+window.snowplow_name_here('addEnhancedEcommercePromoContext',
   'PROMO_1234', // The Promotion ID
   'Summer Sale', // The name
   'summer_banner2', // The name of the creative
@@ -1353,10 +1353,10 @@ ga('ec:setAction', 'refund', {
 Adding an action using Snowplow:
 
 ```javascript
-window.snowplow('addEnhancedEcommerceActionContext',
+window.snowplow_name_here('addEnhancedEcommerceActionContext',
   'T12345' // ID
 );
-window.snowplow('trackEnhancedEcommerceAction',
+window.snowplow_name_here('trackEnhancedEcommerceAction',
   'refund'
 );
 ```
@@ -1385,7 +1385,7 @@ The `expiry` field specifies that the user consents to the attached documents un
 Tracking a consent granted event:
 
 ```javascript
-window.snowplow('trackConsentGranted',
+window.snowplow_name_here('trackConsentGranted',
   '1234',                        // Id
   '5',                           // Version
   'consent_document',            // Name
@@ -1414,7 +1414,7 @@ The method arguments are:
 Tracking a consent withdrawn event:
 
 ```javascript
-window.snowplow('trackConsentWithdrawn',
+window.snowplow_name_here('trackConsentWithdrawn',
   false,                            // All
   '1234',                           // Id
   '5',                              // Version
@@ -1454,7 +1454,7 @@ A consent document self-describing JSON looks like this:
 As an example, `trackConsentGranted` will store one consent document as a custom context:
 
 ```javascript
-window.snowplow('trackConsentGranted',
+window.snowplow_name_here('trackConsentGranted',
   '1234',                        // Id
   '5',                           // Version
   'consent_document',            // Name
@@ -1513,7 +1513,7 @@ The GDPR context is enabled by calling the `enableGdprContext` method once the t
 
 
 ```Javascript
-window.snowplow('enableGdprContext',
+window.snowplow_name_here('enableGdprContext',
   'consent',
   'consentDoc-abc123',
   '0.1.0',
@@ -1732,21 +1732,21 @@ These are the standard methods to add and remove global contexts:
 #### 3.18.5.1 `addGlobalContexts`
 
 To add global contexts:
-`window.snowplow('addGlobalContexts', [array of global contexts])`
+`window.snowplow_name_here('addGlobalContexts', [array of global contexts])`
 
 <a name="remove-global-contexts" />
 
 #### 3.18.5.2 `removeGlobalContexts`
 
 To remove a global context:
-`window.snowplow('removeGlobalContexts', [array of global contexts])`
+`window.snowplow_name_here('removeGlobalContexts', [array of global contexts])`
 
 <a name="clear-global-contexts" />
 
 #### 3.18.5.3 `clearGlobalContexts`
 
 To remove all global contexts:
-`window.snowplow('clearGlobalContexts')`
+`window.snowplow_name_here('clearGlobalContexts')`
 
 <a name="error-tracking" />
 
