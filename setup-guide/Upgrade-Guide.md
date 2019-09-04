@@ -6,7 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
-- [Snowplow 116 Madara Rider](#r116) (**r116**) 2019-09-04
+- [Snowplow 116 Madara Rider](#r116) (**r116**) 2019-09-06
 - [Snowplow 115 Sigiriya](#r115) (**r115**) 2019-07-17
 - [Snowplow 114 Polonnaruwa](#r114) (**r114**) 2019-05-16
 - [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
