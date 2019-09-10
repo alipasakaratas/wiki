@@ -111,12 +111,20 @@ domains = [
   "acme.net"
 ]
 
-fallbackDomain = "roadrunner.com"
+fallbackDomain = "roadrunner.com" # no leading dot
 ```
 
-If you don't wish to use multiple domains and want to preserve the previous behaviour, leave `domains` empty and specify a `fallbackDomain` with the same value as `collector.cookie.domain` from your previous configuration.
+If you don't wish to use multiple domains and want to preserve the previous behaviour, leave `domains` empty and specify a `fallbackDomain` with the same value as `collector.cookie.domain` from your previous configuration (but leave out any leading dots).
 
 Both `domains` and `fallbackDomain` are optional settings, just like `domain` is an optional setting in earlier versions.
+
+- Another addition to `collector.cookie` are controls for extra directives to be passed in the `Set-Cookie` response header.
+
+```hocon
+secure = false    # set to true if you want to enforce secure connections
+httpOnly = false  # set to true if you want to make the cookie inaccessible to non-HTTP requests
+sameSite = "None" # or `Lax`, or `Strict`. This is an optional parameter.
+```
 
 ### Read more
 
