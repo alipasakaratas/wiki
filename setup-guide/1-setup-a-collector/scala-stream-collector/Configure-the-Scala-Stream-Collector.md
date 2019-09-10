@@ -97,11 +97,23 @@ Examples:
 - `domain.com` will match `Origin` headers like `domain.com`, `www.domain.com` and `secure.client.domain.com`
 - `client.domain.com` will match an `Origin` header like `secure.client.domain.com` but not `domain.com` or `www.domain.com`.
 
-### 4. Setting the cookie duration
+### 4. Configuring `Secure`, `HttpOnly` and `SameSite` attributes for the cookie
+
+You can control the values of those attributes in the `Set-Cookie` response header by specifying them in `collector.cookie`:
+
+```hocon
+secure = false    # set to true if you want to enforce secure connections
+httpOnly = false  # set to true if you want to make the cookie inaccessible to non-HTTP requests
+sameSite = "None" # or "Lax", or "Strict"
+```
+
+The `sameSite` parameter is optional. If you omit it, the default value `None` will be assumed.
+
+### 5. Setting the cookie duration
 
 The cookie expiration duration is set in `collector.cookie.expiration`. If no value is provided, cookies set the default to expire after one year (i.e. 365 days). If you don't want to set a third party cookie at all it could be disabled by setting `collector.cookie.enabled` to `false`. Alternatively, it could be achieved if `collector.cookie.expiration` is set to 0 (from version 0.4.0).
 
-### 5. Configuring custom paths
+### 6. Configuring custom paths
 
 The collector responds with a cookie to requests with a path that matches the `vendor/version` protocol. The expected values are:
 - `com.snowplowanalytics.snowplow/tp2` for Tracker Protocol 2
@@ -112,9 +124,9 @@ You can also map any valid (ie, two-segment) path to one of the three defaults v
 
 ```hocon
 paths {
-  "/com.acme/track" = "/com.snowplowanalytics.snowplow/tp2"
+  "/com.acme/track"    = "/com.snowplowanalytics.snowplow/tp2"
   "/com.acme/redirect" = "/r/tp2"
-  "/com.acme/iglu" = "/com.snowplowanalytics.iglu/v1"
+  "/com.acme/iglu"     = "/com.snowplowanalytics.iglu/v1"
 }
 ```
 
