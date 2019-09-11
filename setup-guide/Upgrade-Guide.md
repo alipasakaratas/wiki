@@ -6,7 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
-- [Snowplow 116 Madara Rider](#r116) (**r116**) 2019-09-06
+- [Snowplow 116 Madara Rider](#r116) (**r116**) 2019-09-12
 - [Snowplow 115 Sigiriya](#r115) (**r115**) 2019-07-17
 - [Snowplow 114 Polonnaruwa](#r114) (**r114**) 2019-05-16
 - [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
@@ -91,6 +91,12 @@ It also includes an update to *EmrEtlRunner*, to add support for shredded data i
 
 A new version of the Scala Stream Collector can be found on [our Bintray](https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.16.0#files).
 
+You can also find the images on Docker Hub:
+- [Kinesis](https://hub.docker.com/r/snowplow/scala-stream-collector-kinesis)
+- [Pub/Sub](https://hub.docker.com/r/snowplow/scala-stream-collector-pubsub)
+- [Kafka](https://hub.docker.com/r/snowplow/scala-stream-collector-kafka)
+- [NSQ](https://hub.docker.com/r/snowplow/scala-stream-collector-nsq)
+
 To make use of the new features, you'll need to update your configuration as follows:
 
 - Add a `collector.paths` section if you want to provide custom path mappings:
@@ -128,7 +134,7 @@ sameSite = "None" # or `Lax`, or `Strict`. This is an optional parameter.
 
 ### Read more
 
-* [R116 Blog Post](https://snowplowanalytics.com/blog/2019/09/04/snowplow-r116-madara-rider/)
+* [R116 Blog Post](https://snowplowanalytics.com/blog/2019/09/12/snowplow-r116-madara-rider/)
 * [R116 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r116-madara-rider)
 
 <a name="r115" />

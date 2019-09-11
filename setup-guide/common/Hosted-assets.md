@@ -44,12 +44,13 @@ The Scala Stream Collectors are available on Bintray here:
 
     https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.16.0#files
 
-Choose an artifact according to the supported targeted platform:
+Choose an artifact according to the supported targeted platform (Kinesis, Google Pub/Sub, Kafka or NSQ).
 
-- Kinesis
-- Google PubSub
-- Kafka
-- NSQ
+You can also find the images on Docker Hub:
+- [Kinesis](https://hub.docker.com/r/snowplow/scala-stream-collector-kinesis)
+- [Pub/Sub](https://hub.docker.com/r/snowplow/scala-stream-collector-pubsub)
+- [Kafka](https://hub.docker.com/r/snowplow/scala-stream-collector-kafka)
+- [NSQ](https://hub.docker.com/r/snowplow/scala-stream-collector-nsq)
 
 ## 3. Enrich
 
