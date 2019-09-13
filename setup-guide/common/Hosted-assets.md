@@ -12,11 +12,11 @@ We are steadily moving over to [Bintray][bintray] for hosting binaries and artif
 
 To make operating Snowplow easier, the EmrEtlRunner app are now available as prebuilt executables in a single zipfile here:
 
-    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip
+    http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r116_madara_rider.zip
 
 Right-click on this [Download link][emr-download] to save it down locally.
 
-**Note**: The link above refers to the latest version at the time of writing (R115). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
+**Note**: The link above refers to the latest version at the time of writing (R116). If you know there is a newer version you can locate and download it from the [generic page](http://dl.bintray.com/snowplow/snowplow-generic/). Search for the pattern `snowplow_emr_`. The higher the number version the newer it is.
 
 ## 1. Trackers
 
@@ -42,14 +42,15 @@ Right-click on this [Download link][cc-download] to save it down locally via Clo
 
 The Scala Stream Collectors are available on Bintray here:
 
-    https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.15.0#files
+    https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.16.0#files
 
-Choose an artifact according to the supported targeted platform:
+Choose an artifact according to the supported targeted platform (Kinesis, Google Pub/Sub, Kafka or NSQ).
 
-- Kinesis
-- Google PubSub
-- Kafka
-- NSQ
+You can also find the images on Docker Hub:
+- [Kinesis](https://hub.docker.com/r/snowplow/scala-stream-collector-kinesis)
+- [Pub/Sub](https://hub.docker.com/r/snowplow/scala-stream-collector-pubsub)
+- [Kafka](https://hub.docker.com/r/snowplow/scala-stream-collector-kafka)
+- [NSQ](https://hub.docker.com/r/snowplow/scala-stream-collector-nsq)
 
 ## 3. Enrich
 
@@ -157,20 +158,20 @@ No hosted assets currently.
 
 ## 6. Relays (AWS Lambda)
 
-You can find the jars for our relays in our public S3 buckets close to your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket) 
+You can find the jars for our relays in our public S3 buckets close to your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
 
 ### 6.1 Snowplow Piinguin Relay
 
 You can find the Snowplow Piinguin Relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
 
-For instance for `eu-west-1` the asset will be at: 
+For instance for `eu-west-1` the asset will be at:
 `s3://snowplow-hosted-assets/relays/piinguin/snowplow-piinguin-relay-0.1.0.jar`
 
 ### 6.2 Snowplow Indicative Relay
 
 You can find the Snowplow Indicative Relay in an S3 bucket in your region (see [this table](#7.-S3-hosted-asset-bucket-per-region) for your bucket)
 
-For instance for `eu-west-1` the asset will be at: 
+For instance for `eu-west-1` the asset will be at:
 `s3://snowplow-hosted-assets/relays/indicative/indicative-relay-0.1.0.jar`
 
 ## 7. S3 hosted asset bucket per region
@@ -213,4 +214,4 @@ Please see the [[Artifact repositories]] wiki page for more information.
 [esl-dl-http]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_http_0.10.1.zip
 [esl-dl-tcp]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_tcp_0.10.1.zip
 [esl-dl-tcp-2x]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_elasticsearch_loader_tcp_2x_0.10.1.zip
-[emr-download]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip
+[emr-download]: http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r116_madara_rider.zip

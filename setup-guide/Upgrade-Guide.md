@@ -6,6 +6,7 @@ You can also use [Snowplow Version Matrix](Snowplow-version-matrix) as a guidanc
 
 For easier navigation, please, follow the links below.
 
+- [Snowplow 116 Madara Rider](#r116) (**r116**) 2019-09-12
 - [Snowplow 115 Sigiriya](#r115) (**r115**) 2019-07-17
 - [Snowplow 114 Polonnaruwa](#r114) (**r114**) 2019-05-16
 - [Snowplow 113 Filitosa](#r113) (**r113**) 2019-02-27
@@ -78,6 +79,64 @@ For easier navigation, please, follow the links below.
 - [Snowplow 0.9.1](#v0.9.1) (**v0.9.1**) 2014-04-11
 - [Snowplow 0.9.0](#v0.9.0) (**v0.9.0**) 2014-02-04
 
+<a name="r116" />
+
+## Snowplow 116 Madara Rider
+
+This release focuses on adding new features to the *Scala Stream Collector*, including the ability to set first-party cookies server-side on multiple domains and a to use custom path mappings.
+
+It also includes an update to *EmrEtlRunner*, to add support for shredded data in `tsv` format.
+
+### Scala Stream Collector
+
+A new version of the Scala Stream Collector can be found on [our Bintray](https://bintray.com/snowplow/snowplow-generic/snowplow-scala-stream-collector/0.16.0#files).
+
+You can also find the images on Docker Hub:
+- [Kinesis](https://hub.docker.com/r/snowplow/scala-stream-collector-kinesis)
+- [Pub/Sub](https://hub.docker.com/r/snowplow/scala-stream-collector-pubsub)
+- [Kafka](https://hub.docker.com/r/snowplow/scala-stream-collector-kafka)
+- [NSQ](https://hub.docker.com/r/snowplow/scala-stream-collector-nsq)
+
+To make use of the new features, you'll need to update your configuration as follows:
+
+- Add a `collector.paths` section if you want to provide custom path mappings:
+
+```hocon
+paths {
+  "/com.acme/track" = "/com.snowplowanalytics.snowplow/tp2" # for tracker protocol 2 requests
+  "/com.acme/redirect" = "/r/tp2"                           # for redirect requests
+  "/com.acme/iglu" = "/com.snowplowanalytics.iglu/v1"       # for Iglu webhook requests
+}
+```
+
+- In `collector.cookie` there is no longer a `domain` setting. Instead, you can provide a list of `domains` to be used and / or a `fallbackDomain` in case none of the origin domains matches the ones you specified:
+
+```hocon
+domains = [
+  "acme.com"
+  "acme.net"
+]
+
+fallbackDomain = "roadrunner.com" # no leading dot
+```
+
+If you don't wish to use multiple domains and want to preserve the previous behaviour, leave `domains` empty and specify a `fallbackDomain` with the same value as `collector.cookie.domain` from your previous configuration (but leave out any leading dots).
+
+Both `domains` and `fallbackDomain` are optional settings, just like `domain` is an optional setting in earlier versions.
+
+- Another addition to `collector.cookie` are controls for extra directives to be passed in the `Set-Cookie` response header.
+
+```hocon
+secure = false    # set to true if you want to enforce secure connections
+httpOnly = false  # set to true if you want to make the cookie inaccessible to non-HTTP requests
+sameSite = "None" # or `Lax`, or `Strict`. This is an optional parameter.
+```
+
+### Read more
+
+* [R116 Blog Post](https://snowplowanalytics.com/blog/2019/09/12/snowplow-r116-madara-rider/)
+* [R116 Release Notes](https://github.com/snowplow/snowplow/releases/tag/r116-madara-rider)
+
 <a name="r115" />
 
 ## Snowplow 115 Sigiriya
@@ -86,7 +145,7 @@ This release includes 2 updates for *EmrEtlRunner*, one bug fix and one to impro
 
 It also includes an update to *Event Manifest Populator*, so that it can read the files containing the events produced by *stream-enrich*.
 
-## EmrEtlRunner
+### EmrEtlRunner
 
 The latest version of *EmrEtlRunner* is available on our Bintray [here](http://dl.bintray.com/snowplow/snowplow-generic/snowplow_emr_r115_sigiriya.zip).
 
@@ -520,7 +579,7 @@ or directly make use of the new Spark Enrich available at:
 This release adds further capabilities to the PII Pseudonymization Enrichment to *both* stream and batch enrich. Specifically, it adds the
 capability to emit a stream of events which contain the original along with the modified value. The PII
 transformation event also contains information about the field and the parent event (the event whence this
-PII event originated). 
+PII event originated).
 
 ### Upgrading Spark Enrich
 
