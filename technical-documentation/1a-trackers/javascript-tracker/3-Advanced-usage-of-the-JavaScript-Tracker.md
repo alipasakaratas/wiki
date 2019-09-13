@@ -37,13 +37,13 @@ The callback you provide is executed as a method on the internal `trackerDiction
 
 ```javascript
 // Configure a tracker instance named "cf"
-snowplow('newTracker', 'cf', 'd3rkrsqld9gmqf.cloudfront.net', {
+snowplow_name_here('newTracker', 'cf', 'd3rkrsqld9gmqf.cloudfront.net', {
 	appId: 'snowplowExampleApp',
 	platform: 'web'
 });
 
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var userFingerprint = cf.getUserFingerprint();
 	doSomethingWith(userFingerprint);
@@ -79,13 +79,13 @@ The `getUserFingerprint` method returns the tracker-generated user fingerprint:
 
 ```javascript
 // Configure a tracker instance named "cf"
-snowplow('newTracker', 'cf', 'd3rkrsqld9gmqf.cloudfront.net', {
+snowplow_name_here('newTracker', 'cf', 'd3rkrsqld9gmqf.cloudfront.net', {
 	appId: 'snowplowExampleApp',
 	platform: 'web'
 });
 
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var userFingerprint = cf.getUserFingerprint();
 	doSomethingWith(userFingerprint);
@@ -100,7 +100,7 @@ The `getDomainUserId` method returns the user ID stored in the first-party cooki
 
 ```javascript
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var domainUserId = cf.getDomainUserId();
 	doSomethingWith(domainUserId);
@@ -115,7 +115,7 @@ The `getDomainUserInfo` method returns all the information stored in first-party
 
 ```javascript
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var domainUserInfo = cf.getDomainUserInfo();
 	doSomethingWith(domainUserInfo);
@@ -140,7 +140,7 @@ The `getUserId` method returns the user ID which you configured using `setUserId
 
 ```javascript
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var userId = cf.getUserId();
 	doSomethingWith(userId);
@@ -156,7 +156,7 @@ session cookie:
 
 ```javascript
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var cookieName = cf.getCookieName('id');
 	doSomethingWith(cookieName);
@@ -174,7 +174,7 @@ The `getPageViewId` method returns the page view id:
 
 ```javascript
 // Access the tracker instance inside a callback
-snowplow(function () {
+snowplow_name_here(function () {
 	var cf = this.cf;
 	var pageViewId = cf.getPageViewId();
 	doSomethingWith(pageViewId);
@@ -204,7 +204,7 @@ function getGoogleId() {
 You can then set a user's Snowplow business user ID to be equal to the user's GA ID:
 
 ```javascript
-snowplow('setUserId', getGoogleId());
+snowplow_name_here('setUserId', getGoogleId());
 ```
 <a name="timing" />
 
@@ -214,7 +214,7 @@ The `domComplete`, `loadEventStart`, and `loadEventEnd` metrics in the Navigatio
 
 ```javascript
 setTimeout(function () {
-	
+
 	// Load Snowplow and call tracking methods here
 
 }, 0);
